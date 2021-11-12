@@ -10,14 +10,14 @@
             <p class="m-0">Emilio Verdines <br> <small><i>emilio_v</i></small></p>
         </div>
         <div class="divider"></div>
-        <a mat-menu-item routerLink="/submit-property"> 
+        <!-- <a mat-menu-item routerLink="/submit-property"> 
             <mat-icon class="mat-icon-sm">add_circle</mat-icon>
             <span>{{ 'SUBMIT_PROPERTY' | translate }}</span> 
-        </a>
-        <a mat-menu-item routerLink="/account/my-properties"> 
+        </a> -->
+        <!-- <a mat-menu-item routerLink="/account/my-properties"> 
             <mat-icon class="mat-icon-sm">home</mat-icon>
             <span>{{ 'MY_PROPERTIES' | translate }}</span> 
-        </a>
+        </a> -->
         <a mat-menu-item routerLink="/account/favorites"> 
             <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
             <span [matBadge]="appService.Data.favorites.length" 
@@ -42,14 +42,14 @@
             <mat-icon class="mat-icon-sm">edit</mat-icon>
             <span>{{ 'EDIT_PROFILE' | translate }}</span> 
         </a>
-        <a mat-menu-item routerLink="/lock-screen"> 
+        <!-- <a mat-menu-item routerLink="/lock-screen"> 
             <mat-icon class="mat-icon-sm">lock</mat-icon>
             <span>{{ 'LOCK_SCREEN' | translate }}</span> 
-        </a>
-        <a mat-menu-item routerLink="/faq"> 
+        </a> -->
+        <!-- <a mat-menu-item routerLink="/faq"> 
             <mat-icon class="mat-icon-sm">help</mat-icon>
             <span>{{ 'HELP' | translate }}</span> 
-        </a>
+        </a> -->
         <div class="divider"></div>
         <a mat-menu-item routerLink="/login"> 
             <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
