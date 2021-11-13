@@ -34,7 +34,7 @@ export class AppSettings {
         'blue',      // blue, green, red, pink, purple, grey, orange-dark
         1,           // 1 or 2  
         true,        // true = sticky, false = not sticky
-        'image',     // default, image, carousel, map, video
+        'video',     // default, image, carousel, map, video
         false,       // true = rtl, false = ltr
         1,           //  1, 2  or 3
         false,       //  true = search on button click

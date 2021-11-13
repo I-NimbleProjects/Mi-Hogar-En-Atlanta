@@ -551,7 +551,7 @@ export class AppService {
     return [        
         { 
             id: 1,
-            fullName: 'Lusia Manuel',
+            fullName: 'Carmela Moreno',
             desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
             organization: 'HouseKey',
             email: 'lusia.m@housekey.com',
