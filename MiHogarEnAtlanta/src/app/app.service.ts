@@ -552,16 +552,16 @@ export class AppService {
         { 
             id: 1,
             fullName: 'Carmela Moreno',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'lusia.m@housekey.com',
+            // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
+            organization: 'Mi Hogar En Atlanta',
+            email: 'mihogarenatlanta@gmail.com ',
             phone: '(224) 267-1346',
             social: {
               facebook: 'lusia',
               twitter: 'lusia',
               linkedin: 'lusia',
               instagram: 'lusia',
-              website: 'https://lusia.manuel.com'
+              // website: 'https://lusia.manuel.com'
             },
             ratingsCount: 6,
             ratingsValue: 480,
@@ -570,16 +570,16 @@ export class AppService {
         { 
             id: 2,
             fullName: 'Andy Warhol',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'andy.w@housekey.com',
+            // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
+            organization: 'Mi Hogar En Atlanta',
+            email: 'mihogarenatlanta@gmail.com ',
             phone: '(212) 457-2308',
             social: {
               facebook: '',
               twitter: '',
               linkedin: '',
               instagram: '',
-              website: 'https://andy.warhol.com'
+              // website: 'https://andy.warhol.com'
             },
             ratingsCount: 4,
             ratingsValue: 400,
@@ -588,57 +588,57 @@ export class AppService {
         { 
             id: 3,
             fullName: 'Tereza Stiles',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'tereza.s@housekey.com',
+            // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
+            organization: 'Mi Hogar En Atlanta',
+            email: 'mihogarenatlanta@gmail.com ',
             phone: '(214) 617-2614',
             social: {
               facebook: '',
               twitter: '',
               linkedin: '',
               instagram: '',
-              website: 'https://tereza.stiles.com'
+              // website: 'https://tereza.stiles.com'
             },
             ratingsCount: 4,
             ratingsValue: 380,
             image: 'assets/images/agents/a-3.jpg' 
         },
-        { 
-          id: 4,
-          fullName: 'Michael Blair',
-          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-          organization: 'HouseKey',
-          email: 'michael.b@housekey.com',
-          phone: '(267) 388-1637',
-          social: {
-            facebook: '',
-            twitter: '',
-            linkedin: '',
-            instagram: '',
-            website: 'https://michael.blair.com'
-          },
-          ratingsCount: 6,
-          ratingsValue: 480,
-          image: 'assets/images/agents/a-4.jpg'  
-        },
-        { 
-            id: 5,
-            fullName: 'Michelle Ormond',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'michelle.o@housekey.com',
-            phone: '(267) 388-1637',
-            social: {
-              facebook: '',
-              twitter: '',
-              linkedin: '',
-              instagram: '',
-              website: 'https://michelle.ormond.com'
-            },
-            ratingsCount: 6,
-            ratingsValue: 480, 
-            image: 'assets/images/agents/a-5.jpg' 
-        }
+        // { 
+          // id: 4,
+          // fullName: 'Michael Blair',
+          // // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
+          // organization: 'HouseKey',
+          // email: 'michael.b@housekey.com',
+          // phone: '(267) 388-1637',
+          // social: {
+          //   facebook: '',
+          //   twitter: '',
+          //   linkedin: '',
+          //   instagram: '',
+          //   website: 'https://michael.blair.com'
+          // },
+          // ratingsCount: 6,
+          // ratingsValue: 480,
+          // image: 'assets/images/agents/a-4.jpg'  
+        // },
+        // { 
+            // id: 5,
+            // fullName: 'Michelle Ormond',
+            // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
+            // organization: 'HouseKey',
+            // email: 'michelle.o@housekey.com',
+            // phone: '(267) 388-1637',
+            // social: {
+            //   facebook: '',
+            //   twitter: '',
+            //   linkedin: '',
+            //   instagram: '',
+            //   website: 'https://michelle.ormond.com'
+            // },
+            // ratingsCount: 6,
+            // ratingsValue: 480, 
+            // image: 'assets/images/agents/a-5.jpg' 
+        // }
     ];
   }
 

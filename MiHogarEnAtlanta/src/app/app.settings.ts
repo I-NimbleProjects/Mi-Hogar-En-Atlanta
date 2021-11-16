@@ -30,7 +30,7 @@ export class Settings {
 @Injectable()
 export class AppSettings {
     public settings = new Settings(
-        'HouseKey',  // theme name
+        'MiHogarEnAtlanta',  // theme name
         'blue',      // blue, green, red, pink, purple, grey, orange-dark
         1,           // 1 or 2  
         true,        // true = sticky, false = not sticky
