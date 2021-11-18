@@ -17,7 +17,7 @@ export class PropertiesToolbarComponent implements OnInit {
   public viewCol: number = 25;
   public counts = [8, 12, 16, 24, 36];
   public count:any;
-  public sortings = ['Sort by Default', 'Newest', 'Oldest', 'Popular', 'Price (Low to High)', 'Price (High to Low)'];
+  public sortings = ['Ordenar por defecto', 'Nuevo', 'Viejo', 'Popular', 'Precio (Bajo a Alto)', 'Precio (Alto a Bajo)'];
   public sort:any;
 
   constructor() { }

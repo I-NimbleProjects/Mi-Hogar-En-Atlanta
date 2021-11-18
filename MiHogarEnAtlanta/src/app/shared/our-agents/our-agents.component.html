@@ -1,7 +1,7 @@
 <div class="section agents">
     <div class="px-3">
         <div class="theme-container">
-            <h1 class="section-title">Meet our agents</h1>
+            <h1 class="section-title">Conoce a nuestros agentes</h1>
 
             <div class="agents-carousel"> 
                 <div class="swiper-container h-100 carousel-outer" [swiper]="config"> 
@@ -10,7 +10,7 @@
 
                             <mat-card>
                                 <img mat-card-image [attr.data-src]="agent.image" alt="" class="swiper-lazy d-block">
-                                <div class="swiper-lazy-preloader"></div>
+                                <div class="swiper-lazy-preloader" ></div>
                                 <mat-card-content>
                                     <h2 class="fw-600">{{agent.fullName}}</h2>
                                     <app-rating [ratingsCount]="agent.ratingsCount" [ratingsValue]="agent.ratingsValue"></app-rating>
@@ -49,7 +49,7 @@
                                         </a>  
                                     </div>
                                     <div>
-                                        <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">View Profile</a>
+                                        <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">Ver Perfil</a>
                                     </div> 
                                 </mat-card-actions>                              
                             </mat-card>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="w-100 text-center mt-5">
-                <a routerLink="/agents" mat-raised-button color="primary" class="uppercase">Our agents</a>
+                <a routerLink="/agents" mat-raised-button color="primary" class="uppercase">Nuestros agentes</a>
             </div>           
                 
         </div>

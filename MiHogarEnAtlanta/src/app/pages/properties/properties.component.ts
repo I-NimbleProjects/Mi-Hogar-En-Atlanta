@@ -76,7 +76,7 @@ export class PropertiesComponent implements OnInit {
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Results Found';
+        this.message = 'Sin Resultados';
         return false;
       } 
       this.properties = result.data; 

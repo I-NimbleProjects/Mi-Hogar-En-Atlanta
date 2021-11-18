@@ -97,8 +97,8 @@ $mihogar-warn-color: (
         )
 );
 
-$green-primary: mat.define-palette($mihogar-primary-pallete, 700, 50, 900);
-$green-accent: mat.define-palette($mihogar-accent-color, 600, 100, 900);
+$green-primary: mat.define-palette($mihogar-primary-pallete, 500);
+$green-accent: mat.define-palette($mihogar-accent-color, 500);
 $green-warn: mat.define-palette($mihogar-warn-color, 500, A200, 800);
 
 $green-mihogar-theme: mat.define-light-theme((

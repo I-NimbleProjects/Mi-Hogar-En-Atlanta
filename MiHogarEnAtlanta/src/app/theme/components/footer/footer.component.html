@@ -5,8 +5,8 @@
 
             <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center" class="content border-lighter py-5">
                 <div fxFlex="100" fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center"> 
-                    <h2 class="uppercase">Subscribe our Newsletter</h2>
-                    <p class="desc mb-1">Stay up to date with our latest news and properties</p>
+                    <h2 class="uppercase">Suscribete a nuestro periodico</h2>
+                    <p class="desc mb-1">Mantente actualizado con las ultimas noticias y propiedades</p>
                 </div>
                 <form [formGroup]="subscribeForm" (ngSubmit)="onSubscribeFormSubmit(subscribeForm.value)" class="custom-form" fxLayout="row" fxFlex="100" fxFlex.gt-sm="42.4" ngClass.sm="mt-2" ngClass.xs="mt-2">
                     <mat-form-field appearance="outline" floatLabel="always" class="subscribe-input" fxFlex>
@@ -42,8 +42,8 @@
                     </div>
 
                     <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="45" ngClass.xs="pt-5"> 
-                        <h2 class="uppercase">Feedback</h2>
-                        <p class="desc">We want your feedback about everything</p>
+                        <h2 class="uppercase">Opinion</h2>
+                        <p class="desc">Queremos tu opinion sobretodo todo</p>
                         <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackFormSubmit(feedbackForm.value)" class="custom-form pt-2">                            
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>E-mail</mat-label> 
@@ -52,18 +52,18 @@
                                 <mat-error *ngIf="feedbackForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Message for us</mat-label> 
+                                <mat-label>Mensaje para nosotros</mat-label> 
                                 <textarea matInput formControlName="message" rows="6"></textarea> 
                                 <mat-error *ngIf="feedbackForm.controls.message.errors?.required">Message is required</mat-error>
                             </mat-form-field>
                             <div class="w-100 text-center">
-                                <button mat-flat-button color="primary" class="uppercase" type="submit">Submit</button> 
+                                <button mat-flat-button color="primary" class="uppercase" type="submit">Enviar</button> 
                             </div> 
                         </form> 
                     </div>
  
                     <div fxFlex="100" fxFlex.gt-sm="30" ngClass.lt-md="pt-5"> 
-                        <h2 class="uppercase mb-3">Our location</h2>
+                        <h2 class="uppercase mb-3">Nuestra Ubicacion</h2>
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false" [styles]="mapStyles">
                             <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
                         </agm-map>

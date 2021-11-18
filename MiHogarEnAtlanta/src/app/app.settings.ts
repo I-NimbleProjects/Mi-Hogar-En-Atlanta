@@ -30,15 +30,14 @@ export class Settings {
 @Injectable()
 export class AppSettings {
     public settings = new Settings(
-<<<<<<< HEAD
-        'MiHogarEnAtlanta',  // theme name
-        'blue',      // blue, green, red, pink, purple, grey, orange-dark
-        1,           // 1 or 2  
-=======
+// <<<<<<< HEAD
+//         'MiHogarEnAtlanta',  // theme name
+//         'blue',      // blue, green, red, pink, purple, grey, orange-dark
+//         1,           // 1 or 2  
+// =======
         'HouseKey',  // theme name
         'green-mihogar',      // blue, green, red, pink, purple, grey, orange-dark
         1,           // 1 or 2
->>>>>>> b846c9cfa39dcf39c5a551f62243cf00194a2970
         true,        // true = sticky, false = not sticky
         'video',     // default, image, carousel, map, video
         false,       // true = rtl, false = ltr

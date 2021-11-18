@@ -49,7 +49,7 @@
                                     </a>  
                                 </div>
                                 <div>
-                                    <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">View Profile</a>
+                                    <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">Ver Perfil</a>
                                 </div> 
                             </mat-card-actions>                              
                         </mat-card>
@@ -58,9 +58,9 @@
                     <div class="widget">
                         <h3 class="widget-title bg-primary">Reply to the listing</h3>
                         <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
-                            <p>Interested in renting or buying this property? Then send us an email.</p>
+                            <p>Interesado en comprar o rentar esta propiedad? Escribenos</p>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Name</mat-label>
+                                <mat-label>Nombre</mat-label>
                                 <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="contactForm.controls.name.errors?.required">Name is required</mat-error>                   
                             </mat-form-field>
@@ -73,13 +73,13 @@
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Phone</mat-label>
+                                <mat-label>Telefono</mat-label>
                                 <input matInput placeholder="Your Phone" autocomplete="off" formControlName="phone" type="number"> 
                                 <mat-error *ngIf="contactForm.controls.phone.errors?.required">Phone is required</mat-error>                 
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Message</mat-label> 
+                                <mat-label>Mensage</mat-label> 
                                 <textarea matInput placeholder="Your Message" formControlName="message" rows="6"></textarea> 
                                 <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
                             </mat-form-field>  
@@ -90,33 +90,33 @@
                     </div>
                    
                     <div class="widget">
-                        <h3 class="widget-title bg-primary">Mortgage Calculator</h3>
+                        <h3 class="widget-title bg-primary">Calculadora de Hipoteca</h3>
                         <form [formGroup]="mortgageForm" (ngSubmit)="onMortgageFormSubmit(mortgageForm.value)">
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Principal Amount</mat-label>
+                                <mat-label>Monto Principal</mat-label>
                                 <input matInput placeholder="$" autocomplete="off" formControlName="principalAmount" type="number">                  
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Down Payment</mat-label>
+                                <mat-label>Inicial</mat-label>
                                 <input matInput placeholder="$" autocomplete="off" formControlName="downPayment" type="number">                  
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Interest Rate</mat-label>
+                                <mat-label>Interes</mat-label>
                                 <input matInput placeholder="%" autocomplete="off" formControlName="interestRate" type="number">                  
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Period</mat-label>
+                                <mat-label>Periodo</mat-label>
                                 <input matInput placeholder="Number of Years" autocomplete="off" formControlName="period" type="number">                  
                             </mat-form-field>
-                            <p *ngIf="monthlyPayment">Monthly Payment: <span class="mx-2 fw-500">${{monthlyPayment}}</span></p>
+                            <p *ngIf="monthlyPayment">Pago Mensual: <span class="mx-2 fw-500">${{monthlyPayment}}</span></p>
                             <div class="text-center">
-                                <button mat-raised-button color="accent" type="submit">Calculate Mortgage</button>
+                                <button mat-raised-button color="accent" type="submit">Calculadora de Hipoteca</button>
                             </div>
                         </form>
                     </div>
 
                     <div fxLayout="column" class="widget">
-                        <h3 class="widget-title bg-primary">Featured Properties</h3>
+                        <h3 class="widget-title bg-primary">Propiedades Destacadas</h3>
                         <div *ngFor="let prop of featuredProperties" class="mb-3">
                             <app-property-item [property]="prop" [viewType]="'grid'"></app-property-item> 
                         </div> 
@@ -189,41 +189,41 @@
                     </mat-card-header>
                     <div fxLayout="row wrap" class="details">
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Property Type:</span>
+                            <span>Tipo de propiedad:</span>
                             <span>{{property.propertyType}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Property Status:</span>
+                            <span>Estado de propiedad</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                             </div>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>City:</span>
+                            <span>Ciudad:</span>
                             <span>{{property.city}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Zip Code:</span>
+                            <span>Codigo Postal</span>
                             <span>{{property.zipCode}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Neighborhood:</span>
+                            <span>Vecindario:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let neighborhood of property.neighborhood; let last=last" [class.list-item]="property.neighborhood.length > 1" [class.last]="last">{{neighborhood}}</span>
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Street:</span>
+                            <span>Calle:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let street of property.street; let last=last" [class.list-item]="property.street.length > 1" [class.last]="last">{{street}}</span>
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Bedrooms:</span>
+                            <span>Cuartos:</span>
                             <span>{{property.bedrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Bathrooms:</span>
+                            <span>Baños:</span>
                             <span>{{property.bathrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
@@ -231,11 +231,11 @@
                             <span>{{property.garages}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Property size:</span>
+                            <span>Tamaño Propiedad:</span>
                             <span>{{property.area.value}} {{property.area.unit}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Year Built:</span>
+                            <span>Año de construccion:</span>
                             <span>{{property.yearBuilt}}</span>
                         </div>
                     </div>   
@@ -243,12 +243,12 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Features</mat-card-title> 
+                        <mat-card-title class="uppercase">Caracteristicas</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <div fxLayout="row wrap">
                             <div *ngFor="let feature of property?.features" fxFlex="100" fxFlex.gt-xs="33.3">
-                                <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
+                                <mat-icon class="mat-icon-sm" color="primary">verificar</mat-icon>
                                 <span class="mx-2">{{feature}}</span>
                             </div>
                         </div>
@@ -257,7 +257,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Additional features</mat-card-title> 
+                        <mat-card-title class="uppercase">Caracteristicas adicionales</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <div fxLayout="row wrap" class="details">
@@ -271,7 +271,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Description</mat-card-title> 
+                        <mat-card-title class="uppercase">Descripcion</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <p>{{property?.desc}}</p>
@@ -282,7 +282,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Location</mat-card-title> 
+                        <mat-card-title class="uppercase">Ubicacion</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <agm-map [latitude]="property?.location.lat" [longitude]="property?.location.lng" [mapTypeControl]="true" [fullscreenControl]="true">
@@ -293,7 +293,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Plans</mat-card-title> 
+                        <mat-card-title class="uppercase">Planos</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <mat-accordion>
@@ -303,8 +303,8 @@
                                         <div class="fw-500">{{plan.name}}</div>
                                         <div fxShow="false" fxShow.gt-xs="true" class="text-muted">
                                             <span>Area: <span class="fw-500">{{plan.area.value}} {{plan.area.unit}}</span></span>
-                                            <span class="mx-3">Rooms: <span class="fw-500">{{plan.rooms}}</span></span>
-                                            <span>Baths: <span class="fw-500">{{plan.baths}}</span></span>   
+                                            <span class="mx-3">Cuartos: <span class="fw-500">{{plan.rooms}}</span></span>
+                                            <span>Baños: <span class="fw-500">{{plan.baths}}</span></span>   
                                         </div>
                                     </mat-panel-title> 
                                 </mat-expansion-panel-header>                                  
@@ -333,9 +333,9 @@
 
                 <mat-card class="mt-3" fxLayout="row wrap" fxLayoutAlign="space-between center"> 
                     <span>ID:<span class="fw-500 mx-2">{{property?.id}}</span></span>
-                    <span>Published:<span class="fw-500 mx-2">{{property?.published | date:"dd MMMM, yyyy"}}</span></span>
-                    <span>Last Update:<span class="fw-500 mx-2">{{property?.lastUpdate | date:"dd MMMM, yyyy"}}</span></span>
-                    <span>Views:<span class="fw-500 mx-2">{{property?.views}}</span></span> 
+                    <span>Publicado:<span class="fw-500 mx-2">{{property?.published | date:"dd MMMM, yyyy"}}</span></span>
+                    <span>Ultima actualizacion:<span class="fw-500 mx-2">{{property?.lastUpdate | date:"dd MMMM, yyyy"}}</span></span>
+                    <span>Vistas:<span class="fw-500 mx-2">{{property?.views}}</span></span> 
                 </mat-card>
 
                 <app-comments *ngIf="property" [propertyId]="property.id"></app-comments>  
@@ -349,7 +349,7 @@
 <div class="section mt-3">
     <div class="px-3">
         <div class="theme-container"> 
-            <h1 class="section-title">Related properties</h1>            
+            <h1 class="section-title">Propiedades Relacionadas</h1>            
             <app-properties-carousel [properties]="relatedProperties"></app-properties-carousel>                        
         </div>
     </div>   

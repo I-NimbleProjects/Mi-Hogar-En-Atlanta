@@ -132,20 +132,20 @@ export class AppService {
 
   public getPropertyTypes(){
     return [ 
-      { id: 1, name: 'Office' },
-      { id: 2, name: 'House' },
-      { id: 3, name: 'Apartment' }
+      { id: 1, name: 'Oficina' },
+      { id: 2, name: 'Casa' },
+      { id: 3, name: 'Apartamento' }
     ]
   }
 
   public getPropertyStatuses(){
     return [ 
-      { id: 1, name: 'For Sale' },
-      { id: 2, name: 'For Rent' },
-      { id: 3, name: 'Open House' },
-      { id: 4, name: 'No Fees' },
-      { id: 5, name: 'Hot Offer' },
-      { id: 6, name: 'Sold' }
+      { id: 1, name: 'En Venta' },
+      { id: 2, name: 'En Renta' },
+      { id: 3, name: 'Casa Abierta' },
+      { id: 4, name: 'Sin Tarifas' },
+      { id: 5, name: 'Oferta' },
+      { id: 6, name: 'Vendida' }
     ]
   }
 
@@ -206,17 +206,17 @@ export class AppService {
 
   public getFeatures(){
     return [ 
-      { id: 1, name: 'Air Conditioning', selected: false },
-      { id: 2, name: 'Barbeque', selected: false },
-      { id: 3, name: 'Dryer', selected: false },
-      { id: 4, name: 'Microwave', selected: false }, 
-      { id: 5, name: 'Refrigerator', selected: false },
+      { id: 1, name: 'Aire acondicionado', selected: false },
+      { id: 2, name: 'Parrillera', selected: false },
+      { id: 3, name: 'Secadora', selected: false },
+      { id: 4, name: 'Microondas', selected: false }, 
+      { id: 5, name: 'Refrigerador', selected: false },
       { id: 6, name: 'TV Cable', selected: false },
       { id: 7, name: 'Sauna', selected: false },
       { id: 8, name: 'WiFi', selected: false },
       { id: 9, name: 'Fireplace', selected: false },
-      { id: 10, name: 'Swimming Pool', selected: false },
-      { id: 11, name: 'Gym', selected: false },
+      { id: 10, name: 'Piscina', selected: false },
+      { id: 11, name: 'Gimnasio', selected: false },
     ]
   }
 
@@ -425,10 +425,10 @@ export class AppService {
   public sortData(sort, data){
     if(sort){
       switch (sort) {
-        case 'Newest':
+        case 'Nuevo':
           data = data.sort((a, b)=> {return <any>new Date(b.published) - <any>new Date(a.published)});           
           break;
-        case 'Oldest':
+        case 'Viejo':
           data = data.sort((a, b)=> {return <any>new Date(a.published) - <any>new Date(b.published)});           
           break;
         case 'Popular':
@@ -442,7 +442,7 @@ export class AppService {
             return 0; 
           });
           break;
-        case 'Price (Low to High)':
+        case 'Precio (Bajo a Alto)':
           if(this.appSettings.settings.currency == 'USD'){
             data = data.sort((a,b) => {
               if((a.priceDollar.sale || a.priceDollar.rent) > (b.priceDollar.sale || b.priceDollar.rent)){
@@ -466,7 +466,7 @@ export class AppService {
             }) 
           }
           break;
-        case 'Price (High to Low)':
+        case 'Precio (Alto a Bajo)':
           if(this.appSettings.settings.currency == 'USD'){
             data = data.sort((a,b) => {
               if((a.priceDollar.sale || a.priceDollar.rent) < (b.priceDollar.sale || b.priceDollar.rent)){
@@ -569,11 +569,11 @@ export class AppService {
         },
         { 
             id: 2,
-            fullName: 'Andy Warhol',
+            fullName: 'Carmen Barreda',
             // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
             organization: 'Mi Hogar En Atlanta',
-            email: 'mihogarenatlanta@gmail.com ',
-            phone: '(212) 457-2308',
+            email: 'Barredarealtor@gmail.com',
+            phone: '+1 (678) 790-0109',
             social: {
               facebook: '',
               twitter: '',
@@ -585,24 +585,24 @@ export class AppService {
             ratingsValue: 400,
             image: 'assets/images/agents/a-2.jpg' 
         },        
-        { 
-            id: 3,
-            fullName: 'Tereza Stiles',
-            // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'Mi Hogar En Atlanta',
-            email: 'mihogarenatlanta@gmail.com ',
-            phone: '(214) 617-2614',
-            social: {
-              facebook: '',
-              twitter: '',
-              linkedin: '',
-              instagram: '',
-              // website: 'https://tereza.stiles.com'
-            },
-            ratingsCount: 4,
-            ratingsValue: 380,
-            image: 'assets/images/agents/a-3.jpg' 
-        },
+        // { 
+        //     id: 3,
+        //     fullName: 'Tereza Stiles',
+        //     // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
+        //     organization: 'Mi Hogar En Atlanta',
+        //     email: 'mihogarenatlanta@gmail.com ',
+        //     phone: '(214) 617-2614',
+        //     social: {
+        //       facebook: '',
+        //       twitter: '',
+        //       linkedin: '',
+        //       instagram: '',
+        //       // website: 'https://tereza.stiles.com'
+        //     },
+        //     ratingsCount: 4,
+        //     ratingsValue: 380,
+        //     image: 'assets/images/agents/a-3.jpg' 
+        // },
         // { 
           // id: 4,
           // fullName: 'Michael Blair',
