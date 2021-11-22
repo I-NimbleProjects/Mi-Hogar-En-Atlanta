@@ -39,7 +39,7 @@ export class AppService {
               public appSettings:AppSettings,
               public dialog: MatDialog,
               public translateService: TranslateService,
-              @Inject(PLATFORM_ID) private platformId: Object) { }
+              @Inject(PLATFORM_ID) private platformId: Object) {}
     
   public getProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'properties.json');
@@ -79,7 +79,8 @@ export class AppService {
     });
   }
 
-  public addToCompare(property:Property, component, direction){ 
+  public addToCompare(property:Property, component, direction){
+    localStorage.setItem("compare", JSON.stringify(property)); 
     if(!this.Data.compareList.filter(item=>item.id == property.id)[0]){
       this.Data.compareList.push(property);
       this.bottomSheet.open(component, {
@@ -94,10 +95,11 @@ export class AppService {
     } 
   }
 
+
   public addToFavorites(property:Property, direction){
     if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
       this.Data.favorites.push(property);
-      this.snackBar.open('The property "' + property.title + '" has been added to favorites.', '×', {
+      this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
         verticalPosition: 'top',
         duration: 3000,
         direction: direction 
@@ -602,42 +604,6 @@ export class AppService {
         //     ratingsCount: 4,
         //     ratingsValue: 380,
         //     image: 'assets/images/agents/a-3.jpg' 
-        // },
-        // { 
-          // id: 4,
-          // fullName: 'Michael Blair',
-          // // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-          // organization: 'HouseKey',
-          // email: 'michael.b@housekey.com',
-          // phone: '(267) 388-1637',
-          // social: {
-          //   facebook: '',
-          //   twitter: '',
-          //   linkedin: '',
-          //   instagram: '',
-          //   website: 'https://michael.blair.com'
-          // },
-          // ratingsCount: 6,
-          // ratingsValue: 480,
-          // image: 'assets/images/agents/a-4.jpg'  
-        // },
-        // { 
-            // id: 5,
-            // fullName: 'Michelle Ormond',
-            // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            // organization: 'HouseKey',
-            // email: 'michelle.o@housekey.com',
-            // phone: '(267) 388-1637',
-            // social: {
-            //   facebook: '',
-            //   twitter: '',
-            //   linkedin: '',
-            //   instagram: '',
-            //   website: 'https://michelle.ormond.com'
-            // },
-            // ratingsCount: 6,
-            // ratingsValue: 480, 
-            // image: 'assets/images/agents/a-5.jpg' 
         // }
     ];
   }
