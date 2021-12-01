@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -16,22 +16,21 @@ export class Data {
   constructor(public properties: Property[],
               public compareList: Property[],
               public favorites: Property[],
-              public locations: Location[]) { }
+              public locations: Location[]) {}
+
+              // crear metodo setProperties para editar arreglo property[]
+
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  public Data = new Data(
-    [], // properties
-    [], // compareList
-    [], // favorites
-    []  // locations
-  )
- 
+  public Data
+
   public url = environment.url + '/assets/data/'; 
   public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
+  public apiFMLS = '6baca547742c6f96a6ff71b138424f21';
   
   constructor(public http:HttpClient, 
               private bottomSheet: MatBottomSheet, 
@@ -39,7 +38,24 @@ export class AppService {
               public appSettings:AppSettings,
               public dialog: MatDialog,
               public translateService: TranslateService,
-              @Inject(PLATFORM_ID) private platformId: Object) {}
+              @Inject(PLATFORM_ID) private platformId: Object) {
+                let compareTMP = [];
+                if (localStorage.getItem('compare') !== null){
+                  compareTMP = JSON.parse(localStorage.getItem('compare'));
+                }
+                let favoritesTMP = [];
+                if (localStorage.getItem('favorites') !== null){
+                  favoritesTMP = JSON.parse(localStorage.getItem('favorites'));
+                }
+                //Otros
+                this.Data = new Data(
+                    [], // properties
+                    compareTMP, // compareList
+                    favoritesTMP, // favorites
+                    []  // locations
+                )
+                this.getDataProperties();
+              }
     
   public getProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'properties.json');
@@ -79,10 +95,24 @@ export class AppService {
     });
   }
 
+  public getDataProperties() {
+    return this.http.get('https://api.bridgedataoutput.com/api/v2/OData/test/Property?access_token='+this.apiFMLS).subscribe(res => {
+      // return res;
+      console.log(res);
+    });
+}
+  
+  
+
+  stringCompare: any;
+  objectCompare: any;
+  stringfavorites: any;
+  objectfavorites: any;
+
   public addToCompare(property:Property, component, direction){
-    localStorage.setItem("compare", JSON.stringify(property)); 
     if(!this.Data.compareList.filter(item=>item.id == property.id)[0]){
       this.Data.compareList.push(property);
+      this.stringCompare = localStorage.setItem("compare", JSON.stringify(this.Data.compareList)); 
       this.bottomSheet.open(component, {
         direction: direction
       }).afterDismissed().subscribe(isRedirect=>{  
@@ -91,14 +121,14 @@ export class AppService {
             window.scrollTo(0,0);
           }
         }        
-      }); 
+      });
     } 
   }
-
 
   public addToFavorites(property:Property, direction){
     if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
       this.Data.favorites.push(property);
+      this.stringfavorites = localStorage.setItem("favorites", JSON.stringify(this.Data.favorites));
       this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
         verticalPosition: 'top',
         duration: 3000,

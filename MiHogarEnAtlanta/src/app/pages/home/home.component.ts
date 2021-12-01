@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Settings, AppSettings } from '../../app.settings';
-import { AppService } from '../../app.service';
+import { AppService, Data } from '../../app.service';
 import { Property, Pagination, Location } from '../../app.models';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   public slides = [];
   public properties: Property[];
-  public viewType: string = 'grid';
+  public viewType: string = 'list';
   public viewCol: number = 25;
   public count: number = 8;
   public sort: string;
@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
     this.getLocations();
     this.getProperties();  
     this.getFeaturedProperties();
+    // this.getDataProperties();
   }
 
   ngDoCheck(){
@@ -191,5 +192,10 @@ export class HomeComponent implements OnInit {
       this.featuredProperties = properties;
     })
   } 
+
+  // public getDataProperties(){
+  //   this.appService.getDataProperties()
+  //   console.log(Data);
+  // }
 
 }
