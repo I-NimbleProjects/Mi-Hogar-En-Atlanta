@@ -45,7 +45,6 @@ import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

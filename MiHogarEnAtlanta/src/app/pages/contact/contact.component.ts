@@ -12,6 +12,7 @@ export class ContactComponent implements OnInit {
   public lat: number = 40.678178;
   public lng: number = -73.944158;
   public zoom: number = 12; 
+  config: { observer: boolean; slidesPerView: number; spaceBetween: number; keyboard: boolean; navigation: boolean; pagination: boolean; grabCursor: boolean; loop: boolean; preloadImages: boolean; lazy: boolean; breakpoints: { 320: { slidesPerView: number; }; 600: { slidesPerView: number; }; 960: { slidesPerView: number; }; 1280: { slidesPerView: number; }; }; centerInsufficientSlides: boolean; };
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -26,6 +27,36 @@ export class ContactComponent implements OnInit {
   public onContactFormSubmit(values:Object):void {
     if (this.contactForm.valid) {
       console.log(values);
+    }
+  }
+
+    ngAfterViewInit(){
+    this.config = {
+      observer: true,
+      slidesPerView: 2,
+      spaceBetween: 50,       
+      keyboard: false,
+      navigation: false,
+      pagination: false,
+      grabCursor: true,        
+      loop: false,
+      preloadImages: false,
+      lazy: true,  
+      breakpoints: {
+        320: {
+          slidesPerView: 1
+        },
+        600: {
+          slidesPerView: 1
+        },
+        960: {
+          slidesPerView: 2
+        },
+        1280: {
+          slidesPerView: 4
+        }
+      },
+      centerInsufficientSlides: true
     }
   }
 

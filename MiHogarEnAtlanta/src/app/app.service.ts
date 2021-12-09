@@ -12,14 +12,15 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from './shared/confirm-dia
 import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 
-export class Data {
+export class Data{
   constructor(public properties: Property[],
               public compareList: Property[],
               public favorites: Property[],
               public locations: Location[]) {}
-
-              // crear metodo setProperties para editar arreglo property[]
-
+  // setDataProperties(){
+  //   this.dataArray.forEach(d => { this.propertyN.push(Property[])
+  //   })
+  // }
 }
 
 @Injectable({
@@ -30,7 +31,6 @@ export class AppService {
 
   public url = environment.url + '/assets/data/'; 
   public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
-  public apiFMLS = '6baca547742c6f96a6ff71b138424f21';
   
   constructor(public http:HttpClient, 
               private bottomSheet: MatBottomSheet, 
@@ -54,7 +54,6 @@ export class AppService {
                     favoritesTMP, // favorites
                     []  // locations
                 )
-                this.getDataProperties();
               }
     
   public getProperties(): Observable<Property[]>{
@@ -81,7 +80,7 @@ export class AppService {
     return this.http.get<Location[]>(this.url + 'locations.json');
   }
 
-  public getAddress(lat = 40.714224, lng = -73.961452){ 
+  public getAddress(lat = 33.94639978610779, lng = -84.22940637001427){ 
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey);
   }
 
@@ -94,15 +93,6 @@ export class AppService {
       return data['results'][0]['formatted_address'];
     });
   }
-
-  public getDataProperties() {
-    return this.http.get('https://api.bridgedataoutput.com/api/v2/OData/test/Property?access_token='+this.apiFMLS).subscribe(res => {
-      // return res;
-      console.log(res);
-    });
-}
-  
-  
 
   stringCompare: any;
   objectCompare: any;

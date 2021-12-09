@@ -40,6 +40,7 @@
     "express": "4.17.1",
     "graphql": "^16.0.1",
     "graphql-tag": "^2.12.6",
+    "ng-image-slider": "^2.8.0",
     "ngx-embed-video": "1.0.4",
     "ngx-input-file": "10.2.0",
     "ngx-perfect-scrollbar": "10.1.1",

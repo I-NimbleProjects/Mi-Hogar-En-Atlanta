@@ -86,4 +86,3 @@ export class Pagination {
                 public total: number,
                 public totalPages: number){ }
 }
-
