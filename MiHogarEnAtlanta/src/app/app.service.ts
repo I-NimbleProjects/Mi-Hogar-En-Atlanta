@@ -88,7 +88,7 @@ export class AppService {
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?key='+this.apiKey+'&address='+address);
   }
 
-  public getFullAddress(lat = 40.714224, lng = -73.961452){ 
+  public getFullAddress(lat = 33.94639978610779, lng = -84.22940637001427){ 
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey).subscribe(data =>{ 
       return data['results'][0]['formatted_address'];
     });

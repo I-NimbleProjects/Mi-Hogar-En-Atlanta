@@ -8,6 +8,7 @@ import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
 import { Property, Pagination } from '../../app.models'; 
 import { isPlatformBrowser } from '@angular/common';
+import { FmlsService } from 'src/app/shared/services/fmls.service';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class PropertiesComponent implements OnInit {
   constructor(public appSettings:AppSettings, 
               public appService:AppService, 
               public mediaObserver: MediaObserver,
+              public fmls:FmlsService,
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;    
     this.watcher = mediaObserver.asObservable()
@@ -71,8 +73,9 @@ export class PropertiesComponent implements OnInit {
   }
 
   public getProperties(){   
-    this.appService.getProperties().subscribe(data => { 
-      let result = this.filterData(data); 
+    this.fmls.getDataProperties().subscribe(data => {  
+      this.fmls.cleanData(data.value)
+      let result = this.filterData(this.fmls.arrayCleanData); 
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  

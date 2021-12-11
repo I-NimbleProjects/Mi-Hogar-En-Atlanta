@@ -93,43 +93,43 @@ export class HomeComponent implements OnInit {
     //console.log('get properties by : ', this.searchFields);  
     this.fmls.getDataProperties().subscribe(data => {  
       this.fmls.cleanData(data.value)
-      console.log(data);   
-      // if(this.properties && this.properties.length > 0){  
-      //   this.settings.loadMore.page++;
-      //   this.pagination.page = this.settings.loadMore.page; 
-      // }
-      // let result = this.filterData(data); 
-      // if(result.data.length == 0){
-      //   this.properties.length = 0;
-      //   this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-      //   this.message = 'No Results Found';
-      //   return false;
-      // }   
-      // if(this.properties && this.properties.length > 0){   
-      //   this.properties = this.properties.concat(result.data);          
-      // }
-      // else{
-      //   this.properties = result.data;  
-      // } 
-      // this.pagination = result.pagination;
-      // this.message = null;
+      if(this.properties && this.properties.length > 0){  
+        this.settings.loadMore.page++;
+        this.pagination.page = this.settings.loadMore.page; 
+      }
+      console.log(this.fmls.arrayCleanData);
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'No Results Found';
+        return false;
+      }   
+      if(this.properties && this.properties.length > 0){   
+        this.properties = this.properties.concat(result.data);          
+      }
+      else{
+        this.properties = result.data;  
+      } 
+      this.pagination = result.pagination;
+      this.message = null;
 
-      // if(this.properties.length == this.pagination.total){
-      //   this.settings.loadMore.complete = true;
-      //   this.settings.loadMore.result = this.properties.length;
-      // }
-      // else{
-      //   this.settings.loadMore.complete = false;
-      // }
+      if(this.properties.length == this.pagination.total){
+        this.settings.loadMore.complete = true;
+        this.settings.loadMore.result = this.properties.length;
+      }
+      else{
+        this.settings.loadMore.complete = false;
+      }
 
-      // if(this.settings.header == 'map'){
-      //   this.locations.length = 0;
-      //   this.properties.forEach(p => {
-      //     let loc = new Location(p.id, p.location.lat, p.location.lng);
-      //     this.locations.push(loc);
-      //   });
-      //   this.locations = [...this.locations];
-      // } 
+      if(this.settings.header == 'map'){
+        this.locations.length = 0;
+        this.properties.forEach(p => {
+          let loc = new Location(p.id, p.location.lat, p.location.lng);
+          this.locations.push(loc);
+        });
+        this.locations = [...this.locations];
+      } 
      
     })
   }
