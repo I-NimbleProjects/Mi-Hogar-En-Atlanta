@@ -59,7 +59,7 @@ export class FmlsService {
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
                                     this.dataArray ['addFeatures'], 
-                                    [{'big':this.dataArray ['gallery'],'medium':this.dataArray ['gallery'], 'small':this.dataArray ['gallery'],'id':0}], 
+                                    [{'big':this.dataArray ['gallery'][0][0].MediaURLL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL,'id':0}], 
                                     [], [], 
                                     this.dataArray ['published'], '', 0)
 

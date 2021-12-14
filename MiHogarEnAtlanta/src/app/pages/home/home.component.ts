@@ -97,12 +97,11 @@ export class HomeComponent implements OnInit {
         this.settings.loadMore.page++;
         this.pagination.page = this.settings.loadMore.page; 
       }
-      console.log(this.fmls.arrayCleanData);
       let result = this.filterData(this.fmls.arrayCleanData); 
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Results Found';
+        this.message = 'No Se Encontraron Resultados';
         return false;
       }   
       if(this.properties && this.properties.length > 0){   

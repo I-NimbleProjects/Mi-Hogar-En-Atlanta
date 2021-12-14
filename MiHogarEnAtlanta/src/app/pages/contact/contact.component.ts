@@ -5,7 +5,7 @@ import { emailValidator } from 'src/app/theme/utils/app-validators';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
   public contactForm: FormGroup;
@@ -20,8 +20,8 @@ export class ContactComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
-      message: ['', Validators.required]
-    });
+      message: ['', Validators.required],
+    });     
   }
 
   public onContactFormSubmit(values:Object):void {
@@ -30,34 +30,34 @@ export class ContactComponent implements OnInit {
     }
   }
 
-    ngAfterViewInit(){
-    this.config = {
-      observer: true,
-      slidesPerView: 2,
-      spaceBetween: 50,       
-      keyboard: false,
-      navigation: false,
-      pagination: false,
-      grabCursor: true,        
-      loop: false,
-      preloadImages: false,
-      lazy: true,  
-      breakpoints: {
-        320: {
-          slidesPerView: 1
-        },
-        600: {
-          slidesPerView: 1
-        },
-        960: {
-          slidesPerView: 2
-        },
-        1280: {
-          slidesPerView: 4
-        }
-      },
-      centerInsufficientSlides: true
-    }
-  }
+  //   ngAfterViewInit(){
+  //   this.config = {
+  //     observer: true,
+  //     slidesPerView: 2,
+  //     spaceBetween: 50,       
+  //     keyboard: false,
+  //     navigation: false,
+  //     pagination: false,
+  //     grabCursor: true,        
+  //     loop: false,
+  //     preloadImages: false,
+  //     lazy: true,  
+  //     breakpoints: {
+  //       320: {
+  //         slidesPerView: 1
+  //       },
+  //       600: {
+  //         slidesPerView: 1
+  //       },
+  //       960: {
+  //         slidesPerView: 2
+  //       },
+  //       1280: {
+  //         slidesPerView: 4
+  //       }
+  //     },
+  //     centerInsufficientSlides: true
+  //   }
+  // }
 
 }

@@ -43,6 +43,8 @@ import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from  'ng-gallery/lightbox'
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     NgProgressHttpModule, 
     InputFileModule.forRoot(config),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    GalleryModule,
+    LightboxModule
   ],
   providers: [
     AppSettings,
