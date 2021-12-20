@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppService } from '../../app.service'; 
+import { FmlsService } from '../services/fmls.service';
 
 @Component({
   selector: 'app-properties-search',
@@ -23,7 +24,7 @@ export class PropertiesSearchComponent implements OnInit {
   public streets = [];
   public features = [];
 
-  constructor(public appService:AppService, public fb: FormBuilder) { }
+  constructor(public appService:AppService, public fb: FormBuilder, public Fmls:FmlsService) { }
 
   ngOnInit() {
     if(this.vertical){

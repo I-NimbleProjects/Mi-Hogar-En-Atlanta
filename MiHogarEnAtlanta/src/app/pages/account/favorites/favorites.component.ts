@@ -31,6 +31,7 @@ export class FavoritesComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Property>(this.dataSource.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      localStorage.setItem('favorites', JSON.stringify(this.appService.Data.compareList))
     } 
   }
 

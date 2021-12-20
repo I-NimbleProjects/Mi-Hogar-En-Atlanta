@@ -1,4 +1,4 @@
-<app-header-image [backgroundImage]="'assets/images/others/about.jpg'" 
+<app-header-image [backgroundImage]="'assets/images/others/image3.jpg'" 
                   [bgImageAnimate]="false" 
                   [contentOffsetToTop]="true"                
                   [title]="'Nosotros'"
@@ -35,12 +35,27 @@
                         </div>
 
                     </div>
-                    <div class="container" gallerize>
-                        <img src="src\assets\images\fotosContact\image3.png">
-                        <img src="src\assets\images\fotosContact\image4.png">
-                        <img src="src\assets\images\fotosContact\image5.png">
-                        <img src="src\assets\images\fotosContact\image6.png">
-                     </div>
+                    <div class="section testimonials">
+                        <div class="px-3">
+                            <div class="theme-container">
+                    
+                                <div class="testimonials-carousel"> 
+                                    <div class="swiper-container" [swiper]="config"> 
+                                        <div class="swiper-wrapper h-100">      
+                                            <div *ngFor="let imageNosotro of imageNosotros" class="swiper-slide">
+                                                <div class="content text-center">
+                                                    <img [attr.data-src]="imageNosotro.image" class="swiper-lazy">
+                                                    <div class="swiper-lazy-preloader"></div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div class="swiper-pagination"></div> 
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        </div>   
+                    </div>
                     
                 </div>
             </div>   

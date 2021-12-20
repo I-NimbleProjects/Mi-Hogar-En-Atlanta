@@ -72,7 +72,7 @@ export class PropertiesComponent implements OnInit {
     this.watcher.unsubscribe();
   }
 
-  public getProperties(){   
+  public getProperties(){
     this.fmls.getDataProperties().subscribe(data => {  
       this.fmls.cleanData(data.value)
       let result = this.filterData(this.fmls.arrayCleanData); 

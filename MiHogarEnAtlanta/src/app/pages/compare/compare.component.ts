@@ -75,13 +75,14 @@ export class CompareComponent implements OnInit {
   }
 
   public clear(){
-    this.appService.Data.compareList.length = 0;
+    this.appService.Data.compareList.length = localStorage.removeItem('compare');
   }
 
   public remove(property:Property) {
     const index: number = this.appService.Data.compareList.indexOf(property);
     if (index !== -1) {
         this.appService.Data.compareList.splice(index, 1);
+        localStorage.setItem('compare', JSON.stringify(this.appService.Data.compareList))
     }  
     this.watchForChanges();     
   }

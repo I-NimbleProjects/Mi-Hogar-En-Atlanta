@@ -1,9 +1,17 @@
-<app-header-image [backgroundImage]="'assets/images/carousel/slide-3.jpg'" 
+<!-- <app-header-image [backgroundImage]="'assets/images/carousel/slide-3.jpg'" 
                   [bgImageAnimate]="false" 
                   [contentOffsetToTop]="false" 
                   [desc]="'“Hogar es desde donde uno empieza...” –T.S. Eliot'"
                   [contentMinHeight]="200">
-</app-header-image>
+</app-header-image> -->
+
+<app-header-video *ngIf="settings.header == 'video'" 
+                [backgroundVideo]="'assets/Videos/VideoPropiedades.mp4'" 
+                [contentOffsetToTop]="true"
+                [desc]="'“Hogar es desde donde uno empieza...” –T.S. Eliot'"
+                [isHomePage]="true"
+                [fullscreen]="true">
+</app-header-video>
  
 <div class="px-3"> 
     

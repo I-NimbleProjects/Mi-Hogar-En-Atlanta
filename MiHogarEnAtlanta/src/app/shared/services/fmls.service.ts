@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Input, Output } from '@angular/core';
 import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 @Injectable({
   providedIn: 'root'
 })
 export class FmlsService {
+  @Input()
+  // @Output() ciudades = [];
+
   public propertyN: any;
   public dataArray = [];
   public arrayCleanData = [];
   constructor(public httpClient: HttpClient,
-              public appservice: AppService){}
+              public appservice: AppService,){}
+
 
   getDataProperties(){
     return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/OData/test/Property?access_token=6baca547742c6f96a6ff71b138424f21')

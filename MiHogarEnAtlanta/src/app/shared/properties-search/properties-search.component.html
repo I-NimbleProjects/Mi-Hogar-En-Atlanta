@@ -2,7 +2,7 @@
 
     <div [fxLayout]="(vertical) ? 'column' : 'row wrap'"> 
 
-        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+        <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Tipo de Propiedad</mat-label> 
                 <mat-select placeholder="Seleccione el tipo de propiedad" formControlName="propertyType">
@@ -11,9 +11,9 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
+        </div> -->
 
-        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+        <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Estado de propiedad</mat-label>
                 <mat-select placeholder="Seleccione el estado de propiedad" formControlName="propertyStatus" multiple>
@@ -22,7 +22,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>        
+        </div>         -->
 
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="price">
 
@@ -60,14 +60,14 @@
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                     <mat-label>Codigo Postal</mat-label>
                     <input matInput placeholder="exp. 98104" autocomplete="off" formControlName="zipCode">                  
                 </mat-form-field>
-            </div>
+            </div> -->
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                     <mat-label>Vecindario</mat-label>
                     <mat-select placeholder="Seleccione vecindario" formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
@@ -76,9 +76,9 @@
                         </mat-option>
                     </mat-select> 
                 </mat-form-field>
-            </div>
+            </div> -->
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                     <mat-label>Calle</mat-label>
                     <mat-select placeholder="Seleccione calle" formControlName="street" multiple>
@@ -87,9 +87,9 @@
                         </mat-option>
                     </mat-select> 
                 </mat-form-field>
-            </div>
+            </div> -->
     
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bedrooms">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bedrooms">
     
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -117,9 +117,9 @@
                     </div>
                 </div> 
     
-            </div> 
+            </div>  -->
     
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bathrooms">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bathrooms">
     
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -147,9 +147,9 @@
                     </div>
                 </div> 
     
-            </div> 
+            </div>  -->
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="garages">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="garages">
     
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -177,9 +177,9 @@
                     </div>
                 </div> 
     
-            </div> 
+            </div>  -->
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="area">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="area">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -199,9 +199,9 @@
                     </div>
                 </div> 
     
-            </div>
+            </div> -->
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="yearBuilt">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="yearBuilt">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -221,16 +221,16 @@
                     </div>
                 </div> 
     
-            </div>
+            </div> -->
 
-            <div fxFlex="100" class="mb-2"> 
+            <!-- <div fxFlex="100" class="mb-2"> 
                 <p class="uppercase m-2 fw-500">Features</p> 
                 <div formArrayName="features" [fxLayout]="(vertical) ? 'column' : 'row wrap'">
                     <div [formGroupName]="i" *ngFor="let control of form['controls'].features['controls']; index as i" class="p-2">
                         <mat-checkbox formControlName="selected">{{features[i].name}}</mat-checkbox>                         
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
