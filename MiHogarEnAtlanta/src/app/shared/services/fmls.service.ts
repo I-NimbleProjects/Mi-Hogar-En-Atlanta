@@ -28,12 +28,13 @@ export class FmlsService {
       this.dataArray ['PropertyStatus'] = property['MlsStatus'];
       this.dataArray ['city'] = property['City'];
       this.dataArray ['Zipcode'] = property['PostalCode'];
-      this.dataArray ['Neighborhood'] = property['ElementarySchoolDistrict'];
+      this.dataArray ['Neighborhood'] = property['CityRegion'];
       this.dataArray ['street'] = property['StreetName'];
       this.dataArray ['location'] = property['Coordinates'];
       this.dataArray ['address'] = property['UnparsedAddress'];
       this.dataArray ['features'] = property['ExteriorFeatures'];
       this.dataArray ['price'] = property['ListPrice'];
+      this.dataArray ['rent'] = property['RentIncludes'];
       this.dataArray ['bedrooms'] = property['BedroomsTotal'];
       this.dataArray ['bathrooms'] = property['BathroomsTotalInteger'];
       this.dataArray ['garages'] = property['GarageSpaces'];
@@ -55,8 +56,8 @@ export class FmlsService {
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
-                                    {'rent':this.dataArray ['price'], 'sale':this.dataArray ['price']}, 
-                                    {'rent':this.dataArray ['price'], 'sale':this.dataArray ['price']}, 
+                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
+                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
                                     this.dataArray ['bedrooms'], 
                                     this.dataArray ['bathrooms'], 
                                     this.dataArray ['garages'],
