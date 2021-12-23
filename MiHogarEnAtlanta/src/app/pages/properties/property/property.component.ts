@@ -9,6 +9,7 @@ import { AppSettings, Settings } from 'src/app/app.settings';
 import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compare-overview.component';
 import { EmbedVideoService } from 'ngx-embed-video'; 
 import { emailValidator } from 'src/app/theme/utils/app-validators';
+import { FmlsService } from 'src/app/shared/services/fmls.service';
 
 @Component({
   selector: 'app-property',
@@ -38,7 +39,8 @@ export class PropertyComponent implements OnInit {
               public appService:AppService, 
               private activatedRoute: ActivatedRoute, 
               private embedService: EmbedVideoService,
-              public fb: FormBuilder) {
+              public fb: FormBuilder,
+              public fmls:FmlsService) {
     this.settings = this.appSettings.settings; 
   }
 
@@ -79,8 +81,10 @@ export class PropertyComponent implements OnInit {
   }
 
   public getPropertyById(id){
-    this.appService.getPropertyById(id).subscribe(data=>{
-      this.property = data;  
+    this.fmls.getListingKey(id).subscribe(data=>{      
+      this.fmls.cleanData(data.value)
+      this.property = this.fmls.propertyN;  
+      console.log(this.fmls.propertyN)
       this.embedVideo = this.embedService.embed(this.property.videos[1].link);
       setTimeout(() => { 
         this.config.observer = true;

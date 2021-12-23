@@ -104,22 +104,22 @@ export class HomeComponent implements OnInit {
         this.message = 'No Se Encontraron Resultados';
         return false;
       }   
-      // if(this.properties && this.properties.length > 0){   
-      //   this.properties = this.properties.concat(result.data);          
-      // }
+      if(this.properties && this.properties.length > 0){   
+        this.properties = this.properties.concat(result.data);          
+      }
       else{
         this.properties = result.data;  
       }
         this.pagination = result.pagination;
         this.message = null;
 
-      // if(this.properties.length == this.pagination.total){
-      //   this.settings.loadMore.complete = true;
-      //   this.settings.loadMore.result = this.properties.length;
-      // }
-      // else{
-      //   this.settings.loadMore.complete = false;
-      // }
+      if(this.properties.length == this.pagination.total){
+        this.settings.loadMore.complete = true;
+        this.settings.loadMore.result = this.properties.length;
+      }
+      else{
+        this.settings.loadMore.complete = false;
+      }
 
       if(this.settings.header == 'map'){
         this.locations.length = 0;
@@ -172,12 +172,12 @@ export class HomeComponent implements OnInit {
  
 
 
-  public changeCount(count){
-    this.count = count;
-    this.resetLoadMore();   
-    this.properties.length = 0;
-    this.getProperties();
-  }
+  // public changeCount(count){
+  //   this.count = count;
+  //   this.resetLoadMore();   
+  //   this.properties.length = 0;
+  //   this.getProperties();
+  // }
   public changeSorting(sort){    
     this.sort = sort;
     this.resetLoadMore(); 

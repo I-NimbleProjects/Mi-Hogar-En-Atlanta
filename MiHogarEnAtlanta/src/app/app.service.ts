@@ -173,10 +173,27 @@ export class AppService {
 
   public getCities(){
     return [ 
-      { id: 1, name: 'New York' },
-      { id: 2, name: 'Chicago' },
-      { id: 3, name: 'Los Angeles' },
-      { id: 4, name: 'Seattle' } 
+      { id: 1, name: 'Acworth' },
+      { id: 2, name: 'Atlanta' },
+      { id: 3, name: 'Austell' },
+      { id: 4, name: 'College Park' },
+      { id: 5, name: 'Dacula' },
+      { id: 6, name: 'Duluth' },
+      { id: 7, name: 'Ellenwood' },
+      { id: 8, name: 'Forest Park' },
+      { id: 9, name: 'Gainesville' },
+      { id: 10, name: 'Hamptom' },
+      { id: 11, name: 'Lawrenceville' },
+      { id: 12, name: 'Lilburn' },
+      { id: 13, name: 'Marietta' },
+      { id: 14, name: 'Mcdnought' },
+      { id: 15, name: 'Norcross' },
+      { id: 16, name: 'Rex' },
+      { id: 17, name: 'Smyrna' },
+      { id: 18, name: 'Snellville' },
+      { id: 19, name: 'Stockbridge' },
+      { id: 20, name: 'Stone Mountain' },
+      { id: 21, name: 'Destineyhaven'}
     ]
   }
 

@@ -23,31 +23,17 @@ export class AboutComponent implements OnInit {
   ngAfterViewInit(){
       this.config = {
         observer: true,
-        slidesPerView: 1,
-        // spaceBetween: 50,       
+        slidesPerView: 1,     
         keyboard: false,
-        navigation: false,
-        // pagination: true,
+        navigation: true,
         grabCursor: true,        
-        loop: false,
+        loop: true,
         preloadImages: false,
         lazy: true,  
         pagination: this.pagination,
-        // breakpoints: {
-        //   320: {
-        //     slidesPerView: 1
-        //   },
-        //   600: {
-        //     slidesPerView: 1
-        //   },
-        //   960: {
-        //     slidesPerView: 2
-        //   },
-        //   1280: {
-        //     slidesPerView: 4
-        //   }
-        // },
-        // centerInsufficientSlides: true
+        autoHeight: true,
+        autoplay: true,
+        updateOnWindowResize: true
       }
     }
 }

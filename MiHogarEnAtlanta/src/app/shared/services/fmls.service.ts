@@ -22,7 +22,7 @@ export class FmlsService {
 
   cleanData(data: any){
     data.forEach(property => {
-      this.dataArray ['id'] = property['@odata.id'];
+      this.dataArray ['id'] = property['ListingKey'];
       this.dataArray ['title'] = property['BuildingName'];
       this.dataArray ['PropertyType'] = property['PropertyType'];
       this.dataArray ['PropertyStatus'] = property['MlsStatus'];
@@ -55,8 +55,8 @@ export class FmlsService {
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
-                                    this.dataArray ['price'], 
-                                    this.dataArray ['price'], 
+                                    {'rent':this.dataArray ['price'], 'sale':this.dataArray ['price']}, 
+                                    {'rent':this.dataArray ['price'], 'sale':this.dataArray ['price']}, 
                                     this.dataArray ['bedrooms'], 
                                     this.dataArray ['bathrooms'], 
                                     this.dataArray ['garages'],
@@ -69,5 +69,8 @@ export class FmlsService {
 
       this.arrayCleanData.push(this.propertyN);
     });
+  }
+  getListingKey(id){
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/OData/test/Property('+ id + ')?access_token=6baca547742c6f96a6ff71b138424f21')
   }
 }
