@@ -172,12 +172,12 @@ export class HomeComponent implements OnInit {
  
 
 
-  // public changeCount(count){
-  //   this.count = count;
-  //   this.resetLoadMore();   
-  //   this.properties.length = 0;
-  //   this.getProperties();
-  // }
+  public changeCount(count){
+    this.count = count;
+    this.resetLoadMore();   
+    this.properties.length = 0;
+    this.getProperties();
+  }
   public changeSorting(sort){    
     this.sort = sort;
     this.resetLoadMore(); 

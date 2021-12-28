@@ -129,12 +129,12 @@ export class PropertiesComponent implements OnInit {
   } 
 
 
-  // public changeCount(count){
-  //   this.count = count;   
-  //   this.properties.length = 0;
-  //   this.resetPagination();
-  //   this.getProperties();
-  // }
+  public changeCount(count){
+    this.count = count;   
+    this.properties.length = 0;
+    this.resetPagination();
+    this.getProperties();
+  }
   public changeSorting(sort){    
     this.sort = sort; 
     this.properties.length = 0;

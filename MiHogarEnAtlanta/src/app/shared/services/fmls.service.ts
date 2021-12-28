@@ -74,4 +74,52 @@ export class FmlsService {
   getListingKey(id){
     return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/OData/test/Property('+ id + ')?access_token=6baca547742c6f96a6ff71b138424f21')
   }
+
+  singleFmlsData(data: any){
+    this.dataArray ['id'] = data['ListingKey'];
+    this.dataArray ['title'] = data['BuildingName'];
+    this.dataArray ['PropertyType'] = data['PropertyType'];
+    this.dataArray ['PropertyStatus'] = data['MlsStatus'];
+    this.dataArray ['city'] = data['City'];
+    this.dataArray ['Zipcode'] = data['PostalCode'];
+    this.dataArray ['Neighborhood'] = data['CityRegion'];
+    this.dataArray ['street'] = data['StreetName'];
+    this.dataArray ['location'] = data['Coordinates'];
+    this.dataArray ['address'] = data['UnparsedAddress'];
+    this.dataArray ['features'] = data['ExteriorFeatures'];
+    this.dataArray ['price'] = data['ListPrice'];
+    this.dataArray ['rent'] = data['RentIncludes'];
+    this.dataArray ['bedrooms'] = data['BedroomsTotal'];
+    this.dataArray ['bathrooms'] = data['BathroomsTotalInteger'];
+    this.dataArray ['garages'] = data['GarageSpaces'];
+    this.dataArray ['area'] = [data['LotSizeSquareFeet']];
+    this.dataArray ['yearBuilt'] = data['YearBuilt'];
+    this.dataArray ['addFeatures'] = data['CommunityFeatures'];
+    this.dataArray ['gallery'] = [data['Media']];
+    this.dataArray ['published'] = data['OnMarketDate'];
+
+    this.propertyN = new Property ( this.dataArray['id'], 
+                                    this.dataArray ['title'], '',
+                                    this.dataArray ['PropertyType'], 
+                                    this.dataArray ['PropertyStatus'], 
+                                    this.dataArray ['city'], 
+                                    this.dataArray ['Zipcode'], 
+                                    this.dataArray ['Neighborhood'], 
+                                    this.dataArray ['street'], 
+                                    {'propertyId': this.dataArray['id'], 'lat':this.dataArray['location'], 'lng': this.dataArray['location']}, 
+                                    this.dataArray ['address'], 
+                                    this.dataArray ['features'], 
+                                    true, 
+                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
+                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
+                                    this.dataArray ['bedrooms'], 
+                                    this.dataArray ['bathrooms'], 
+                                    this.dataArray ['garages'],
+                                    {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
+                                    this.dataArray ['yearBuilt'], 0, 0, 
+                                    this.dataArray ['addFeatures'], 
+                                    [{'big':this.dataArray ['gallery'][0][0].MediaURLL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL,'id':0}], 
+                                    [], [], 
+                                    this.dataArray ['published'], '', 0)
+  }
 }
