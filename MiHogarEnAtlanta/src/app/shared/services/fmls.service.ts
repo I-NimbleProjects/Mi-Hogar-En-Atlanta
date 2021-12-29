@@ -22,7 +22,7 @@ export class FmlsService {
 
   cleanData(data: any){
     data.forEach(property => {
-      this.dataArray ['id'] = property['ListingKey'];
+      this.dataArray ['id'] = property['ListingId'];
       this.dataArray ['title'] = property['BuildingName'];
       this.dataArray ['PropertyType'] = property['PropertyType'];
       this.dataArray ['PropertyStatus'] = property['MlsStatus'];
@@ -56,14 +56,14 @@ export class FmlsService {
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
-                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
-                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
+                                    {'sale':this.dataArray ['price']}, 
+                                    {'sale':this.dataArray ['price']}, 
                                     this.dataArray ['bedrooms'], 
                                     this.dataArray ['bathrooms'], 
                                     this.dataArray ['garages'],
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
-                                    this.dataArray ['addFeatures'], 
+                                    [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures']}], 
                                     [{'big':this.dataArray ['gallery'][0][0].MediaURLL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL,'id':0}], 
                                     [], [], 
                                     this.dataArray ['published'], '', 0)
@@ -76,7 +76,7 @@ export class FmlsService {
   }
 
   singleFmlsData(data: any){
-    this.dataArray ['id'] = data['ListingKey'];
+    this.dataArray ['id'] = data['ListingId'];
     this.dataArray ['title'] = data['BuildingName'];
     this.dataArray ['PropertyType'] = data['PropertyType'];
     this.dataArray ['PropertyStatus'] = data['MlsStatus'];
@@ -98,7 +98,7 @@ export class FmlsService {
     this.dataArray ['gallery'] = [data['Media']];
     this.dataArray ['published'] = data['OnMarketDate'];
 
-    this.propertyN = new Property ( this.dataArray['id'], 
+    this.propertyN = new Property (this.dataArray['id'], 
                                     this.dataArray ['title'], '',
                                     this.dataArray ['PropertyType'], 
                                     this.dataArray ['PropertyStatus'], 
@@ -106,18 +106,18 @@ export class FmlsService {
                                     this.dataArray ['Zipcode'], 
                                     this.dataArray ['Neighborhood'], 
                                     this.dataArray ['street'], 
-                                    {'propertyId': this.dataArray['id'], 'lat':this.dataArray['location'], 'lng': this.dataArray['location']}, 
+                                    this.dataArray ['location'], 
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
-                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
-                                    {'rent':this.dataArray ['rent'], 'sale':this.dataArray ['price']}, 
+                                    {'sale':this.dataArray ['price']}, 
+                                    {'sale':this.dataArray ['price']}, 
                                     this.dataArray ['bedrooms'], 
                                     this.dataArray ['bathrooms'], 
                                     this.dataArray ['garages'],
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
-                                    this.dataArray ['addFeatures'], 
+                                    [{'id': this.dataArray ['id'], 'name': 'CommunityFeatures', 'value': this.dataArray ['addFeatures']}], 
                                     [{'big':this.dataArray ['gallery'][0][0].MediaURLL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL,'id':0}], 
                                     [], [], 
                                     this.dataArray ['published'], '', 0)
