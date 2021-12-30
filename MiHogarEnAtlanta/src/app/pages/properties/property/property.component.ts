@@ -85,7 +85,7 @@ export class PropertyComponent implements OnInit {
       this.fmls.singleFmlsData(data)
       this.property = this.fmls.propertyN;  
       console.log(this.fmls.propertyN)  
-      this.embedVideo = this.embedService.embed(this.property.videos[1].link);
+      this.embedVideo = this.embedService.embed_image(this.property.gallery[0][0]);
       setTimeout(() => { 
         this.config.observer = true;
         this.config2.observer = true; 
