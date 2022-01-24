@@ -10,8 +10,10 @@ export class FmlsService {
   // @Output() ciudades = [];
 
   public propertyN: any;
+  public propertyNS: any;
   public dataArray = [];
   public arrayCleanData = [];
+  public galleryURL = "";
   constructor(public httpClient: HttpClient,
               public appservice: AppService,){}
 
@@ -22,7 +24,7 @@ export class FmlsService {
 
   cleanData(data: any){
     data.forEach(property => {
-      this.dataArray ['id'] = property['ListingId'];
+      this.dataArray ['id'] = property['ListingKey'];
       this.dataArray ['title'] = property['BuildingName'];
       this.dataArray ['PropertyType'] = property['PropertyType'];
       this.dataArray ['PropertyStatus'] = property['MlsStatus'];
@@ -67,12 +69,13 @@ export class FmlsService {
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
                                     [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures']}], 
-                                    [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL,'id':0}], 
+                                    [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL}], 
                                     [], [], 
                                     this.dataArray ['published'], 
                                     this.dataArray ['lastUpdated'], 0)
 
       this.arrayCleanData.push(this.propertyN);
+      console.log(this.arrayCleanData)
     });
   }
   getListingKey(id){
@@ -80,7 +83,7 @@ export class FmlsService {
   }
 
   singleFmlsData(data: any){
-    this.dataArray ['id'] = data['ListingId'];
+    this.dataArray ['id'] = data['ListingKey'];
     this.dataArray ['title'] = data['BuildingName'];
     this.dataArray ['PropertyType'] = data['PropertyType'];
     this.dataArray ['PropertyStatus'] = data['MlsStatus'];
@@ -105,7 +108,7 @@ export class FmlsService {
     this.dataArray ['published'] = data['OnMarketDate'];
     this.dataArray ['lastUpdated'] = data['StatusChangeTimestamp'];
 
-    this.propertyN = new Property (this.dataArray['id'], 
+    this.propertyNS = new Property (this.dataArray['id'], 
                                     this.dataArray ['title'], '',
                                     this.dataArray ['PropertyType'], 
                                     [this.dataArray ['PropertyStatus']], 
@@ -125,7 +128,7 @@ export class FmlsService {
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
                                     [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures']}], 
-                                    [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL,'id':0}], 
+                                    [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL}], 
                                     [], [], 
                                     this.dataArray ['published'], 
                                     this.dataArray ['lastUpdated'], 0)

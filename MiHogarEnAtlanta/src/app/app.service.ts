@@ -80,7 +80,7 @@ export class AppService {
     return this.http.get<Location[]>(this.url + 'locations.json');
   }
 
-  public getAddress(lat = 33.94639978610779, lng = -84.22940637001427){ 
+  public getAddress(lat = 33.94644, lng = -84.22954){ 
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey);
   }
 
@@ -88,7 +88,7 @@ export class AppService {
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?key='+this.apiKey+'&address='+address);
   }
 
-  public getFullAddress(lat = 33.94639978610779, lng = -84.22940637001427){ 
+  public getFullAddress(lat = 33.94644, lng = -84.22954){ 
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey).subscribe(data =>{ 
       return data['results'][0]['formatted_address'];
     });
@@ -560,28 +560,28 @@ export class AppService {
   public getTestimonials(){
     return [
         { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Mr. Adam Sandler', 
-            position: 'General Director', 
-            image: 'assets/images/profile/adam.jpg' 
+            text: 'Muy buen servicio los recomiendo. Muy buena ayuda desde el principio hasta el final👍👌👌Carmela Moreno y su equipo son excelentes  muy eficientes si quieren comprar o vender llámalos a ellos ahora', 
+            author: 'Alberto Arias', 
+            // position: 'General Director', 
+            image: 'assets/images/profile/Alberto Arias.jpg' 
         },
         { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Ashley Ahlberg', 
-            position: 'Housewife', 
-            image: 'assets/images/profile/ashley.jpg' 
+            text: 'excelente equipo los recomiendo al 100 más k ayudar se toman tan serio y con tanto amor su trabajo k a uno le aclaran cada duda cada paso en el proseso de la compra gracias por la ayuda mil bendiciones', 
+            author: 'Martha Mary Lopez', 
+            // position: 'Housewife', 
+            image: 'assets/images/profile/Martha Mary Lopez.jpg' 
         },
         { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Bruno Vespa', 
-            position: 'Blogger', 
-            image: 'assets/images/profile/bruno.jpg' 
+            text: '¡Guau! ¿Por dónde empiezo? Esta experiencia no ha sido más que increíble, por supuesto que hubo baches en el camino pero Carmen y Carmela siempre estuvieron tan atentas a nuestras necesidades y nuestras preocupaciones. Si estás buscando comprar o vender tu casa, definitivamente te recomiendo estas encantadoras damas, ¡siempre te atenderán a ti y a tus necesidades!', 
+            author: 'Zoima Rocha', 
+            // position: 'Blogger', 
+            image: 'assets/images/profile/Zoima Rocha.jpg' 
         },
         { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Mrs. Julia Aniston', 
-            position: 'Marketing Manager', 
-            image: 'assets/images/profile/julia.jpg' 
+            text: '100% Recomendado, son un excelente equipo que me ayudaron a comprar y vender mi casa. Te aclaran todas tus dudas y si no sabes algo te ayudan.', 
+            author: 'Emanuel Esquivel', 
+            // position: 'Marketing Manager', 
+            image: 'assets/images/profile/Emanuel Esquivel.jpg' 
         }
     ];
   }
@@ -611,12 +611,12 @@ export class AppService {
             // desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
             organization: 'Mi Hogar En Atlanta',
             email: 'mihogarenatlanta@gmail.com ',
-            phone: '(224) 267-1346',
+            phone: '+1 (678) 744-8007',
             social: {
-              facebook: 'lusia',
+              facebook: 'https://www.facebook.com/mihogarenatlanta/',
               twitter: 'lusia',
-              linkedin: 'lusia',
-              instagram: 'lusia',
+              linkedin: 'https://www.linkedin.com/in/carmela-moreno-1a7392148/',
+              instagram: 'https://www.instagram.com/mihogarenatlanta/',
               // website: 'https://lusia.manuel.com'
             },
             ratingsCount: 6,

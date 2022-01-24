@@ -56,7 +56,8 @@ export class Price {
 
 
 export class Gallery {
-    constructor(public id: number, 
+    constructor(
+                // public id: number, 
                 public small: string,
                 public medium: string,
                 public big: string){ }

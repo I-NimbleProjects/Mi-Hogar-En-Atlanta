@@ -83,9 +83,10 @@ export class PropertyComponent implements OnInit {
   public getPropertyById(id){
     this.fmls.getListingKey(id).subscribe(data=>{    
       this.fmls.singleFmlsData(data)
-      this.property = this.fmls.propertyN;  
-      console.log(this.fmls.propertyN)  
-      this.embedVideo = this.embedService.embed_image(this.property.gallery[0][0]);
+      this.property = this.fmls.propertyNS;  
+      console.log(this.fmls.propertyNS)  
+      this.embedVideo = this.property.gallery[0][0];
+      console.log(this.property.gallery[0][0].big)
       setTimeout(() => { 
         this.config.observer = true;
         this.config2.observer = true; 
