@@ -92,8 +92,8 @@ export class FmlsService {
     this.dataArray ['Neighborhood'] = data['CityRegion'];
     this.dataArray ['street'] = data['StreetName'];
     this.dataArray ['location'] = data['Coordinates'];
-    let lat = this.dataArray ['location'][0]
-    let lng = this.dataArray ['location'][1];
+    let lng = this.dataArray ['location'][0]
+    let lat = this.dataArray ['location'][1];
     this.dataArray ['address'] = data['UnparsedAddress'];
     this.dataArray ['features'] = data['ExteriorFeatures'];
     this.dataArray ['price'] = data['ListPrice'];
@@ -116,7 +116,7 @@ export class FmlsService {
                                     this.dataArray ['Zipcode'], 
                                     [this.dataArray ['Neighborhood']], 
                                     [this.dataArray ['street']], 
-                                    {'propertyId': this.dataArray['id'], 'lat': lat, 'lng': lng}, 
+                                    {'propertyId': this.dataArray ['id'], 'lat': lat, 'lng': lng}, 
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
