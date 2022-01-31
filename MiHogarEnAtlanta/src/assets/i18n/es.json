@@ -49,5 +49,76 @@
     },
     "FIELD": { 
       "NAME": "Nombre" 
+    },
+    "ABOUT": {
+      "ABOUT_TITLE": "Nosotros",
+      "ABOUT_DESC": "Ayudamos a encontrar tu casa",
+      "OUR_HISTORY": "Nuestra Historia",
+      "HISTORY": "Mi Hogar En Atlanta debe su origen y es liderada a traves de Carmela Moreno (CEO y fundadora de Mi Hogar En Atlanta) quien tras emigar a los Estados Unidos en el año 2004 se ha desempeñado desde entonces como agente de bienes raices. Su esfuerfo ha dado consigo una propinente carrera en la industria del Real State siendo galardonada con diversos premios como top producer; tres veces consecutivas los premios de NAMAR, su broker le otorgo premios de Silver, Diamond y Gold, galardonada por la NAHREP (Asociacion Nacional de Realtors Latinos) la cual le otorgo el premio 100 Top Producer 2019 del area sur de los Estados Unidos. Recibio en 2021 NAHREP Latino Agents Award en el grupo top 250 agentes latinos como mejores vendedores, ocupando el puesto 76 a nivel nacional, gracias a los excelentes resultados de ventas en el año 2020.",
+      "OUR_MISSION": "Nuestra Misión",
+      "MISSION": "Nuestra Misión, es servir a mi comunidad haciendo sus sueños realidad siendo propietarios.",
+      "OUR_VISION": "Nuestra Visión",
+      "VISION": "Liderar la venta y compra de casas en Georgia con Honestidad."
+    },
+    "CONTACTO": {
+      "CONTACTO_TITLE": "Contactanos",
+      "CONTACTO_DESC": "Preguntas? Las responderemos",
+      "ADDRESS": "DIRECCION",
+      "PHONE_NUMBERS": "TELEFONOS",
+      "EMAIL": "CORREOS"
+    },
+    "PROPERTY": {
+      "CALCULATOR": "CALCULADORA DE HIPOTECA",
+      "AMOUNT": "MONTO PRINCIPAL",
+      "INITIAL": "INICIAL",
+      "INTEREST": "INTERES",
+      "PERIOD": "PERIODO",
+      "MONTHLY": "PAGO MENSUAL",
+      "MORTGAGE": "CALCULAR HIPOTECA",
+      "DETAILS": "DETALLES",
+      "TYPE": "TIPO DE PROPIEDAD",
+      "STATUS": "ESTADO DE PROPIEDAD",
+      "CITY": "CIUDAD",
+      "ZIPCODE": "CODIGO POSTAL",
+      "NEIGHTBORHOOD": "VECINDARIO",
+      "STREET": "CALLE",
+      "ROOMS": "CUARTOS",
+      "BATHROOMS": "BAÑOS",
+      "GARAGES": "GARAGES",
+      "SIZE": "TAMAÑO",
+      "YEAR": "AÑO DE CONSTRUCCION",
+      "FEATURES": "CARACTERISTICAS",
+      "ADDFEATURES": "CARACTERISTICAS ADICIONALES",
+      "LOCATION": "UBICACION",
+      "PUBLISHED": "PUBLICADO",
+      "UPDATE": "ULTIMA ACTUALIZACION"
+    },
+    "LOAD_MORE": "Cargar más",
+    "LOAD_RESULTS": "Resultados",
+    "SEARCH": {
+      "PRICE": "PRECIO",
+      "PRICE_FROM": "PRECIO DESDE",
+      "FROM": "DESDE",
+      "PRICE_TO": "HASTA",
+      "TO": "HASTA",
+      "S_CITY": "CIUDAD",
+      "P_CITY": "SELECCIONE CIUDAD"
+    },
+    "P_ITEM": {
+      "FAV": "AGREGAR A FAVORITOS",
+      "COMP": "AGREGAR A COMPARAR",
+      "I_SIZE": "TAMAÑO DE PROPIEDAD",
+      "I_ROOMS": "CUARTOS",
+      "I_BATHROOMS": "BAÑOS",
+      "I_GARAGES": "GARAGES",
+      "I_DETAILS": "DETALLES"
+    },
+    "SHOW": "MOSTRAR",
+    "HOME": {
+      "H_TITLE": "Encuentra Tu Hogar En Atlanta",
+      "H_DESC": "Compañía Lider En Real Estate"
+    },
+    "PROPERTIES": {
+      "P_DESC": "Hogar es donde uno empieza... - T.S. Eliot"
     }
   }

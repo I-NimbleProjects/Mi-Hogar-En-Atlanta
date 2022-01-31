@@ -1,8 +1,8 @@
 <app-header-image [backgroundImage]="'assets/images/others/image3.jpg'" 
                   [bgImageAnimate]="false" 
                   [contentOffsetToTop]="true"                
-                  [title]="'Nosotros'"
-                  [desc]="'Ayudamos a encontrar tu casa'">
+                  [title]="'ABOUT.ABOUT_TITLE' | translate"
+                  [desc]="'ABOUT.ABOUT_DESC' | translate">
 </app-header-image>
 
 
@@ -12,26 +12,26 @@
         <div class="section pt-2">
             <div class="px-3">
                 <div class="theme-container">
-                    <h1 class="section-title">Nuestra historia</h1>
+                    <h1 class="section-title">{{ 'ABOUT.OUR_HISTORY' | translate }}</h1>
 
-                    <p class="px-3" style="text-align: justify;">Mi Hogar En Atlanta debe su origen y es liderada a traves de Carmela Moreno (CEO y fundadora de Mi Hogar En Atlanta) quien tras emigar a los Estados Unidos en el año 2004 se ha desempeñado desde entonces como agente de bienes raices. Su esfuerfo ha dado consigo una propinente carrera en la industria del Real State siendo galardonada con diversos premios como top producer; tres veces consecutivas los premios de NAMAR, su broker le otorgo premios de Silver, Diamond y Gold, galardonada por la NAHREP (Asociacion Nacional de Realtors Latinos) la cual le otorgo el premio "100 Top Producer 2019" del area sur de los Estados Unidos. Recibio en 2021 NAHREP Latino Agents Award en el grupo top 250 agentes latinos como mejores vendedores, ocupando el puesto 76 a nivel nacional, gracias a los excelentes resultados de ventas en el año 2020.</p>
+                    <p class="px-3" style="text-align: justify;">{{ 'ABOUT.HISTORY' | translate }}</p>
 
                     <div fxLayout="row wrap">
 
                         <div fxFlex="100" fxFlex.gt-sm="50" class="p-3"> 
                             <div fxLayout="row" fxLayoutAlign="start center">
                                 <mat-icon class="mat-icon-xlg" color="primary">business</mat-icon>
-                                <h2 class="capitalize fw-600 mx-2">Nuestra Misión</h2>
+                                <h2 class="capitalize fw-600 mx-2">{{ 'ABOUT.OUR_MISSION' | translate }}</h2>
                             </div>                            
-                            <p class="mt-2">Nuestra Misión, es servir a mi comunidad haciendo sus sueños realidad siendo propietarios.</p>
+                            <p class="mt-2">{{ 'ABOUT.MISSION' | translate }}</p>
                         </div>
 
                         <div fxFlex="100" fxFlex.gt-sm="50" class="p-3"> 
                             <div fxLayout="row" fxLayoutAlign="start center">
                                 <mat-icon class="mat-icon-xlg" color="primary">list_alt</mat-icon>
-                                <h2 class="capitalize fw-600 mx-2">Visión</h2>
+                                <h2 class="capitalize fw-600 mx-2">{{ 'ABOUT.OUR_VISION' | translate }}</h2>
                             </div> 
-                            <p class="mt-2">Liderar la venta y compra de casas en Georgia con Honestidad.</p>
+                            <p class="mt-2">{{ 'ABOUT.VISION' | translate }}</p>
                         </div>
 
                     </div>

@@ -12,7 +12,7 @@
                         <mat-card *ngIf="agent">
                             <img mat-card-image [src]="agent.image" [alt]="agent.fullName"> 
                             <mat-card-content>
-                                <h2 class="fw-600">Agent {{agent.fullName}}</h2>
+                                <h2 class="fw-600">{{agent.fullName}}</h2>
                                 <app-rating [ratingsCount]="agent.ratingsCount" [ratingsValue]="agent.ratingsValue"></app-rating>
                                 <p class="mt-3">{{agent.desc}}</p>                                    
                                 <p fxLayoutAlign="start center"><mat-icon color="primary" matTooltip="Organization" matTooltipPosition="above">business</mat-icon><span class="mx-2">{{agent.organization}}</span></p>
@@ -49,7 +49,7 @@
                                       </a>
                                 </div>
                                 <div>
-                                    <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">Ver Perfil</a>
+                                    <!-- <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">Ver Perfil</a> -->
                                 </div> 
                             </mat-card-actions>                              
                         </mat-card>
@@ -90,27 +90,27 @@
                     </div> -->
                    
                     <div class="widget">
-                        <h3 class="widget-title bg-primary">Calculadora de Hipoteca</h3>
+                        <h3 class="widget-title bg-primary">{{ 'PROPERTY.CALCULATOR' | translate }}</h3>
                         <form [formGroup]="mortgageForm" (ngSubmit)="onMortgageFormSubmit(mortgageForm.value)">
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Monto Principal</mat-label>
+                                <mat-label>{{ 'PROPERTY.AMOUNT' | translate }}</mat-label>
                                 <input matInput placeholder="$" autocomplete="off" formControlName="principalAmount" type="number">                  
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Inicial</mat-label>
+                                <mat-label>{{ 'PROPERTY.INITIAL' | translate }}</mat-label>
                                 <input matInput placeholder="$" autocomplete="off" formControlName="downPayment" type="number">                  
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Interes</mat-label>
+                                <mat-label>{{ 'PROPERTY.INTEREST' | translate }}</mat-label>
                                 <input matInput placeholder="%" autocomplete="off" formControlName="interestRate" type="number">                  
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Periodo</mat-label>
+                                <mat-label>{{ 'PROPERTY.PERIOD' | translate }}</mat-label>
                                 <input matInput placeholder="Number of Years" autocomplete="off" formControlName="period" type="number">                  
                             </mat-form-field>
-                            <p *ngIf="monthlyPayment">Pago Mensual: <span class="mx-2 fw-500">${{monthlyPayment}}</span></p>
+                            <p *ngIf="monthlyPayment">{{ 'PROPERTY.MONTHLY' | translate }}<span class="mx-2 fw-500">${{monthlyPayment}}</span></p>
                             <div class="text-center">
-                                <button mat-raised-button color="accent" type="submit">Calculadora de Hipoteca</button>
+                                <button mat-raised-button color="accent" type="submit">{{ 'PROPERTY.MORTGAGE' | translate }}</button>
                             </div>
                         </form>
                     </div>
@@ -185,57 +185,57 @@
                 
                 <mat-card *ngIf="property" class="mt-3">
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Detalles</mat-card-title> 
+                        <mat-card-title class="uppercase">{{ 'PROPERTY.DETAILS' | translate }}</mat-card-title> 
                     </mat-card-header>
                     <div fxLayout="row wrap" class="details">
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Tipo de propiedad:</span>
+                            <span>{{ 'PROPERTY.TYPE' | translate }}</span>
                             <span>{{property.propertyType}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Estado de propiedad</span>
+                            <span>{{ 'PROPERTY.STATUS' | translate }}</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                             </div>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Ciudad:</span>
+                            <span>{{ 'PROPERTY.CITY' | translate }}</span>
                             <span>{{property.city}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Codigo Postal</span>
+                            <span>{{ 'PROPERTY.ZIPCODE' | translate }}</span>
                             <span>{{property.zipCode}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Vecindario:</span>
+                            <span>{{ 'PROPERTY.NEIGHTBORHOOD' | translate }}</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let neighborhood of property.neighborhood; let last=last" [class.list-item]="property.neighborhood.length > 1" [class.last]="last">{{neighborhood}}</span>
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Calle:</span>
+                            <span>{{ 'PROPERTY.STREET' | translate }}</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let street of property.street; let last=last" [class.list-item]="property.street.length > 1" [class.last]="last">{{street}}</span>
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Cuartos:</span>
+                            <span>{{ 'PROPERTY.ROOMS' | translate }}</span>
                             <span>{{property.bedrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Baños:</span>
+                            <span>{{ 'PROPERTY.BATHROOMS' | translate }}</span>
                             <span>{{property.bathrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Garages:</span>
+                            <span>{{ 'PROPERTY.GARAGES' | translate }}</span>
                             <span>{{property.garages}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Tamaño Propiedad:</span>
+                            <span>{{ 'PROPERTY.SIZE' | translate }}</span>
                             <span>{{property.area.value}} {{property.area.unit}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Año de construccion:</span>
+                            <span>{{ 'PROPERTY.YEAR' | translate }}</span>
                             <span>{{property.yearBuilt}}</span>
                         </div>
                     </div>   
@@ -243,29 +243,29 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Caracteristicas</mat-card-title> 
+                        <mat-card-title class="uppercase">{{ 'PROPERTY.FEATURES' | translate }}</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
-                        <div fxLayout="row wrap">
-                            <div *ngFor="let feature of property?.features" fxFlex="100" fxFlex.gt-xs="33.3">
+                        <ul fxLayout="row wrap">
+                            <li *ngFor="let feature of property?.features" fxFlex="100" fxFlex.gt-xs="33.3">
                                 <mat-icon class="mat-icon-sm" color="primary">verificar</mat-icon>
                                 <span class="mx-2">{{feature}}</span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </mat-card-content>
                 </mat-card>
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Caracteristicas adicionales</mat-card-title> 
+                        <mat-card-title class="uppercase">{{ 'PROPERTY.ADDFEATURES' | translate }}</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
-                        <div fxLayout="row wrap" class="details">
-                            <div *ngFor="let feature of property?.additionalFeatures; let last=last" [class.list-item]="property.additionalFeatures.length > 1" [class.last]="last" fxFlex="100" fxFlex.gt-xs="50" class="item">
+                        <ul fxLayout="row wrap" class="details">
+                            <li *ngFor="let feature of property?.additionalFeatures" fxFlex="100" fxFlex.gt-xs="50" class="item">
                                 <!-- <span>{{feature.name}}</span> -->
                                 <span>{{feature.value}}</span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </mat-card-content>
                 </mat-card>
 
@@ -282,7 +282,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Ubicacion</mat-card-title> 
+                        <mat-card-title class="uppercase">{{ 'PROPERTY.LOCATION' | translate }}</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <agm-map [latitude]="property?.location.lat" [longitude]="property?.location.lng" [mapTypeControl]="true" [fullscreenControl]="true">
@@ -333,8 +333,8 @@
 
                 <mat-card class="mt-3" fxLayout="row wrap" fxLayoutAlign="space-between center"> 
                     <span>ID:<span class="fw-500 mx-2">{{property?.id}}</span></span>
-                    <span>Publicado:<span class="fw-500 mx-2">{{property?.published | date:"dd MMMM, yyyy"}}</span></span>
-                    <span>Ultima actualizacion:<span class="fw-500 mx-2">{{property?.lastUpdate | date:"dd MMMM, yyyy"}}</span></span>
+                    <span>{{ 'PROPERTY.PUBLISHED' | translate }}<span class="fw-500 mx-2">{{property?.published | date:"dd MMMM, yyyy"}}</span></span>
+                    <span>{{ 'PROPERTY.UPDATE' | translate }}<span class="fw-500 mx-2">{{property?.lastUpdate | date:"dd MMMM, yyyy"}}</span></span>
                     <!-- <span>Vistas:<span class="fw-500 mx-2">{{property?.views}}</span></span>  -->
                 </mat-card>
 

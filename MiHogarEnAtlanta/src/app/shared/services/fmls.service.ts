@@ -14,6 +14,9 @@ export class FmlsService {
   public dataArray = [];
   public arrayCleanData = [];
   public galleryURL = "";
+  public BF = [];
+  public AF = [];
+  public CF = [];
   constructor(public httpClient: HttpClient,
               public appservice: AppService,){}
 
@@ -103,7 +106,19 @@ export class FmlsService {
     this.dataArray ['garages'] = data['GarageSpaces'];
     this.dataArray ['area'] = [data['LotSizeSquareFeet']];
     this.dataArray ['yearBuilt'] = data['YearBuilt'];
-    this.dataArray ['addFeatures'] = [data ['BuildingFeatures'], data ['CommunityFeatures'], data ['AccessibilityFeatures']];
+    this.dataArray ['addFeatures'] = [];
+    if(data['BuildingFeatures'].length != 0){
+      data['BuildingFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+    }
+    if(data['CommunityFeatures'].length != 0){
+      data['CommunityFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+    }
+    if(data['AccessibilityFeatures'].length != 0){
+      data['AccessibilityFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+    }
+    // this.dataArray['addFeatures1'] = data['BuildingFeatures'];
+    // this.dataArray['addFeatures2'] = data['CommunityFeatures'];
+    // this.dataArray['addFeatures3'] = data['AccessibilityFeatures'];
     this.dataArray ['gallery'] = [data['Media']];
     this.dataArray ['published'] = data['OnMarketDate'];
     this.dataArray ['lastUpdated'] = data['StatusChangeTimestamp'];
@@ -127,7 +142,8 @@ export class FmlsService {
                                     this.dataArray ['garages'],
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
-                                    [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures']}], 
+                                    // [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures1']}, {'id': this.dataArray['id'], 'name': '', 'value': data['CommunityFeatures']}, {'id': this.dataArray['id'], 'name': '', 'value': data['AccessibilityFeatures']}],
+                                    [{'id':this.dataArray['id'], 'name': "", 'value':this.dataArray['addFeatures']}], 
                                     [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL}], 
                                     [], [], 
                                     this.dataArray ['published'], 

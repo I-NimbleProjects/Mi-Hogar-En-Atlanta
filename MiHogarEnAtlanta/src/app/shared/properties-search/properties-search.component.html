@@ -29,8 +29,8 @@
             <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                        <mat-label>{{(variant == 1) ? 'Precio' : 'Precio desde'}}</mat-label>
-                        <input matInput autocomplete="off" placeholder="Desde" formControlName="from" type="text" onlyNumber>                  
+                        <mat-label>{{(variant == 1) ? 'SEARCH.PRICE' : 'SEARCH.PRICE_FROM' | translate }}</mat-label>
+                        <input matInput autocomplete="off" [placeholder]="'SEARCH.FROM' | translate" formControlName="from" type="text" onlyNumber>                  
                     </mat-form-field>
                 </div>
                 <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
@@ -38,8 +38,8 @@
                 </div>
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                        <mat-label>{{(variant == 1) ? '' : 'Hasta'}}</mat-label>
-                        <input matInput autocomplete="off" placeholder="Hasta" formControlName="to" type="text" onlyNumber>                  
+                        <mat-label>{{(variant == 1) ? '' : 'SEARCH.PRICE_TO'}}</mat-label>
+                        <input matInput autocomplete="off" [placeholder]="'SEARCH.TO' | translate" formControlName="to" type="text" onlyNumber>                  
                     </mat-form-field>
                 </div>
             </div> 
@@ -48,8 +48,8 @@
             
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Ciudad</mat-label>
-                    <mat-select placeholder="Seleccione ciudad" formControlName="city" (selectionChange)="onSelectCity()">
+                    <mat-label>{{ 'SEARCH.S_CITY' | translate }}</mat-label>
+                    <mat-select [placeholder]="'SEARCH.P_CITY' | translate" formControlName="city" (selectionChange)="onSelectCity()">
                         <mat-option *ngFor="let city of cities" [value]="city">
                             {{city.name}}
                         </mat-option>

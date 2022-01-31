@@ -1,8 +1,8 @@
 <app-header-image [backgroundImage]="'assets/images/others/image1.jpg'" 
                   [bgImageAnimate]="false" 
                   [contentOffsetToTop]="true"                
-                  [title]="'Contactanos'"
-                  [desc]="'Preguntas? Las responderemos'">
+                  [title]="'CONTACTO.CONTACTO_TITLE' | translate"
+                  [desc]="'CONTACTO.CONTACTO_DESC' | translate">
 </app-header-image>
 
 <div class="px-3">
@@ -14,14 +14,14 @@
                 <div fxFlex="100" fxFlex.gt-xs="33.3">
                     <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
                         <mat-icon color="primary" class="mat-icon-lg">home</mat-icon>
-                        <h3 class="primary-color py-1">DIRECCION:</h3>
+                        <h3 class="primary-color py-1">{{ 'CONTACTO.ADDRESS' | translate}}</h3>
                         <span>6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos</span>
                     </div>
                 </div>
                 <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
                     <div fxLayout="column" fxLayoutAlign="center center">
                         <mat-icon color="primary" class="mat-icon-lg">call</mat-icon>
-                        <h3 class="primary-color py-1">TELEFONOS:</h3>
+                        <h3 class="primary-color py-1">{{ 'CONTACTO.PHONE_NUMBERS' | translate}}</h3>
                         <span>+1 (678) 744-8007</span>
                         <!-- <span>(212) 457-2309</span> -->
                     </div>
@@ -29,7 +29,7 @@
                 <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
                     <div fxLayout="column" fxLayoutAlign="center center">
                         <mat-icon color="primary" class="mat-icon-lg">mail_outline</mat-icon>
-                        <h3 class="primary-color py-1">CORREOS:</h3>
+                        <h3 class="primary-color py-1">{{ 'CONTACTO.EMAIL' | translate}}</h3>
                         <span>mihogarenatlanta@gmail.com</span>
                         <!-- <span>info@housekey.com</span> -->
                     </div>

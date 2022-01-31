@@ -24,10 +24,10 @@
         </div>
 
         <div class="control-icons">
-            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Agregar a Favorito">
+            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" [matTooltip]="'P_ITEM.FAV' | translate">
                 <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
             </button>
-            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Agregar a Comparar">
+            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" [matTooltip]="'P_ITEM.COMP' | translate">
                 <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
             </button>  
         </div> 
@@ -64,10 +64,10 @@
                 </div>
 
                 <div class="features mt-3">                    
-                    <p><span>Tamaño de propiedad</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
-                    <p><span>Cuartos</span><span>{{property.bedrooms}}</span></p>
-                    <p><span>Baños</span><span>{{property.bathrooms}}</span></p>
-                    <p><span>Garajes</span><span>{{property.garages}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_SIZE' | translate }}</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_ROOMS' | translate }}</span><span>{{property.bedrooms}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_BATHROOMS' | translate }}</span><span>{{property.bathrooms}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_GARAGES' | translate }}</span><span>{{property.garages}}</span></p>
                 </div> 
 
             </mat-card-content>
@@ -78,7 +78,7 @@
                     <span class="mx-2">{{property.published | date:"dd MMMM, yyyy" }}</span>
                 </p>
                 <div>
-                    <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Detalles</a>
+                    <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">{{ 'P_ITEM.I_DETAILS' | translate }}</a>
                 </div> 
             </mat-card-actions> 
         </div>        
