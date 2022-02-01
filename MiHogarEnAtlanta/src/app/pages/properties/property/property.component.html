@@ -246,7 +246,7 @@
                         <mat-card-title class="uppercase">{{ 'PROPERTY.FEATURES' | translate }}</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
-                        <ul fxLayout="row wrap">
+                        <ul fxLayout="row wrap" style="margin-left: 15px;">
                             <li *ngFor="let feature of property?.features" fxFlex="100" fxFlex.gt-xs="33.3">
                                 <mat-icon class="mat-icon-sm" color="primary">verificar</mat-icon>
                                 <span class="mx-2">{{feature}}</span>
@@ -260,10 +260,10 @@
                         <mat-card-title class="uppercase">{{ 'PROPERTY.ADDFEATURES' | translate }}</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
-                        <ul fxLayout="row wrap" class="details">
-                            <li *ngFor="let feature of property?.additionalFeatures" fxFlex="100" fxFlex.gt-xs="50" class="item">
+                        <ul fxLayout="row wrap" class="details" style="margin-left: 15px;">
+                            <li *ngFor="let feature of property?.additionalFeatures[0].value" fxFlex="100" fxFlex.gt-xs="50" class="item">
                                 <!-- <span>{{feature.name}}</span> -->
-                                <span>{{feature.value}}</span>
+                                <span>{{feature}}</span>
                             </li>
                         </ul>
                     </mat-card-content>
