@@ -37,7 +37,7 @@
                         </p>
                         <p fxLayout="row" fxLayoutAlign="start center" class="mt-1">
                             <mat-icon color="primary">schedule</mat-icon>
-                            <span class="mx-2">Lun - Vier / 10:00AM - 6:00PM</span>
+                            <span class="mx-2">{{ 'FOOT.SCHEDULE' | translate }} / 10:00AM - 6:00PM</span>
                         </p>
                         <app-social-icons [iconSize]="'lg'" fxLayout="row" fxLayoutAlign="start center" class="desc"></app-social-icons>                    
                     </div>
@@ -64,10 +64,13 @@
                     </div> -->
  
                     <div fxFlex="100" fxFlex.gt-sm="70" ngClass.lt-md="pt-5"> 
-                        <h2 class="uppercase mb-3">Nuestra Ubicación</h2>
+                        <h2 class="uppercase mb-3">{{ 'FOOT.LOCAT' | translate }}</h2>
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false" [styles]="mapStyles">
                             <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
                         </agm-map>
+                        <p fxLayout="row" fxLayoutAlign="start center" class="mt-1">
+                            <span class="mx-2"><a class="logo" href="https://www.fmls.com/dmca.htm" target="_blank"><img src="assets/images/others/FMLS logo.png" width="100%" height="auto"></a>Listings identified with the FMLS IDX logo come from FMLS and are held by brokerage firms other than the owner of this website. The listing brokerage is identified in any listing details. Information is deemed reliable but is not guaranteed. If you believe any FMLS listing contains material that infringes your copyrighted work please click here to review our DMCA policy and learn how to submit a takedown request. © [current year] First Multiple Listing Service, Inc.</span>
+                        </p>
                     </div>
                 </div> 
               

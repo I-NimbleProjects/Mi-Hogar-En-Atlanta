@@ -120,5 +120,21 @@
   },
   "PROPERTIES": {
     "P_DESC": "Home is where we start... - T.S. Eliot"
-  }
+  },
+  "AGENTS": {
+    "A_TITLE": "Meet our agents"
+  },
+  "FOOT": {
+    "SCHEDULE": "Mon - Fri",
+    "LOCAT": "Our Location"
+  },
+  "SORT": {
+    "DEFAULT": "Sort by default",
+    "NEW": "New",
+    "OLD": "Old",
+    "POPULAR": "Popular",
+    "PRICE<": "Price (Low to High)",
+    "PRICE>": "Price (High to Low)"
+  },
+  "Ordenar por defecto": "Sort by default"
 }

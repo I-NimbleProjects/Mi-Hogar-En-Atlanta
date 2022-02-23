@@ -7,13 +7,13 @@
         </div>
        
         <div *ngIf="property.gallery.length == 1" class="mat-card-image w-100 m-0">
-            <img [src]="property.gallery[0].medium">
+            <img [src]="property.gallery">
         </div>
         <div *ngIf="property.gallery.length > 1" class="mat-card-image w-100 m-0">
             <div class="swiper-container" [swiper]="config">
                 <div class="swiper-wrapper"> 
                     <div *ngFor="let image of property.gallery" class="swiper-slide">
-                        <img [attr.data-src]="image.medium" class="swiper-lazy">
+                        <img [attr.data-src]="image" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
                     </div> 
                 </div>  
@@ -68,6 +68,7 @@
                     <p><span>{{ 'P_ITEM.I_ROOMS' | translate }}</span><span>{{property.bedrooms}}</span></p>
                     <p><span>{{ 'P_ITEM.I_BATHROOMS' | translate }}</span><span>{{property.bathrooms}}</span></p>
                     <p><span>{{ 'P_ITEM.I_GARAGES' | translate }}</span><span>{{property.garages}}</span></p>
+                    <a href="https://www.fmls.com/dmca.htm" target="_blank"><img src="assets/images/others/FMLS logo.png" width="100%" height="auto"></a>
                 </div> 
 
             </mat-card-content>

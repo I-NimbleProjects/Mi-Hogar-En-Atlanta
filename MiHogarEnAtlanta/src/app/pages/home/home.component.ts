@@ -60,6 +60,13 @@ export class HomeComponent implements OnInit {
     this.getProperties();  
     // this.getFeaturedProperties();
     this.getFmlsData();
+
+    const tag = document.createElement('script');
+
+  	tag.src = "https://www.youtube.com/iframe_api";
+
+  	document.body.appendChild(tag);
+
   }
   getFmlsData() {
     this.fmls.getDataProperties()
@@ -92,6 +99,194 @@ export class HomeComponent implements OnInit {
   public getProperties(){  
     //console.log('get properties by : ', this.searchFields);  
     this.fmls.getDataProperties().subscribe(data => {  
+      this.fmls.cleanData(data.bundle)
+      console.log(data)
+      // if(this.properties && this.properties.length > 0){  
+      //   this.settings.loadMore.page++;
+      //   this.pagination.page = this.settings.loadMore.page; 
+      // }
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'No Se Encontraron Resultados';
+        return false;
+      }   
+      if(this.properties && this.properties.length > 0){   
+        this.properties = this.properties.concat(result.data);          
+      }
+      else{
+        this.properties = result.data;  
+      }
+        this.pagination = result.pagination;
+        this.message = null;
+
+      if(this.properties.length == this.pagination.total){
+        this.settings.loadMore.complete = true;
+        this.settings.loadMore.result = this.properties.length;
+      }
+      else{
+        this.settings.loadMore.complete = false;
+      }
+
+      if(this.settings.header == 'map'){
+        this.locations.length = 0;
+        this.properties.forEach(p => {
+          let loc = new Location(p.id, p.location.lat, p.location.lng);
+          this.locations.push(loc);
+        });
+        this.locations = [...this.locations];
+      } 
+     
+    })
+  }
+
+  public getDescend(){  
+    //console.log('get properties by : ', this.searchFields);  
+    this.fmls.getDescend().subscribe(data => {  
+      this.fmls.arrayCleanData = []
+      this.fmls.cleanData(data.value)
+    //   function removeDuplicates(arr = this.fmls.arrayCleanData) {
+    //     var unique = [];
+    //     arr.forEach(element => {
+    //         if (!unique.includes(element)) {
+    //             unique.push(element);
+    //         }
+    //     });
+    //     return unique;
+    // }
+    // removeDuplicates()
+      if(this.properties && this.properties.length > 0){  
+        this.settings.loadMore.page++;
+        this.pagination.page = this.settings.loadMore.page; 
+      }
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'No Se Encontraron Resultados';
+        return false;
+      }   
+      if(this.properties && this.properties.length < this.fmls.arrayCleanData.length){   
+        this.properties = this.properties.concat(result.data);
+      }
+      else{
+        this.properties = result.data;  
+      }
+        this.pagination = result.pagination;
+        this.message = null;
+
+      if(this.properties.length == this.pagination.total){
+        this.settings.loadMore.complete = true;
+        this.settings.loadMore.result = this.properties.length;
+      }
+      else{
+        this.settings.loadMore.complete = false;
+      }
+
+      if(this.settings.header == 'map'){
+        this.locations.length = 0;
+        this.properties.forEach(p => {
+          let loc = new Location(p.id, p.location.lat, p.location.lng);
+          this.locations.push(loc);
+        });
+        this.locations = [...this.locations];
+      } 
+     
+    })
+  }
+
+  public getAscend(){  
+    //console.log('get properties by : ', this.searchFields);  
+    this.fmls.getAscend().subscribe(data => {  
+      this.fmls.cleanData(data.value)
+      if(this.properties && this.properties.length > 0){  
+        this.settings.loadMore.page++;
+        this.pagination.page = this.settings.loadMore.page; 
+      }
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'No Se Encontraron Resultados';
+        return false;
+      }   
+      if(this.properties && this.properties.length > 0){   
+        this.properties = this.properties.concat(result.data);          
+      }
+      else{
+        this.properties = result.data;  
+      }
+        this.pagination = result.pagination;
+        this.message = null;
+
+      if(this.properties.length == this.pagination.total){
+        this.settings.loadMore.complete = true;
+        this.settings.loadMore.result = this.properties.length;
+      }
+      else{
+        this.settings.loadMore.complete = false;
+      }
+
+      if(this.settings.header == 'map'){
+        this.locations.length = 0;
+        this.properties.forEach(p => {
+          let loc = new Location(p.id, p.location.lat, p.location.lng);
+          this.locations.push(loc);
+        });
+        this.locations = [...this.locations];
+      } 
+     
+    })
+  }
+
+  public getNew(){  
+    //console.log('get properties by : ', this.searchFields);  
+    this.fmls.getNew().subscribe(data => {  
+      this.fmls.cleanData(data.value)
+      if(this.properties && this.properties.length > 0){  
+        this.settings.loadMore.page++;
+        this.pagination.page = this.settings.loadMore.page; 
+      }
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'No Se Encontraron Resultados';
+        return false;
+      }   
+      if(this.properties && this.properties.length > 0){   
+        this.properties = this.properties.concat(result.data);          
+      }
+      else{
+        this.properties = result.data;  
+      }
+        this.pagination = result.pagination;
+        this.message = null;
+
+      if(this.properties.length == this.pagination.total){
+        this.settings.loadMore.complete = true;
+        this.settings.loadMore.result = this.properties.length;
+      }
+      else{
+        this.settings.loadMore.complete = false;
+      }
+
+      if(this.settings.header == 'map'){
+        this.locations.length = 0;
+        this.properties.forEach(p => {
+          let loc = new Location(p.id, p.location.lat, p.location.lng);
+          this.locations.push(loc);
+        });
+        this.locations = [...this.locations];
+      } 
+     
+    })
+  }
+
+  public getOld(){  
+    //console.log('get properties by : ', this.searchFields);  
+    this.fmls.getOld().subscribe(data => {  
       this.fmls.cleanData(data.value)
       if(this.properties && this.properties.length > 0){  
         this.settings.loadMore.page++;
@@ -182,7 +377,21 @@ export class HomeComponent implements OnInit {
     this.sort = sort;
     this.resetLoadMore(); 
     this.properties.length = 0;
-    this.getProperties();
+    if(sort = 'Ordenar por defecto' || 'Sort by default'){
+      this.getProperties();
+    }
+    if(sort = 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      this.getAscend();
+    }
+    if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
+      this.getDescend();
+    }
+    if(sort = 'Nuevo' || 'New'){
+      this.getNew();
+    }
+    if(sort = 'Viejo' || 'Old'){
+      this.getOld();
+    }
   }
   public changeViewType(obj){ 
     this.viewType = obj.viewType;

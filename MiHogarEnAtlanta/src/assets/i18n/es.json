@@ -116,9 +116,25 @@
     "SHOW": "MOSTRAR",
     "HOME": {
       "H_TITLE": "Encuentra Tu Hogar En Atlanta",
-      "H_DESC": "Compañía Lider En Real Estate"
+      "H_DESC": "Compañía Líder En Real Estate"
     },
     "PROPERTIES": {
       "P_DESC": "Hogar es donde uno empieza... - T.S. Eliot"
-    }
+    },
+    "AGENTS": {
+      "A_TITLE": "Conoce a nuestros agentes"
+    },
+    "FOOT": {
+      "SCHEDULE": "Lun - Vier",
+      "LOCAT": "Nuestra ubicación"
+    },
+    "SORT": {
+      "DEFAULT": "Ordenar por defecto",
+      "NEW": "Nuevo",
+      "OLD": "Viejo",
+      "POPULAR": "Popular",
+      "PRICE<": "Precio (Bajo a Alto)",
+      "PRICE>": "Precio (Alto a Bajo)"
+    },
+    "Ordenar por defecto": "Ordenar por defecto"
   }

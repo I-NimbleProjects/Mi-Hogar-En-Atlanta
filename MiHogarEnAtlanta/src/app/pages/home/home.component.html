@@ -3,7 +3,7 @@
                 [bgImageAnimate]="true"
                 [contentOffsetToTop]="true"
                 [title]="'Encuentra Tu Hogar En Atlanta'"
-                [desc]="'Compañía Lider En Real Estate'"
+                [desc]="'Compañía Líder En Real Estate'"
                 [isHomePage]="true"
                 [fullscreen]="false">
 </app-header-image> 
@@ -21,7 +21,7 @@
 </app-header-map>
 
 <app-header-video *ngIf="settings.header == 'video'" 
-                [backgroundVideo]="'assets/Videos/Atlanta10s.webm'" 
+                [backgroundVideo]="'assets/Videos/Atlanta10s.mp4'" 
                 [contentOffsetToTop]="true"
                 [title]="'HOME.H_TITLE' | translate"
                 [desc]="'HOME.H_DESC' | translate"
@@ -102,6 +102,13 @@
 <app-our-agents></app-our-agents>
 
 <app-testimonials></app-testimonials> 
+
+<youtube-player videoId="iZDXj8PjoiA" 
+suggestedQuality="highres"
+[height]="250" 
+[width]="500" 
+fxLayoutAlign="center"
+style="margin-bottom: 30px;"></youtube-player>
       
 <!-- <app-clients></app-clients> -->
 

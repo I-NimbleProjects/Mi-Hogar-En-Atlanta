@@ -74,6 +74,70 @@ export class PropertiesComponent implements OnInit {
 
   public getProperties(){
     this.fmls.getDataProperties().subscribe(data => {  
+      this.fmls.cleanData(data.bundle)
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'Sin Resultados';
+        return false;
+      } 
+      this.properties = result.data; 
+      this.pagination = result.pagination;
+      this.message = null;
+    })
+  }
+
+  public getAscend(){
+    this.fmls.getAscend().subscribe(data => {  
+      this.fmls.cleanData(data.value)
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'Sin Resultados';
+        return false;
+      } 
+      this.properties = result.data; 
+      this.pagination = result.pagination;
+      this.message = null;
+    })
+  }
+
+  public getDescend(){
+    this.fmls.getDescend().subscribe(data => {  
+      this.fmls.cleanData(data.value)
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'Sin Resultados';
+        return false;
+      } 
+      this.properties = result.data; 
+      this.pagination = result.pagination;
+      this.message = null;
+    })
+  }
+
+  public getOld(){
+    this.fmls.getOld().subscribe(data => {  
+      this.fmls.cleanData(data.value)
+      let result = this.filterData(this.fmls.arrayCleanData); 
+      if(result.data.length == 0){
+        this.properties.length = 0;
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.message = 'Sin Resultados';
+        return false;
+      } 
+      this.properties = result.data; 
+      this.pagination = result.pagination;
+      this.message = null;
+    })
+  }
+
+  public getNew(){
+    this.fmls.getNew().subscribe(data => {  
       this.fmls.cleanData(data.value)
       let result = this.filterData(this.fmls.arrayCleanData); 
       if(result.data.length == 0){
@@ -138,7 +202,21 @@ export class PropertiesComponent implements OnInit {
   public changeSorting(sort){    
     this.sort = sort; 
     this.properties.length = 0;
-    this.getProperties();
+    if(sort = 'Ordenar por defecto' || 'Sort by default'){
+      this.getProperties();
+    }
+    if(sort = 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      this.getAscend();
+    }
+    if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
+      this.getDescend();
+    }
+    if(sort = 'Nuevo' || 'New'){
+      this.getNew();
+    }
+    if(sort = 'Viejo' || 'Old'){
+      this.getOld();
+    }
   }
   public changeViewType(obj){ 
     this.viewType = obj.viewType;

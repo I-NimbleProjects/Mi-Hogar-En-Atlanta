@@ -29,7 +29,7 @@
             <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                        <mat-label>{{(variant == 1) ? 'SEARCH.PRICE' : 'SEARCH.PRICE_FROM' | translate }}</mat-label>
+                        <mat-label *ngIf=" variant == 1 ? 'Price' : 'Price From'">{{'SEARCH.PRICE'| translate }}</mat-label>
                         <input matInput autocomplete="off" [placeholder]="'SEARCH.FROM' | translate" formControlName="from" type="text" onlyNumber>                  
                     </mat-form-field>
                 </div>

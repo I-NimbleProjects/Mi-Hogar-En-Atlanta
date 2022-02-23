@@ -1,56 +1,64 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Input, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 @Injectable({
   providedIn: 'root'
 })
 export class FmlsService {
-  @Input()
-  // @Output() ciudades = [];
 
   public propertyN: any;
   public propertyNS: any;
   public dataArray = [];
   public arrayCleanData = [];
-  public galleryURL = "";
-  public BF = [];
-  public AF = [];
-  public CF = [];
+
   constructor(public httpClient: HttpClient,
               public appservice: AppService,){}
 
 
   getDataProperties(){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/OData/test/Property?access_token=6baca547742c6f96a6ff71b138424f21')
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed')
   }
 
   cleanData(data: any){
-    data.forEach(property => {
-      this.dataArray ['id'] = property['ListingKey'];
-      this.dataArray ['title'] = property['BuildingName'];
-      this.dataArray ['PropertyType'] = property['PropertyType'];
-      this.dataArray ['PropertyStatus'] = property['MlsStatus'];
-      this.dataArray ['city'] = property['City'];
-      this.dataArray ['Zipcode'] = property['PostalCode'];
-      this.dataArray ['Neighborhood'] = property['CityRegion'];
-      this.dataArray ['street'] = property['StreetName'];
-      this.dataArray ['location'] = property['Coordinates'];
-      let lat = this.dataArray ['location'][0]
-      let lng = this.dataArray ['location'][1];
-      this.dataArray ['address'] = property['UnparsedAddress'];
-      this.dataArray ['features'] = property['ExteriorFeatures'];
-      this.dataArray ['price'] = property['ListPrice'];
-      this.dataArray ['rent'] = property['RentIncludes'];
-      this.dataArray ['bedrooms'] = property['BedroomsTotal'];
-      this.dataArray ['bathrooms'] = property['BathroomsTotalInteger'];
-      this.dataArray ['garages'] = property['GarageSpaces'];
-      this.dataArray ['area'] = [property['LotSizeSquareFeet']];
-      this.dataArray ['yearBuilt'] = property['YearBuilt'];
-      this.dataArray ['addFeatures'] = [data ['CommunityFeatures'], data ['AccessibilityFeatures'], data ['PatioAndPorchFeatures'], data ['LotFeatures']];
-      this.dataArray ['gallery'] = [property['Media']];
-      this.dataArray ['published'] = property['OnMarketDate'];
-      this.dataArray ['lastUpdated'] = property['StatusChangeTimestamp'];
+    data.forEach(element => {
+      this.dataArray ['id'] = element['ListingId'];
+      this.dataArray ['title'] = element['BuildingName'];
+      this.dataArray ['PropertyType'] = element['PropertyType'];
+      this.dataArray ['PropertyStatus'] = element['MlsStatus'];
+      this.dataArray ['city'] = element['City'];
+      this.dataArray ['Zipcode'] = element['PostalCode'];
+      this.dataArray ['Neighborhood'] = element['CountyOrParish'];
+      this.dataArray ['street'] = element['StreetName'];
+      this.dataArray ['latitude'] = element['Latitude'];
+      this.dataArray ['longitude'] = element['Longitude'];
+      this.dataArray ['address'] = element['UnparsedAddress'];
+      this.dataArray ['features'] = element['ExteriorFeatures'];
+      this.dataArray ['price'] = element['ListPrice'];
+      this.dataArray ['rent'] = element['RentIncludes'];
+      this.dataArray ['bedrooms'] = element['BedroomsTotal'];
+      this.dataArray ['bathrooms'] = element['BathroomsTotalInteger'];
+      this.dataArray ['garages'] = element['GarageSpaces'];
+      this.dataArray ['area'] = [element['LotSizeSquareFeet']];
+      this.dataArray ['yearBuilt'] = element['YearBuilt'];
+      this.dataArray ['addFeatures'] = [];
+      if(element['ExteriorFeatures'].length != 0){
+        element['ExteriorFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+      }
+      if(element['CommunityFeatures'].length != 0){
+        element['CommunityFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+      }
+      if(element['AccessibilityFeatures'].length != 0){
+        element['AccessibilityFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+      }
+      this.dataArray ['gallery'] = [];
+      if(element['Media'] != null){
+        element['Media'].forEach(item =>this.dataArray['gallery'].push(item.MediaURL))
+      }else {
+        this.dataArray['gallery'].push("assets/images/others/NoImageAvailable.jpg")
+      }
+      this.dataArray ['published'] = element['OnMarketDate'];
+      this.dataArray ['lastUpdated'] = element['StatusChangeTimestamp'];
 
       this.propertyN = new Property (this.dataArray['id'], 
                                     this.dataArray ['title'], '',
@@ -60,7 +68,7 @@ export class FmlsService {
                                     this.dataArray ['Zipcode'], 
                                     [this.dataArray ['Neighborhood']], 
                                     [this.dataArray ['street']], 
-                                    {'propertyId': this.dataArray['id'], 'lat': lat, 'lng': lng}, 
+                                    {'propertyId': this.dataArray['id'], 'lat': this.dataArray['latitude'], 'lng': this.dataArray['longitude']}, 
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
@@ -71,32 +79,33 @@ export class FmlsService {
                                     this.dataArray ['garages'],
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
-                                    [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures']}], 
-                                    [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL}], 
+                                    [{'id':this.dataArray['id'], 'name': "", 'value':this.dataArray['addFeatures']}], 
+                                    this.dataArray['gallery'], 
                                     [], [], 
                                     this.dataArray ['published'], 
                                     this.dataArray ['lastUpdated'], 0)
-
       this.arrayCleanData.push(this.propertyN);
       console.log(this.arrayCleanData)
     });
   }
+  
+  
   getListingKey(id){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/OData/test/Property('+ id + ')?access_token=6baca547742c6f96a6ff71b138424f21')
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings/'+ id + '?&access_token=f44f3228244d67f1702da0e3fe6cd0ed')
   }
 
   singleFmlsData(data: any){
-    this.dataArray ['id'] = data['ListingKey'];
+    this.dataArray ['id'] = data['ListingId'];
     this.dataArray ['title'] = data['BuildingName'];
+    this.dataArray ['desc'] = data['PublicRemarks'];
     this.dataArray ['PropertyType'] = data['PropertyType'];
     this.dataArray ['PropertyStatus'] = data['MlsStatus'];
     this.dataArray ['city'] = data['City'];
     this.dataArray ['Zipcode'] = data['PostalCode'];
-    this.dataArray ['Neighborhood'] = data['CityRegion'];
+    this.dataArray ['Neighborhood'] = data['CountyOrParish'];
     this.dataArray ['street'] = data['StreetName'];
-    this.dataArray ['location'] = data['Coordinates'];
-    let lng = this.dataArray ['location'][0]
-    let lat = this.dataArray ['location'][1];
+    this.dataArray ['latitude'] = data['Latitude'];
+    this.dataArray ['longitude'] = data['Longitude'];
     this.dataArray ['address'] = data['UnparsedAddress'];
     this.dataArray ['features'] = data['ExteriorFeatures'];
     this.dataArray ['price'] = data['ListPrice'];
@@ -107,8 +116,8 @@ export class FmlsService {
     this.dataArray ['area'] = [data['LotSizeSquareFeet']];
     this.dataArray ['yearBuilt'] = data['YearBuilt'];
     this.dataArray ['addFeatures'] = [];
-    if(data['BuildingFeatures'].length != 0){
-      data['BuildingFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
+    if(data['ExteriorFeatures'].length != 0){
+      data['ExteriorFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
     }
     if(data['CommunityFeatures'].length != 0){
       data['CommunityFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
@@ -116,22 +125,24 @@ export class FmlsService {
     if(data['AccessibilityFeatures'].length != 0){
       data['AccessibilityFeatures'].forEach(item =>this.dataArray['addFeatures'].push(item));
     }
-    // this.dataArray['addFeatures1'] = data['BuildingFeatures'];
-    // this.dataArray['addFeatures2'] = data['CommunityFeatures'];
-    // this.dataArray['addFeatures3'] = data['AccessibilityFeatures'];
-    this.dataArray ['gallery'] = [data['Media']];
+    this.dataArray ['gallery'] = [];
+    if(data['Media'] != null){
+      data['Media'].forEach(item =>this.dataArray['gallery'].push(item.MediaURL))
+    }else {
+      this.dataArray['gallery'].push("assets/images/others/NoImageAvailable.jpg")
+    }
     this.dataArray ['published'] = data['OnMarketDate'];
     this.dataArray ['lastUpdated'] = data['StatusChangeTimestamp'];
 
     this.propertyNS = new Property (this.dataArray['id'], 
-                                    this.dataArray ['title'], '',
+                                    this.dataArray ['title'], this.dataArray['desc'],
                                     this.dataArray ['PropertyType'], 
                                     [this.dataArray ['PropertyStatus']], 
                                     this.dataArray ['city'], 
                                     this.dataArray ['Zipcode'], 
                                     [this.dataArray ['Neighborhood']], 
                                     [this.dataArray ['street']], 
-                                    {'propertyId': this.dataArray ['id'], 'lat': lat, 'lng': lng}, 
+                                    {'propertyId': this.dataArray ['id'], 'lat': this.dataArray['latitude'], 'lng': this.dataArray['longitude']}, 
                                     this.dataArray ['address'], 
                                     this.dataArray ['features'], 
                                     true, 
@@ -142,11 +153,26 @@ export class FmlsService {
                                     this.dataArray ['garages'],
                                     {'value': this.dataArray ['area'], 'id': 0, 'unit': "ft²"}, 
                                     this.dataArray ['yearBuilt'], 0, 0, 
-                                    // [{'id': this.dataArray ['id'], 'name': '', 'value': this.dataArray ['addFeatures1']}, {'id': this.dataArray['id'], 'name': '', 'value': data['CommunityFeatures']}, {'id': this.dataArray['id'], 'name': '', 'value': data['AccessibilityFeatures']}],
                                     [{'id':this.dataArray['id'], 'name': "", 'value':this.dataArray['addFeatures']}], 
-                                    [{'big':this.dataArray ['gallery'][0][0].MediaURL,'medium':this.dataArray ['gallery'][0][0].MediaURL, 'small':this.dataArray ['gallery'][0][0].MediaURL}], 
+                                    this.dataArray['gallery'], 
                                     [], [], 
                                     this.dataArray ['published'], 
                                     this.dataArray ['lastUpdated'], 0)
+  }
+
+  getDescend(){
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&$orderby=ListPrice desc')
+  }
+
+  getAscend(){
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed$orderby=ListPrice asc')
+  }
+
+  getOld(){
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&$orderby=OnMarketDate asc')
+  }
+
+  getNew(){
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&$orderby=OnMarketDate desc')
   }
 }
