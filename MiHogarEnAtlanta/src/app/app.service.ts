@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Property, Location } from './app.models';
+import { Property, Location, Pagination } from './app.models';
 import { AppSettings } from './app.settings';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from 'src/environments/environment';
@@ -11,16 +11,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from './shared/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { FmlsService } from './shared/services/fmls.service';
+import { fadeInItems } from '@angular/material/menu';
 
 export class Data{
   constructor(public properties: Property[],
               public compareList: Property[],
               public favorites: Property[],
               public locations: Location[]) {}
-  // setDataProperties(){
-  //   this.dataArray.forEach(d => { this.propertyN.push(Property[])
-  //   })
-  // }
 }
 
 @Injectable({
@@ -38,6 +36,7 @@ export class AppService {
               public appSettings:AppSettings,
               public dialog: MatDialog,
               public translateService: TranslateService,
+              // public fmls: FmlsService,
               @Inject(PLATFORM_ID) private platformId: Object) {
                 let compareTMP = [];
                 if (localStorage.getItem('compare') !== null){
@@ -426,6 +425,10 @@ export class AppService {
         }
       }
 
+      if(params.courtesy){
+        data = data.filter(property => property.courtesy == params.courtesy.name)
+      }
+
       if(params.features){       
         let arr = [];
         params.features.forEach(feature => { 
@@ -450,12 +453,25 @@ export class AppService {
       
     }
 
-    // console.log(data)
+    console.log(data)
+    
+    // data.filter(item => {
+    //   if (data.has(item)){
+    //     data.delete(item)
+    //   }
+    //   return [...new Set(data)]
+    // })
+    
+    // if (data.length > perPage){
+    //   for(let i = 0; i < data.length; i = i + perPage){
+    //     data = [...new Set(data.slice(i, data.length))]
+    //   }
+    // }
 
     //for show more properties mock data 
-    for (var index = 0; index < 2; index++) {
-      data = data.concat(data);        
-    }     
+    // for (var index = 0; index < 2; index++) {
+    //   data = data.concat(data);        
+    // }     
      
     this.sortData(sort, data);
     return this.paginator(data, page, perPage)
@@ -538,7 +554,7 @@ export class AppService {
 
   public paginator(items, page?, perPage?) { 
     var page = page || 1,
-    perPage = perPage || 4,
+    perPage = perPage || 1,
     offset = (page - 1) * perPage,   
     paginatedItems = items.slice(offset).slice(0, perPage),
     totalPages = Math.ceil(items.length / perPage);

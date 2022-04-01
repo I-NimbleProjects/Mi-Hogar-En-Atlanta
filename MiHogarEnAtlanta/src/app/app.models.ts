@@ -27,7 +27,8 @@ export class Property {
                 public videos: Video[],
                 public published: string,
                 public lastUpdate: string,
-                public views: number){ }
+                public views: number,
+                public courtesy: string){ }
 } 
 
 

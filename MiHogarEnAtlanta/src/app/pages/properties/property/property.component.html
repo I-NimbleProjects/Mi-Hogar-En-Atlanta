@@ -245,6 +245,10 @@
                             <span>{{ 'PROPERTY.YEAR' | translate }}</span>
                             <span>{{property.yearBuilt}}</span>
                         </div>
+                        <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
+                            <span>{{ 'PROPERTY.COURTESY' | translate }}</span>
+                            <span><strong>{{property.courtesy}}</strong></span>
+                        </div>
                     </div>   
                 </mat-card>
 
@@ -281,7 +285,7 @@
                         <mat-card-title class="uppercase">Descripcion</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
-                        <p>{{property?.desc}} Courtesy of First Multiple Listing Service(FMLS).</p>
+                        <p>{{property?.desc}}</p>
                     </mat-card-content>
                 </mat-card> 
 

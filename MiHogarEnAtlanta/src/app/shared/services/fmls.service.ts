@@ -11,16 +11,24 @@ export class FmlsService {
   public propertyNS: any;
   public dataArray = [];
   public arrayCleanData = [];
+  public uniqueData = [];
+  public limit: number = 100;
+  public offset: number = 0;
 
   constructor(public httpClient: HttpClient,
               public appservice: AppService,){}
 
 
-  getDataProperties(){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed')
+  // getDataProperties(limit, offset){
+  //   return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=' + limit + '&offset=' + offset + '&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed').toPromise()
+  // }
+
+  getDataProperties(limit, offset){
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/test/listings?access_token=6baca547742c6f96a6ff71b138424f21').toPromise()
   }
 
   cleanData(data: any){
+    this.uniqueData = [];
     data.forEach(element => {
       this.dataArray ['id'] = element['ListingId'];
       this.dataArray ['title'] = element['BuildingName'];
@@ -34,7 +42,7 @@ export class FmlsService {
       this.dataArray ['longitude'] = element['Longitude'];
       this.dataArray ['address'] = element['UnparsedAddress'];
       this.dataArray ['features'] = element['ExteriorFeatures'];
-      this.dataArray ['price'] = element['ListPrice'];
+      this.dataArray ['price'] = element['FMLS_CurrentPrice'];
       this.dataArray ['rent'] = element['RentIncludes'];
       this.dataArray ['bedrooms'] = element['BedroomsTotal'];
       this.dataArray ['bathrooms'] = element['BathroomsTotalInteger'];
@@ -59,6 +67,7 @@ export class FmlsService {
       }
       this.dataArray ['published'] = element['OnMarketDate'];
       this.dataArray ['lastUpdated'] = element['StatusChangeTimestamp'];
+      this.dataArray ['courtesy'] = element['ListOfficeName']
 
       this.propertyN = new Property (this.dataArray['id'], 
                                     this.dataArray ['title'], '',
@@ -83,10 +92,14 @@ export class FmlsService {
                                     this.dataArray['gallery'], 
                                     [], [], 
                                     this.dataArray ['published'], 
-                                    this.dataArray ['lastUpdated'], 0)
+                                    this.dataArray ['lastUpdated'], 0, this.dataArray['courtesy'])
       this.arrayCleanData.push(this.propertyN);
-      console.log(this.arrayCleanData)
+      // console.log('arraycleanData')
+      // console.log(this.arrayCleanData)
     });
+    this.uniqueData = [...new Set(this.arrayCleanData)]
+    // console.log('uniqueData')
+    // console.log(this.uniqueData)
   }
   
   
@@ -108,7 +121,7 @@ export class FmlsService {
     this.dataArray ['longitude'] = data['Longitude'];
     this.dataArray ['address'] = data['UnparsedAddress'];
     this.dataArray ['features'] = data['ExteriorFeatures'];
-    this.dataArray ['price'] = data['ListPrice'];
+    this.dataArray ['price'] = data['FMLS_CurrentPrice'];
     this.dataArray ['rent'] = data['RentIncludes'];
     this.dataArray ['bedrooms'] = data['BedroomsTotal'];
     this.dataArray ['bathrooms'] = data['BathroomsTotalInteger'];
@@ -133,6 +146,7 @@ export class FmlsService {
     }
     this.dataArray ['published'] = data['OnMarketDate'];
     this.dataArray ['lastUpdated'] = data['StatusChangeTimestamp'];
+    this.dataArray['courtesy'] = data['ListOfficeName'];
 
     this.propertyNS = new Property (this.dataArray['id'], 
                                     this.dataArray ['title'], this.dataArray['desc'],
@@ -157,22 +171,22 @@ export class FmlsService {
                                     this.dataArray['gallery'], 
                                     [], [], 
                                     this.dataArray ['published'], 
-                                    this.dataArray ['lastUpdated'], 0)
+                                    this.dataArray ['lastUpdated'], 0, this.dataArray['courtesy'])
   }
 
   getDescend(){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&$orderby=ListPrice desc')
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=50&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&sortBy=FMLS_CurrentPrice&order=desc').toPromise();
   }
 
   getAscend(){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed$orderby=ListPrice asc')
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=100&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&sortBy=ListPrice&order=asc').toPromise();
   }
 
   getOld(){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&$orderby=OnMarketDate asc')
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&sortBy=DaysOnMarket&order=asc').toPromise();
   }
 
   getNew(){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&$orderby=OnMarketDate desc')
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/fmls/listings?permissionGroupID=21e09d51-f3ac-4909-b6aa-6be71af3bda0&and[0][MlsStatus][ne]=Canceled&and[1][MlsStatus][ne]=Closed&and[2][MlsStatus][ne]=Expired&and[3][MlsStatus][ne]=Withdrawn&limit=10&offset=0&sortBy[0]=BridgeModificationTimestamp&access_token=f44f3228244d67f1702da0e3fe6cd0ed&sortBy=DaysOnMarket&order=desc').toPromise();
   }
 }

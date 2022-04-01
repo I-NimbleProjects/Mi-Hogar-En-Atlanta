@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core
 import { MatPaginator } from '@angular/material/paginator';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { Subscription } from 'rxjs'; 
+import { of, Subscription } from 'rxjs'; 
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators'; 
 import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
@@ -65,17 +65,31 @@ export class PropertiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProperties();
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
   }
 
   ngOnDestroy(){ 
     this.watcher.unsubscribe();
   }
 
-  public getProperties(){
-    this.fmls.getDataProperties().subscribe(data => {  
+  public async getProperties(sort, limit, offset){
+    if(sort = 'Ordenar por defecto' || 'Sort by default'){
+      let data = await this.fmls.getDataProperties(limit, offset)
       this.fmls.cleanData(data.bundle)
-      let result = this.filterData(this.fmls.arrayCleanData); 
+    }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      let data = await this.fmls.getAscend()
+      this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
+      let data = await this.fmls.getDescend()
+      this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Nuevo' || 'New'){
+     let data = await this.fmls.getNew()
+     this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Viejo' || 'Old'){
+      let data = await this.fmls.getOld()
+      this.fmls.cleanData(data.bundle)
+    }
+      let result = this.filterData(this.fmls.uniqueData); 
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
@@ -85,71 +99,6 @@ export class PropertiesComponent implements OnInit {
       this.properties = result.data; 
       this.pagination = result.pagination;
       this.message = null;
-    })
-  }
-
-  public getAscend(){
-    this.fmls.getAscend().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'Sin Resultados';
-        return false;
-      } 
-      this.properties = result.data; 
-      this.pagination = result.pagination;
-      this.message = null;
-    })
-  }
-
-  public getDescend(){
-    this.fmls.getDescend().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'Sin Resultados';
-        return false;
-      } 
-      this.properties = result.data; 
-      this.pagination = result.pagination;
-      this.message = null;
-    })
-  }
-
-  public getOld(){
-    this.fmls.getOld().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'Sin Resultados';
-        return false;
-      } 
-      this.properties = result.data; 
-      this.pagination = result.pagination;
-      this.message = null;
-    })
-  }
-
-  public getNew(){
-    this.fmls.getNew().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'Sin Resultados';
-        return false;
-      } 
-      this.properties = result.data; 
-      this.pagination = result.pagination;
-      this.message = null;
-    })
   }
 
   public resetPagination(){ 
@@ -165,7 +114,7 @@ export class PropertiesComponent implements OnInit {
 
   public searchClicked(){ 
     this.properties.length = 0;
-    this.getProperties(); 
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
     }  
@@ -183,7 +132,7 @@ export class PropertiesComponent implements OnInit {
     }); 
     event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { 
       if(!this.settings.searchOnBtnClick){     
-        this.getProperties(); 
+        this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
       }
     });       
   } 
@@ -197,26 +146,12 @@ export class PropertiesComponent implements OnInit {
     this.count = count;   
     this.properties.length = 0;
     this.resetPagination();
-    this.getProperties();
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
   }
   public changeSorting(sort){    
     this.sort = sort; 
     this.properties.length = 0;
-    if(sort = 'Ordenar por defecto' || 'Sort by default'){
-      this.getProperties();
-    }
-    if(sort = 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
-      this.getAscend();
-    }
-    if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
-      this.getDescend();
-    }
-    if(sort = 'Nuevo' || 'New'){
-      this.getNew();
-    }
-    if(sort = 'Viejo' || 'Old'){
-      this.getOld();
-    }
+    this.getProperties(sort, this.fmls.limit, this.fmls.offset)
   }
   public changeViewType(obj){ 
     this.viewType = obj.viewType;
@@ -226,7 +161,7 @@ export class PropertiesComponent implements OnInit {
 
   public onPageChange(e){ 
     this.pagination.page = e.pageIndex + 1;
-    this.getProperties();
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
     } 

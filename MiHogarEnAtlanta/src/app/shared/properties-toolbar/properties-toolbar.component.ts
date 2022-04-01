@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { text } from 'express';
 
 @Component({
   selector: 'app-properties-toolbar',

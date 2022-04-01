@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { MediaChange, MediaObserver } from '@angular/flex-layout'; 
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'; 
 import { FmlsService } from 'src/app/shared/services/fmls.service'
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,13 +26,14 @@ export class HomeComponent implements OnInit {
   public sort: string;
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, 8, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, 10, null, 2, 0, 0); 
   public message:string;
   public featuredProperties: Property[];
   public locations: Location[]; 
+  public sortProperties: string;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, public fmls:FmlsService) {
+  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, public fmls:FmlsService, public httpClient:HttpClient) {
     this.settings = this.appSettings.settings;
 
     this.watcher = mediaObserver.asObservable()
@@ -57,9 +59,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {  
     this.getSlides();
     this.getLocations();
-    this.getProperties();  
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);  
     // this.getFeaturedProperties();
-    this.getFmlsData();
 
     const tag = document.createElement('script');
 
@@ -68,14 +69,11 @@ export class HomeComponent implements OnInit {
   	document.body.appendChild(tag);
 
   }
-  getFmlsData() {
-    this.fmls.getDataProperties()
-  }
 
   ngDoCheck(){
     if(this.settings.loadMore.load){     
       this.settings.loadMore.load = false;     
-      this.getProperties();  
+      this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);  
     }
   }
 
@@ -96,16 +94,31 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  public getProperties(){  
-    //console.log('get properties by : ', this.searchFields);  
-    this.fmls.getDataProperties().subscribe(data => {  
+  public async getProperties(sort, limit, offset){  
+    if(sort = 'Ordenar por defecto' || 'Sort by default'){
+      let data = await this.fmls.getDataProperties(limit, offset)
       this.fmls.cleanData(data.bundle)
-      console.log(data)
+    }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      let data = await this.fmls.getAscend()
+      this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
+      let data = await this.fmls.getDescend()
+      this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Nuevo' || 'New'){
+     let data = await this.fmls.getNew()
+     this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Viejo' || 'Old'){
+      let data = await this.fmls.getOld()
+      this.fmls.cleanData(data.bundle)
+    }
+    //console.log('get properties by : ', this.searchFields);  
+    // this.fmls.getDataProperties().subscribe(data => {  
+    //   this.fmls.cleanData(data.bundle)
       // if(this.properties && this.properties.length > 0){  
       //   this.settings.loadMore.page++;
       //   this.pagination.page = this.settings.loadMore.page; 
       // }
-      let result = this.filterData(this.fmls.arrayCleanData); 
+      let result = this.filterData(this.fmls.uniqueData); 
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
@@ -113,7 +126,7 @@ export class HomeComponent implements OnInit {
         return false;
       }   
       if(this.properties && this.properties.length > 0){   
-        this.properties = this.properties.concat(result.data);          
+        this.properties = this.properties.concat(result.data);      
       }
       else{
         this.properties = result.data;  
@@ -138,194 +151,7 @@ export class HomeComponent implements OnInit {
         this.locations = [...this.locations];
       } 
      
-    })
-  }
-
-  public getDescend(){  
-    //console.log('get properties by : ', this.searchFields);  
-    this.fmls.getDescend().subscribe(data => {  
-      this.fmls.arrayCleanData = []
-      this.fmls.cleanData(data.value)
-    //   function removeDuplicates(arr = this.fmls.arrayCleanData) {
-    //     var unique = [];
-    //     arr.forEach(element => {
-    //         if (!unique.includes(element)) {
-    //             unique.push(element);
-    //         }
-    //     });
-    //     return unique;
-    // }
-    // removeDuplicates()
-      if(this.properties && this.properties.length > 0){  
-        this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
-      }
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Se Encontraron Resultados';
-        return false;
-      }   
-      if(this.properties && this.properties.length < this.fmls.arrayCleanData.length){   
-        this.properties = this.properties.concat(result.data);
-      }
-      else{
-        this.properties = result.data;  
-      }
-        this.pagination = result.pagination;
-        this.message = null;
-
-      if(this.properties.length == this.pagination.total){
-        this.settings.loadMore.complete = true;
-        this.settings.loadMore.result = this.properties.length;
-      }
-      else{
-        this.settings.loadMore.complete = false;
-      }
-
-      if(this.settings.header == 'map'){
-        this.locations.length = 0;
-        this.properties.forEach(p => {
-          let loc = new Location(p.id, p.location.lat, p.location.lng);
-          this.locations.push(loc);
-        });
-        this.locations = [...this.locations];
-      } 
-     
-    })
-  }
-
-  public getAscend(){  
-    //console.log('get properties by : ', this.searchFields);  
-    this.fmls.getAscend().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      if(this.properties && this.properties.length > 0){  
-        this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
-      }
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Se Encontraron Resultados';
-        return false;
-      }   
-      if(this.properties && this.properties.length > 0){   
-        this.properties = this.properties.concat(result.data);          
-      }
-      else{
-        this.properties = result.data;  
-      }
-        this.pagination = result.pagination;
-        this.message = null;
-
-      if(this.properties.length == this.pagination.total){
-        this.settings.loadMore.complete = true;
-        this.settings.loadMore.result = this.properties.length;
-      }
-      else{
-        this.settings.loadMore.complete = false;
-      }
-
-      if(this.settings.header == 'map'){
-        this.locations.length = 0;
-        this.properties.forEach(p => {
-          let loc = new Location(p.id, p.location.lat, p.location.lng);
-          this.locations.push(loc);
-        });
-        this.locations = [...this.locations];
-      } 
-     
-    })
-  }
-
-  public getNew(){  
-    //console.log('get properties by : ', this.searchFields);  
-    this.fmls.getNew().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      if(this.properties && this.properties.length > 0){  
-        this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
-      }
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Se Encontraron Resultados';
-        return false;
-      }   
-      if(this.properties && this.properties.length > 0){   
-        this.properties = this.properties.concat(result.data);          
-      }
-      else{
-        this.properties = result.data;  
-      }
-        this.pagination = result.pagination;
-        this.message = null;
-
-      if(this.properties.length == this.pagination.total){
-        this.settings.loadMore.complete = true;
-        this.settings.loadMore.result = this.properties.length;
-      }
-      else{
-        this.settings.loadMore.complete = false;
-      }
-
-      if(this.settings.header == 'map'){
-        this.locations.length = 0;
-        this.properties.forEach(p => {
-          let loc = new Location(p.id, p.location.lat, p.location.lng);
-          this.locations.push(loc);
-        });
-        this.locations = [...this.locations];
-      } 
-     
-    })
-  }
-
-  public getOld(){  
-    //console.log('get properties by : ', this.searchFields);  
-    this.fmls.getOld().subscribe(data => {  
-      this.fmls.cleanData(data.value)
-      if(this.properties && this.properties.length > 0){  
-        this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
-      }
-      let result = this.filterData(this.fmls.arrayCleanData); 
-      if(result.data.length == 0){
-        this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Se Encontraron Resultados';
-        return false;
-      }   
-      if(this.properties && this.properties.length > 0){   
-        this.properties = this.properties.concat(result.data);          
-      }
-      else{
-        this.properties = result.data;  
-      }
-        this.pagination = result.pagination;
-        this.message = null;
-
-      if(this.properties.length == this.pagination.total){
-        this.settings.loadMore.complete = true;
-        this.settings.loadMore.result = this.properties.length;
-      }
-      else{
-        this.settings.loadMore.complete = false;
-      }
-
-      if(this.settings.header == 'map'){
-        this.locations.length = 0;
-        this.properties.forEach(p => {
-          let loc = new Location(p.id, p.location.lat, p.location.lng);
-          this.locations.push(loc);
-        });
-        this.locations = [...this.locations];
-      } 
-     
-    })
+    // })
   }
 
   public resetLoadMore(){
@@ -341,8 +167,9 @@ export class HomeComponent implements OnInit {
 
   public searchClicked(){ 
     this.properties.length = 0;
-    this.getProperties(); 
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
   }
+
   public searchChanged(event){    
     event.valueChanges.subscribe(() => {
       this.resetLoadMore();
@@ -356,10 +183,11 @@ export class HomeComponent implements OnInit {
     }); 
     event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { 
       if(!this.settings.searchOnBtnClick){     
-        this.getProperties(); 
+        this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
       }
     });       
   } 
+  
   public removeSearchField(field){ 
     this.message = null;   
     this.removedSearchField = field; 
@@ -371,27 +199,14 @@ export class HomeComponent implements OnInit {
     this.count = count;
     this.resetLoadMore();   
     this.properties.length = 0;
-    this.getProperties();
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
   }
+
   public changeSorting(sort){    
     this.sort = sort;
     this.resetLoadMore(); 
     this.properties.length = 0;
-    if(sort = 'Ordenar por defecto' || 'Sort by default'){
-      this.getProperties();
-    }
-    if(sort = 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
-      this.getAscend();
-    }
-    if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
-      this.getDescend();
-    }
-    if(sort = 'Nuevo' || 'New'){
-      this.getNew();
-    }
-    if(sort = 'Viejo' || 'Old'){
-      this.getOld();
-    }
+    this.getProperties(sort, this.fmls.limit, this.fmls.offset)
   }
   public changeViewType(obj){ 
     this.viewType = obj.viewType;
