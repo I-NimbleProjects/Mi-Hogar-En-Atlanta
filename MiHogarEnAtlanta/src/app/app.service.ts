@@ -455,18 +455,11 @@ export class AppService {
 
     console.log(data)
     
-    // data.filter(item => {
-    //   if (data.has(item)){
-    //     data.delete(item)
-    //   }
-    //   return [...new Set(data)]
-    // })
-    
-    // if (data.length > perPage){
-    //   for(let i = 0; i < data.length; i = i + perPage){
-    //     data = [...new Set(data.slice(i, data.length))]
-    //   }
-    // }
+    if (data.length >= 20){
+      for(let i = 0; i < data.length; i = i + 5){
+        data = [...new Set(data.slice(i, data.length))]
+      }
+    }
 
     //for show more properties mock data 
     // for (var index = 0; index < 2; index++) {

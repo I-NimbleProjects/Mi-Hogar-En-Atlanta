@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   public sort: string;
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, 10, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, this.fmls.uniqueData.length, null, 2, 0, 0); 
   public message:string;
   public featuredProperties: Property[];
   public locations: Location[]; 
@@ -96,6 +96,8 @@ export class HomeComponent implements OnInit {
 
   public async getProperties(sort, limit, offset){  
     if(sort = 'Ordenar por defecto' || 'Sort by default'){
+      this.fmls.limit = this.fmls.limit + 5
+      this.fmls.offset = this.fmls.offset + 5
       let data = await this.fmls.getDataProperties(limit, offset)
       this.fmls.cleanData(data.bundle)
     }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){

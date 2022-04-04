@@ -12,7 +12,7 @@ export class FmlsService {
   public dataArray = [];
   public arrayCleanData = [];
   public uniqueData = [];
-  public limit: number = 100;
+  public limit: number = 10;
   public offset: number = 0;
 
   constructor(public httpClient: HttpClient,
@@ -24,7 +24,7 @@ export class FmlsService {
   // }
 
   getDataProperties(limit, offset){
-    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/test/listings?access_token=6baca547742c6f96a6ff71b138424f21').toPromise()
+    return this.httpClient.get<any>('https://api.bridgedataoutput.com/api/v2/test/listings?access_token=6baca547742c6f96a6ff71b138424f21&offset=' + offset + '&limit=' + limit + '').toPromise()
   }
 
   cleanData(data: any){
