@@ -30,9 +30,10 @@ export class PropertiesComponent implements OnInit {
   public sort: string;
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, this.count, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, 12, null, 2, 0, 0); 
   public message:string;
   public watcher: Subscription;
+  public result:any;
 
   public settings: Settings
   constructor(public appSettings:AppSettings, 
@@ -65,31 +66,41 @@ export class PropertiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
+    this.getProperties(this.sort, this.fmls.limit2, this.fmls.offset2);
   }
 
   ngOnDestroy(){ 
     this.watcher.unsubscribe();
   }
 
-  public async getProperties(sort, limit, offset){
+  public async getProperties(sort, limit2, offset2){
     if(sort = 'Ordenar por defecto' || 'Sort by default'){
-      let data = await this.fmls.getDataProperties(limit, offset)
+      this.fmls.limit2 = this.fmls.limit2 + 12
+      // this.fmls.offset2 = this.fmls.offset2 + 12
+      let data = await this.fmls.getDataProperties2(limit2, offset2)
       this.fmls.cleanData(data.bundle)
-    }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
-      let data = await this.fmls.getAscend()
+    }else if(sort = 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      this.fmls.limit2 = this.fmls.limit2 + 12
+      this.fmls.offset2 = this.fmls.offset2 + 12
+      let data = await this.fmls.getAscend2(limit2, offset2)
       this.fmls.cleanData(data.bundle)
     }else if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
-      let data = await this.fmls.getDescend()
+      this.fmls.limit2 = this.fmls.limit2 + 12
+      this.fmls.offset2 = this.fmls.offset2 + 12
+      let data = await this.fmls.getDescend2(limit2, offset2)
       this.fmls.cleanData(data.bundle)
     }else if(sort = 'Nuevo' || 'New'){
-     let data = await this.fmls.getNew()
+     this.fmls.limit2 = this.fmls.limit2 + 12
+     this.fmls.offset2 = this.fmls.offset2 + 12
+     let data = await this.fmls.getNew2(limit2, offset2)
      this.fmls.cleanData(data.bundle)
     }else if(sort = 'Viejo' || 'Old'){
-      let data = await this.fmls.getOld()
+      this.fmls.limit2 = this.fmls.limit2 + 12
+      this.fmls.offset2 = this.fmls.offset2 + 12
+      let data = await this.fmls.getOld2(limit2, offset2)
       this.fmls.cleanData(data.bundle)
     }
-      let result = this.filterData(this.fmls.uniqueData); 
+      let result = this.newfilterData(this.fmls.uniqueData); 
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
@@ -108,13 +119,13 @@ export class PropertiesComponent implements OnInit {
     this.pagination = new Pagination(1, this.count, null, null, this.pagination.total, this.pagination.totalPages);
   }
 
-  public filterData(data){
-    return this.appService.filterData(data, this.searchFields, this.sort, this.pagination.page, this.pagination.perPage);
+  public newfilterData(data){
+    return this.appService.newfilterData(data, this.searchFields, this.sort, this.pagination.page, this.pagination.perPage);
   }
 
   public searchClicked(){ 
     this.properties.length = 0;
-    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
+    this.getProperties(this.sort, this.fmls.limit2, this.fmls.offset2); 
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
     }  
@@ -132,7 +143,7 @@ export class PropertiesComponent implements OnInit {
     }); 
     event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { 
       if(!this.settings.searchOnBtnClick){     
-        this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
+        this.getProperties(this.sort, this.fmls.limit2, this.fmls.offset2); 
       }
     });       
   } 
@@ -146,12 +157,12 @@ export class PropertiesComponent implements OnInit {
     this.count = count;   
     this.properties.length = 0;
     this.resetPagination();
-    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
+    this.getProperties(this.sort, this.fmls.limit2, this.fmls.offset2);
   }
   public changeSorting(sort){    
     this.sort = sort; 
     this.properties.length = 0;
-    this.getProperties(sort, this.fmls.limit, this.fmls.offset)
+    this.getProperties(sort, this.fmls.limit2, this.fmls.offset2)
   }
   public changeViewType(obj){ 
     this.viewType = obj.viewType;
@@ -161,7 +172,7 @@ export class PropertiesComponent implements OnInit {
 
   public onPageChange(e){ 
     this.pagination.page = e.pageIndex + 1;
-    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
+    this.getProperties(this.sort, this.fmls.limit2, this.fmls.offset2);
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
     } 

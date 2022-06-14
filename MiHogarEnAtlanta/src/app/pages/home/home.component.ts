@@ -26,11 +26,12 @@ export class HomeComponent implements OnInit {
   public sort: string;
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, this.fmls.uniqueData.length, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, 12, null, 2, 0, 0); 
   public message:string;
   public featuredProperties: Property[];
   public locations: Location[]; 
   public sortProperties: string;
+  public call: number = 0;
 
   public settings: Settings;
   constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, public fmls:FmlsService, public httpClient:HttpClient) {
@@ -96,21 +97,27 @@ export class HomeComponent implements OnInit {
 
   public async getProperties(sort, limit, offset){  
     if(sort = 'Ordenar por defecto' || 'Sort by default'){
-      this.fmls.limit = this.fmls.limit + 5
-      this.fmls.offset = this.fmls.offset + 5
+      // if (this.fmls.offset == this.fmls.limit){
+        this.fmls.limit = this.fmls.limit + 12
+      // }
+      // this.fmls.offset = this.fmls.offset + 12
       let data = await this.fmls.getDataProperties(limit, offset)
       this.fmls.cleanData(data.bundle)
     }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
-      let data = await this.fmls.getAscend()
+      this.fmls.limit = this.fmls.limit + 12
+      let data = await this.fmls.getAscend(limit)
       this.fmls.cleanData(data.bundle)
     }else if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
-      let data = await this.fmls.getDescend()
+      this.fmls.limit = this.fmls.limit + 12
+      let data = await this.fmls.getDescend(limit)
       this.fmls.cleanData(data.bundle)
     }else if(sort = 'Nuevo' || 'New'){
-     let data = await this.fmls.getNew()
+     this.fmls.limit = this.fmls.limit + 12
+     let data = await this.fmls.getNew(limit)
      this.fmls.cleanData(data.bundle)
     }else if(sort = 'Viejo' || 'Old'){
-      let data = await this.fmls.getOld()
+      this.fmls.limit = this.fmls.limit + 12
+      let data = await this.fmls.getOld(limit)
       this.fmls.cleanData(data.bundle)
     }
     //console.log('get properties by : ', this.searchFields);  
@@ -121,6 +128,7 @@ export class HomeComponent implements OnInit {
       //   this.pagination.page = this.settings.loadMore.page; 
       // }
       let result = this.filterData(this.fmls.uniqueData); 
+      // console.log('result.data:', result.data)
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  

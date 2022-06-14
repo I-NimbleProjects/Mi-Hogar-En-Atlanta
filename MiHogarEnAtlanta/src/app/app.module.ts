@@ -69,7 +69,7 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     FormsModule, 
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I',
+      apiKey: 'AIzaSyBBkiWPUUuEJVu8B_Cf3rYL_URJfrmZ2Wc',
       libraries: ["places"]
     }),
     TranslateModule.forRoot({
