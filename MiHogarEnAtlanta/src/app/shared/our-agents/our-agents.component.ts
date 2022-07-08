@@ -16,33 +16,34 @@ export class OurAgentsComponent implements OnInit {
     this.agents = this.appService.getAgents();
   }
 
-  ngAfterViewInit(){
-    this.config = {
-      observer: true,
-      slidesPerView: 4,
-      spaceBetween: 16,       
-      keyboard: true,
-      navigation: true,
-      pagination: false,
-      grabCursor: true,        
-      loop: false,
-      preloadImages: false,
-      lazy: true,  
-      breakpoints: {
-        320: {
-          slidesPerView: 1
-        },
-        600: {
-          slidesPerView: 2
-        },
-        960: {
-          slidesPerView: 3
-        },
-        1280: {
-          slidesPerView: 4
-        }
-      }
-    }
-  }
+  // ngAfterViewInit(){
+  //   this.config = {
+  //     observer: true,
+  //     slidesPerView: 2,
+  //     spaceBetween: 50,       
+  //     keyboard: false,
+  //     navigation: false,
+  //     pagination: false,
+  //     grabCursor: true,        
+  //     loop: false,
+  //     preloadImages: false,
+  //     lazy: true,  
+  //     breakpoints: {
+  //       320: {
+  //         slidesPerView: 1
+  //       },
+  //       600: {
+  //         slidesPerView: 1
+  //       },
+  //       960: {
+  //         slidesPerView: 2
+  //       },
+  //       1280: {
+  //         slidesPerView: 4
+  //       }
+  //     },
+  //     centerInsufficientSlides: true
+  //   }
+  // }
 
 }

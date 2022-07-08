@@ -23,18 +23,18 @@ export class LangComponent implements OnInit {
     if(lang == 'en'){
       return 'English';
     }
-    else if(lang == 'de'){
-      return 'German';
+    else if(lang == 'es'){
+      return 'Español';
     }
-    else if(lang == 'fr'){
-      return 'French';
-    }
-    else if(lang == 'ru'){
-      return 'Russian';
-    }
-    else if(lang == 'tr'){
-      return 'Turkish';
-    }
+    // else if(lang == 'fr'){
+    //   return 'French';
+    // }
+    // else if(lang == 'ru'){
+    //   return 'Russian';
+    // }
+    // else if(lang == 'tr'){
+    //   return 'Turkish';
+    // }
     else{
       return 'English';
     } 

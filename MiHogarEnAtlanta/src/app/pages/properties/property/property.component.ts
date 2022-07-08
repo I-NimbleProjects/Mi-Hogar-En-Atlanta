@@ -9,6 +9,7 @@ import { AppSettings, Settings } from 'src/app/app.settings';
 import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compare-overview.component';
 import { EmbedVideoService } from 'ngx-embed-video'; 
 import { emailValidator } from 'src/app/theme/utils/app-validators';
+import { FmlsService } from 'src/app/shared/services/fmls.service';
 
 @Component({
   selector: 'app-property',
@@ -38,7 +39,8 @@ export class PropertyComponent implements OnInit {
               public appService:AppService, 
               private activatedRoute: ActivatedRoute, 
               private embedService: EmbedVideoService,
-              public fb: FormBuilder) {
+              public fb: FormBuilder,
+              public fmls:FmlsService) {
     this.settings = this.appSettings.settings; 
   }
 
@@ -79,9 +81,11 @@ export class PropertyComponent implements OnInit {
   }
 
   public getPropertyById(id){
-    this.appService.getPropertyById(id).subscribe(data=>{
-      this.property = data;  
-      this.embedVideo = this.embedService.embed(this.property.videos[1].link);
+    this.fmls.getListingKey(id).subscribe(data=>{    
+      this.fmls.singleFmlsData(data.bundle)
+      console.log(this.fmls.propertyNS)
+      this.property = this.fmls.propertyNS;   
+      this.embedVideo = this.property.gallery;
       setTimeout(() => { 
         this.config.observer = true;
         this.config2.observer = true; 
@@ -202,7 +206,7 @@ export class PropertyComponent implements OnInit {
   } 
 
   public getAgent(agentId:number = 1){
-    var ids = [1,2,3,4,5]; //agent ids 
+    var ids = [1,2]; //agent ids 
     agentId = ids[Math.floor(Math.random()*ids.length)]; //random agent id
     this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0]; 
   }

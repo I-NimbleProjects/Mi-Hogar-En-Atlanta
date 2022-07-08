@@ -78,17 +78,17 @@ export class PropertyItemComponent implements OnInit {
 
   public getStatusBgColor(status){
     switch (status) {
-      case 'For Sale':
+      case 'En Venta':
         return '#558B2F';  
-      case 'For Rent':
+      case 'En Renta':
         return '#1E88E5'; 
-      case 'Open House':
+      case 'Casa Abierta':
         return '#009688';
-      case 'No Fees':
+      case 'Sin Tarifa':
         return '#FFA000';
-      case 'Hot Offer':
+      case 'Oferta Especial':
         return '#F44336';
-      case 'Sold':
+      case 'Vendida':
         return '#000';
       default: 
         return '#01579B';

@@ -27,7 +27,8 @@ export class Property {
                 public videos: Video[],
                 public published: string,
                 public lastUpdate: string,
-                public views: number){ }
+                public views: number,
+                public courtesy: string){ }
 } 
 
 
@@ -51,12 +52,13 @@ export class Location {
 
 export class Price {
     public sale: number;
-    public rent: number;
+    // public rent: number;
 }
 
 
 export class Gallery {
-    constructor(public id: number, 
+    constructor(
+                // public id: number, 
                 public small: string,
                 public medium: string,
                 public big: string){ }
@@ -86,4 +88,3 @@ export class Pagination {
                 public total: number,
                 public totalPages: number){ }
 }
-

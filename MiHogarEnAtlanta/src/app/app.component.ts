@@ -17,9 +17,9 @@ export class AppComponent {
               @Inject(PLATFORM_ID) private platformId: Object,
               public translate: TranslateService){
     this.settings = this.appSettings.settings;
-    translate.addLangs(['en','de','fr','ru','tr']);
-    translate.setDefaultLang('en'); 
-    translate.use('en');
+    translate.addLangs(['en','es']);
+    translate.setDefaultLang('es'); 
+    translate.use('es');
   }
 
   ngAfterViewInit(){ 

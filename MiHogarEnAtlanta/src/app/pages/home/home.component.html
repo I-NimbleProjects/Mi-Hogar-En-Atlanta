@@ -2,8 +2,8 @@
                 [backgroundImage]="'assets/images/others/homepage.jpg'"
                 [bgImageAnimate]="true"
                 [contentOffsetToTop]="true"
-                [title]="'Find your house key'"
-                [desc]="'Leading Real Estate Company'"
+                [title]="'Encuentra Tu Hogar En Atlanta'"
+                [desc]="'Compañía Líder En Real Estate'"
                 [isHomePage]="true"
                 [fullscreen]="false">
 </app-header-image> 
@@ -21,10 +21,10 @@
 </app-header-map>
 
 <app-header-video *ngIf="settings.header == 'video'" 
-                [backgroundVideo]="'http://themeseason.com/data/videos/video-1.mp4'" 
+                [backgroundVideo]="'assets/Videos/Atlanta10s.mp4'" 
                 [contentOffsetToTop]="true"
-                [title]="'Find your house key'"
-                [desc]="'Leading Real Estate Company'"
+                [title]="'HOME.H_TITLE' | translate"
+                [desc]="'HOME.H_DESC' | translate"
                 [isHomePage]="true"
                 [fullscreen]="true">
 </app-header-video>
@@ -52,9 +52,9 @@
             
             <div fxFlex="100" fxLayoutAlign="start start" class="p-2"> 
                 <mat-chip-list [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
-                    <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
-                        {{ pagination?.total }} found
-                    </mat-chip> 
+                    <!-- <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
+                        {{ pagination?.total }} Encontrado
+                    </mat-chip>  -->
                 </mat-chip-list>
                 <app-properties-search-results-filters 
                     [searchFields]="searchFields" 
@@ -91,18 +91,25 @@
 
 
 
-<app-mission></app-mission>
+<!-- <app-mission></app-mission> -->
 
-<app-our-services></app-our-services>
+<!-- <app-our-services></app-our-services> -->
+
+<!-- <app-hot-offer-today [propertyId]="4"></app-hot-offer-today>  -->
+
+<!-- <app-featured-properties [properties]="featuredProperties"></app-featured-properties> -->
+
+<app-our-agents></app-our-agents>
 
 <app-testimonials></app-testimonials> 
 
-<app-hot-offer-today [propertyId]="4"></app-hot-offer-today> 
-
-<app-featured-properties [properties]="featuredProperties"></app-featured-properties>
-
-<app-our-agents></app-our-agents>
+<youtube-player videoId="iZDXj8PjoiA" 
+suggestedQuality="highres"
+[height]="250" 
+[width]="500" 
+fxLayoutAlign="center"
+style="margin-bottom: 30px;"></youtube-player>
       
-<app-clients></app-clients>
+<!-- <app-clients></app-clients> -->
 
-<app-get-in-touch></app-get-in-touch>
+<!-- <app-get-in-touch></app-get-in-touch> -->

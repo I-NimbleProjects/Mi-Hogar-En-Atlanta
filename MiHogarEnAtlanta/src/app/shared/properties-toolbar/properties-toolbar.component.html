@@ -15,9 +15,9 @@
         </mat-menu>
     </div>
     <div fxShow="false" fxShow.gt-xs>
-        <!-- <span *ngIf="isHomePage"> -->
+        <!-- <span *ngIf="isHomePage">
             <a mat-button [matMenuTriggerFor]="countsMenu" #countsMenuTrigger="matMenuTrigger">
-                Show {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+                {{ 'SHOW' | translate }} {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
             </a>
             <mat-menu #countsMenu="matMenu" xPosition="before" overlapTrigger="true">
                 <span (mouseleave)="countsMenuTrigger.closeMenu()">
@@ -26,7 +26,7 @@
                     </button>
                 </span>
             </mat-menu>
-        <!-- </span>        -->
+        </span>        -->
         <button mat-icon-button (click)="changeViewType('list', 100)">
             <mat-icon>view_list</mat-icon>
         </button>

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Settings, AppSettings } from '../../app.settings';
-import { AppService } from '../../app.service';
+import { AppService, Data } from '../../app.service';
 import { Property, Pagination, Location } from '../../app.models';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { MediaChange, MediaObserver } from '@angular/flex-layout'; 
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'; 
-
+import { FmlsService } from 'src/app/shared/services/fmls.service'
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,19 +20,21 @@ export class HomeComponent implements OnInit {
 
   public slides = [];
   public properties: Property[];
-  public viewType: string = 'grid';
+  public viewType: string = 'list';
   public viewCol: number = 25;
-  public count: number = 8;
+  public count: number = 10;
   public sort: string;
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, 8, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, 12, null, 2, 0, 0); 
   public message:string;
   public featuredProperties: Property[];
   public locations: Location[]; 
+  public sortProperties: string;
+  public call: number = 0;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver) {
+  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, public fmls:FmlsService, public httpClient:HttpClient) {
     this.settings = this.appSettings.settings;
 
     this.watcher = mediaObserver.asObservable()
@@ -57,14 +60,21 @@ export class HomeComponent implements OnInit {
   ngOnInit() {  
     this.getSlides();
     this.getLocations();
-    this.getProperties();  
-    this.getFeaturedProperties();
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);  
+    // this.getFeaturedProperties();
+
+    const tag = document.createElement('script');
+
+  	tag.src = "https://www.youtube.com/iframe_api";
+
+  	document.body.appendChild(tag);
+
   }
 
   ngDoCheck(){
     if(this.settings.loadMore.load){     
       this.settings.loadMore.load = false;     
-      this.getProperties();  
+      this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);  
     }
   }
 
@@ -85,28 +95,54 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  public getProperties(){  
+  public async getProperties(sort, limit, offset){  
+    if(sort = 'Ordenar por defecto' || 'Sort by default'){
+      // if (this.fmls.offset == this.fmls.limit){
+        this.fmls.limit = this.fmls.limit + 12
+      // }
+      // this.fmls.offset = this.fmls.offset + 12
+      let data = await this.fmls.getDataProperties(limit, offset)
+      this.fmls.cleanData(data.bundle)
+    }else if(sort= 'Precio (Bajo a Alto)' || 'Price (Low to High)'){
+      this.fmls.limit = this.fmls.limit + 12
+      let data = await this.fmls.getAscend(limit)
+      this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Precio (Alto a Bajo)' || 'Price (High to Low)'){
+      this.fmls.limit = this.fmls.limit + 12
+      let data = await this.fmls.getDescend(limit)
+      this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Nuevo' || 'New'){
+     this.fmls.limit = this.fmls.limit + 12
+     let data = await this.fmls.getNew(limit)
+     this.fmls.cleanData(data.bundle)
+    }else if(sort = 'Viejo' || 'Old'){
+      this.fmls.limit = this.fmls.limit + 12
+      let data = await this.fmls.getOld(limit)
+      this.fmls.cleanData(data.bundle)
+    }
     //console.log('get properties by : ', this.searchFields);  
-    this.appService.getProperties().subscribe(data => {      
-      if(this.properties && this.properties.length > 0){  
-        this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
-      }
-      let result = this.filterData(data); 
+    // this.fmls.getDataProperties().subscribe(data => {  
+    //   this.fmls.cleanData(data.bundle)
+      // if(this.properties && this.properties.length > 0){  
+      //   this.settings.loadMore.page++;
+      //   this.pagination.page = this.settings.loadMore.page; 
+      // }
+      let result = this.filterData(this.fmls.uniqueData); 
+      // console.log('result.data:', result.data)
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Results Found';
+        this.message = 'No Se Encontraron Resultados';
         return false;
       }   
       if(this.properties && this.properties.length > 0){   
-        this.properties = this.properties.concat(result.data);          
+        this.properties = this.properties.concat(result.data);      
       }
       else{
         this.properties = result.data;  
-      } 
-      this.pagination = result.pagination;
-      this.message = null;
+      }
+        this.pagination = result.pagination;
+        this.message = null;
 
       if(this.properties.length == this.pagination.total){
         this.settings.loadMore.complete = true;
@@ -125,7 +161,7 @@ export class HomeComponent implements OnInit {
         this.locations = [...this.locations];
       } 
      
-    })
+    // })
   }
 
   public resetLoadMore(){
@@ -141,8 +177,9 @@ export class HomeComponent implements OnInit {
 
   public searchClicked(){ 
     this.properties.length = 0;
-    this.getProperties(); 
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
   }
+
   public searchChanged(event){    
     event.valueChanges.subscribe(() => {
       this.resetLoadMore();
@@ -156,10 +193,11 @@ export class HomeComponent implements OnInit {
     }); 
     event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { 
       if(!this.settings.searchOnBtnClick){     
-        this.getProperties(); 
+        this.getProperties(this.sort, this.fmls.limit, this.fmls.offset); 
       }
     });       
   } 
+  
   public removeSearchField(field){ 
     this.message = null;   
     this.removedSearchField = field; 
@@ -171,14 +209,14 @@ export class HomeComponent implements OnInit {
     this.count = count;
     this.resetLoadMore();   
     this.properties.length = 0;
-    this.getProperties();
-
+    this.getProperties(this.sort, this.fmls.limit, this.fmls.offset);
   }
+
   public changeSorting(sort){    
     this.sort = sort;
     this.resetLoadMore(); 
     this.properties.length = 0;
-    this.getProperties();
+    this.getProperties(sort, this.fmls.limit, this.fmls.offset)
   }
   public changeViewType(obj){ 
     this.viewType = obj.viewType;
@@ -186,10 +224,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-  public getFeaturedProperties(){
-    this.appService.getFeaturedProperties().subscribe(properties=>{
-      this.featuredProperties = properties;
-    })
-  } 
-
+  // public getFeaturedProperties(){
+  //   this.appService.getFeaturedProperties().subscribe(properties=>{
+  //     this.featuredProperties = properties;
+  //   })
+  // } 
 }

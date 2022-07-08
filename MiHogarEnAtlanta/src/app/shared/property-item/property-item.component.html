@@ -7,13 +7,13 @@
         </div>
        
         <div *ngIf="property.gallery.length == 1" class="mat-card-image w-100 m-0">
-            <img [src]="property.gallery[0].medium">
+            <img [src]="property.gallery">
         </div>
         <div *ngIf="property.gallery.length > 1" class="mat-card-image w-100 m-0">
             <div class="swiper-container" [swiper]="config">
                 <div class="swiper-wrapper"> 
                     <div *ngFor="let image of property.gallery" class="swiper-slide">
-                        <img [attr.data-src]="image.medium" class="swiper-lazy">
+                        <img [attr.data-src]="image" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
                     </div> 
                 </div>  
@@ -24,10 +24,10 @@
         </div>
 
         <div class="control-icons">
-            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Add To Favorite">
+            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" [matTooltip]="'P_ITEM.FAV' | translate">
                 <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
             </button>
-            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Add To Compare">
+            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" [matTooltip]="'P_ITEM.COMP' | translate">
                 <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
             </button>  
         </div> 
@@ -51,10 +51,10 @@
                             <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
                             <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /month</span>
                         </h3>
-                        <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
+                        <!-- <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
                             <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
                             <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
-                        </h3>
+                        </h3> -->
                     </div>
                     <app-rating [ratingsCount]="property.ratingsCount" [ratingsValue]="property.ratingsValue"></app-rating>
                 </div>
@@ -64,10 +64,11 @@
                 </div>
 
                 <div class="features mt-3">                    
-                    <p><span>Property size</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
-                    <p><span>Bedrooms</span><span>{{property.bedrooms}}</span></p>
-                    <p><span>Bathrooms</span><span>{{property.bathrooms}}</span></p>
-                    <p><span>Garages</span><span>{{property.garages}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_SIZE' | translate }}</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_ROOMS' | translate }}</span><span>{{property.bedrooms}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_BATHROOMS' | translate }}</span><span>{{property.bathrooms}}</span></p>
+                    <p><span>{{ 'P_ITEM.I_GARAGES' | translate }}</span><span>{{property.garages}}</span></p>
+                    <a href="https://www.fmls.com/dmca.htm" target="_blank"><img src="assets/images/others/FMLS logo.png" width="50%" height="auto"></a>
                 </div> 
 
             </mat-card-content>
@@ -78,7 +79,7 @@
                     <span class="mx-2">{{property.published | date:"dd MMMM, yyyy" }}</span>
                 </p>
                 <div>
-                    <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Details</a>
+                    <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">{{ 'P_ITEM.I_DETAILS' | translate }}</a>
                 </div> 
             </mat-card-actions> 
         </div>        

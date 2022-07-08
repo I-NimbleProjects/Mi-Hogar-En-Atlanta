@@ -91,8 +91,8 @@ export class EditPropertyComponent implements OnInit {
 
       this.submitForm.controls.basic.get('title').setValue(this.property.title);
       this.submitForm.controls.basic.get('desc').setValue(this.property.desc);
-      this.submitForm.controls.basic.get('priceDollar').setValue((this.property.priceDollar.sale)?this.property.priceDollar.sale:this.property.priceDollar.rent);
-      this.submitForm.controls.basic.get('priceEuro').setValue((this.property.priceEuro.sale)?this.property.priceEuro.sale:this.property.priceEuro.rent);
+      // this.submitForm.controls.basic.get('priceDollar').setValue((this.property.priceDollar.sale)?this.property.priceDollar.sale:this.property.priceDollar.rent);
+      // this.submitForm.controls.basic.get('priceEuro').setValue((this.property.priceEuro.sale)?this.property.priceEuro.sale:this.property.priceEuro.rent);
       this.submitForm.controls.basic.get('propertyType').setValue( this.propertyTypes.filter(p => p.name == this.property.propertyType)[0]);
       
       const statusList: any[] = []; 

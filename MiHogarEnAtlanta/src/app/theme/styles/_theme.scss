@@ -8,6 +8,11 @@ $custom-typography: mat.define-typography-config(
 
 @import 'theme-reset';
 .app{
+    // &.MiHogarEnAtlanta{
+    //     @import "skins/MiHogarEnAtlanta";
+    //     @include mat.all-component-colors($MiHogarEnAtlanta);
+    //     @include theme-reset($MiHogarEnAtlanta);
+    // }
     &.green{
         @import "skins/green";
         @include mat.all-component-colors($green-theme);
@@ -42,5 +47,10 @@ $custom-typography: mat.define-typography-config(
         @import "skins/orange-dark";
         @include mat.all-component-colors($orange-dark-theme);
         @include theme-reset($orange-dark-theme);     
+    }
+    &.green-mihogar{
+        @import "skins/green-mihogar";
+        @include mat.all-component-colors($green-mihogar-theme);
+        @include theme-reset($green-mihogar-theme);
     }
 }

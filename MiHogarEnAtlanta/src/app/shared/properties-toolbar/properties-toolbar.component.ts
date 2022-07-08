@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-properties-toolbar',
@@ -14,17 +15,29 @@ export class PropertiesToolbarComponent implements OnInit {
   @Output() onChangeViewType: EventEmitter<any> = new EventEmitter<any>();
 
   public viewType: string = 'grid';
-  public viewCol: number = 25;
+  public viewCol: number = 25; 
   public counts = [8, 12, 16, 24, 36];
   public count:any;
-  public sortings = ['Sort by Default', 'Newest', 'Oldest', 'Popular', 'Price (Low to High)', 'Price (High to Low)'];
+  public sortings = ['Ordenar por defecto']; //'SORT.DEFAULT', 'SORT.PRICE<', 'SORT.PRICE>'
   public sort:any;
 
-  constructor() { }
+  constructor(translate:TranslateService) {
+    translate.stream('SORT.DEFAULT').subscribe((text:string) => {
+      this.sortings = [];
+      this.sortings.push(text)});
+    translate.stream('SORT.PRICE<').subscribe((text:string) => {
+      this.sortings.push(text)});
+    translate.stream('SORT.PRICE>').subscribe((text:string) => {
+      this.sortings.push(text)});
+    translate.stream('SORT.NEW').subscribe((text:string) => {
+      this.sortings.push(text)});
+    translate.stream('SORT.OLD').subscribe((text:string) => {
+      this.sortings.push(text)});
+  }
 
   ngOnInit() {
     this.count = (this.isHomePage) ? this.counts[0] : this.counts[1];
-    this.sort = this.sortings[0];
+    this.sort = this.sortings;
   }
 
   ngOnChanges(){
