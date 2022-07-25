@@ -1,7 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, ViewChild, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Http } from '@angular/http';
 import { Router, NavigationEnd } from '@angular/router';
+import { ChatAdapter } from 'ng-chat';
+import { Socket } from 'ngx-socket-io';
 import { Settings, AppSettings } from '../app.settings';
+import { SocketIOAdapter } from '../socketio-adapter';
 
 @Component({
   selector: 'app-pages',
@@ -21,8 +25,16 @@ export class PagesComponent implements OnInit {
   public scrolledCount = 0;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public router:Router, @Inject(PLATFORM_ID) private platformId: Object) {
-    this.settings = this.appSettings.settings;  
+
+  title = 'app';
+  
+  userId: string;
+  username: string;
+
+  public adapter: ChatAdapter;
+  constructor(public appSettings:AppSettings, public router:Router, @Inject(PLATFORM_ID) private platformId: Object, private socket: Socket, private http: Http) {
+    this.settings = this.appSettings.settings; 
+    this.InitializeSocketListerners(); 
   }
 
   ngOnInit() {
@@ -127,6 +139,20 @@ export class PagesComponent implements OnInit {
       }            
     });    
   }   
+
+  public joinRoom(): void 
+  {
+    this.socket.emit("join", this.username);
+  }
+
+  public InitializeSocketListerners(): void
+  {
+    this.socket.on("generatedUserId", (userId) => {
+      // Initializing the chat with the userId and the adapter with the socket instance
+      this.adapter = new SocketIOAdapter(userId, this.socket, this.http);
+      this.userId = userId;
+    });
+  }
  
 
 }

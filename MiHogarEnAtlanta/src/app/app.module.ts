@@ -43,8 +43,11 @@ import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { NgChatModule } from 'ng-chat';
+import { HttpModule } from '@angular/http';
 
-
+const config2: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 
 @NgModule({
   declarations: [
@@ -84,7 +87,10 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     NgProgressHttpModule, 
     InputFileModule.forRoot(config),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    SocketIoModule.forRoot(config2),
+    NgChatModule,
+    HttpModule
   ],
   providers: [
     AppSettings,
