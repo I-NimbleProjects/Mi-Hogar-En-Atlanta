@@ -32,7 +32,7 @@ export class AppComponent {
     translate.addLangs(['en','es']);
     translate.setDefaultLang('es'); 
     translate.use('es');
-    this.InitializeSocketListerners();
+    // this.InitializeSocketListerners();
   }
 
   ngAfterViewInit(){ 
@@ -47,18 +47,18 @@ export class AppComponent {
     });    
   }
 
-  public joinRoom(): void 
-  {
-    this.socket.emit("join", this.username);
-  }
+  // public joinRoom(): void 
+  // {
+  //   this.socket.emit("join", this.username);
+  // }
 
-  public InitializeSocketListerners(): void
-  {
-    this.socket.on("generatedUserId", (userId) => {
-      // Initializing the chat with the userId and the adapter with the socket instance
-      this.adapter = new SocketIOAdapter(userId, this.socket, this.http);
-      this.userId = userId;
-    });
-  }
+  // public InitializeSocketListerners(): void
+  // {
+  //   this.socket.on("generatedUserId", (userId) => {
+  //     // Initializing the chat with the userId and the adapter with the socket instance
+  //     this.adapter = new SocketIOAdapter(userId, this.socket, this.http);
+  //     this.userId = userId;
+  //   });
+  // }
 
 }

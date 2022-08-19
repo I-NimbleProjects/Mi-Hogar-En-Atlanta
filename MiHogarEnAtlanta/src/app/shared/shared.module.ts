@@ -74,7 +74,9 @@ import { HeaderMapComponent } from './header-map/header-map.component';
 import { HeaderVideoComponent } from './header-video/header-video.component'; 
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component'; 
-import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component'; 
+import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
+import { ChatComponent } from './chat/chat.component'; 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -121,7 +123,8 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     AgmCoreModule,
     AgmSnazzyInfoWindowModule,
     PipesModule,
-    DirectivesModule   
+    DirectivesModule,
+    FormsModule   
   ],
   exports: [
     RouterModule,
@@ -189,7 +192,8 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
-    DialogHeaderControlsComponent  
+    DialogHeaderControlsComponent,
+    ChatComponent  
   ],
   declarations: [ 
     LogoComponent,
@@ -214,7 +218,8 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
-    DialogHeaderControlsComponent
+    DialogHeaderControlsComponent,
+    ChatComponent
   ], 
   providers:[
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

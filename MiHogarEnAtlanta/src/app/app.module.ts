@@ -46,6 +46,7 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgChatModule } from 'ng-chat';
 import { HttpModule } from '@angular/http';
+import { NgxWhastappButtonModule } from "ngx-whatsapp-button";
 
 const config2: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 
@@ -90,7 +91,8 @@ const config2: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     SharedModule,
     SocketIoModule.forRoot(config2),
     NgChatModule,
-    HttpModule
+    HttpModule,
+    NgxWhastappButtonModule,
   ],
   providers: [
     AppSettings,

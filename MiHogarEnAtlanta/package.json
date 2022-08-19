@@ -50,6 +50,7 @@
     "ngx-progressbar": "6.1.1",
     "ngx-socket-io": "4.0",
     "ngx-swiper-wrapper": "10.0.0",
+    "ngx-whatsapp-button": "^1.0.4",
     "ngx-youtube-player": "^12.0.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",

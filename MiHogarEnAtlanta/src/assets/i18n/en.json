@@ -137,5 +137,6 @@
     "PRICE<": "Price (Low to High)",
     "PRICE>": "Price (High to Low)"
   },
-  "Ordenar por defecto": "Sort by default"
+  "Ordenar por defecto": "Sort by default",
+  "ChatHeader": "Say \"Hi\" to our ChatBot"
 }

@@ -137,5 +137,6 @@
       "PRICE<": "Precio (Bajo a Alto)",
       "PRICE>": "Precio (Alto a Bajo)"
     },
-    "Ordenar por defecto": "Ordenar por defecto"
+    "Ordenar por defecto": "Ordenar por defecto",
+    "ChatHeader": "Dile \"Hola\" a nuestro ChatBot"
   }
