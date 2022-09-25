@@ -1205,13 +1205,13 @@ export class AppService {
   public getImagesNosotros(){
     return [
       {
+        image: 'assets/images/fotosContact/BookSpanish.png'
+      },
+      {
+        image: 'assets/images/fotosContact/BookEnglish.png'
+      },
+      {
         image: 'assets/images/fotosContact/image3.jpg'
-      },
-      {
-        image: 'assets/images/fotosContact/image4.jpg'
-      },
-      {
-        image: 'assets/images/fotosContact/image5.jpg'
       },
       {
         image: 'assets/images/fotosContact/image6.jpg'

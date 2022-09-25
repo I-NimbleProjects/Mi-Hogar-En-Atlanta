@@ -23,7 +23,7 @@ export class PagesComponent implements OnInit {
   public headerFixed: boolean = false;
   public showBackToTop: boolean = false;
   public scrolledCount = 0;
-  public phone = "16787448007"
+  public phone = "14048443264"
   public title2 = "Hi, i would like information about some properties.";
 
   public settings: Settings;
