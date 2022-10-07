@@ -17,7 +17,7 @@ export const routes: Routes = [
             // { path: 'agents', loadChildren: () => import('./pages/agents/agents.module').then(m => m.AgentsModule) },
             { path: 'compare', loadChildren: () => import('./pages/compare/compare.module').then(m => m.CompareModule) },
             // { path: 'pricing', loadChildren: () => import('./pages/pricing/pricing.module').then(m => m.PricingModule) },
-            // { path: 'faq', loadChildren: () => import('./pages/faq/faq.module').then(m => m.FaqModule) },
+            { path: 'faq', loadChildren: () => import('./pages/faq/faq.module').then(m => m.FaqModule) },
             // { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
             // { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
             // { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },

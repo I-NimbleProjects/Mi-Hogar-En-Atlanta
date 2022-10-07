@@ -8,39 +8,49 @@ import { Component, OnInit } from '@angular/core';
 export class FaqComponent implements OnInit {
   public faqs = [
     { 
-      question: 'What payment methods are available?', 
+      question: '¿Cuáles son los documentos necesarios para comprar una casa?', 
       status: 'Question about selling', 
-      answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat, sapien id rhoncus pretium, leo massa pellentesque magna, non mattis lectus risus sit amet turpis. Cras et semper tellus. Sed sed leo sapien. Nunc eros nibh, tempor quis rhoncus eget, condimentum vel odio. Duis vitae lacus ligula. Aenean elementum euismod pretium. Nullam sit amet lectus molestie, condimentum odio accumsan, sodales nibh.' 
+      answer: 'Puede aplicar con Tax ID o seguro social.' 
     },
     { 
-      question: ' What is the difference between a real estate agent and a real estate broker?', 
+      question: '¿Cuáles son los requisitos para aplicar con TAX ID?', 
       status: 'Agents FAQs', 
-      answer: 'Maecenas aliquet cursus tellus in imperdiet. Vivamus consequat ipsum augue, a vulputate eros porta eu. Sed consectetur turpis a arcu dapibus, sit amet elementum dui posuere. Ut sodales nisl nec rhoncus dignissim. Nunc maximus est sed nibh mattis fringilla. Donec vehicula interdum neque bibendum feugiat. Sed porttitor elementum vehicula. Phasellus fermentum leo erat, non fermentum ipsum elementum sed. ' 
+      answer: 'Los requisitos son: identificación o pasaporte, numero de tax id, últimos dos meses de estados de cuenta, contar con el 20% de down payment.' 
     },
     { 
-      question: 'How long does the loan process take?', 
+      question: '¿Cuánto seria el monto del 20% de down payment?', 
       status: 'Question about renting', 
-      answer: 'Etiam a faucibus tortor, pellentesque viverra orci. Donec et cursus quam, eget molestie nisl. Etiam venenatis libero turpis, non placerat orci consequat ut. Nullam vitae lacinia elit. Proin pulvinar faucibus enim, et ullamcorper risus dapibus sit amet. Nam magna sapien, hendrerit eget gravida id, dapibus a diam. Proin condimentum elementum vestibulum. Sed hendrerit vestibulum diam, quis cursus ex efficitur non.' 
+      answer: 'El monto de la inicial dependerá del precio que tenga la casa, de ese precio se calcula el 20%.' 
     },
     { 
-      question: 'When buying a new home, what upgrades should we go for?', 
+      question: '¿Cuáles son los requisitos para aplicar con SS?', 
       status: 'Question about selling', 
-      answer: 'Curabitur vitae lorem felis. Aenean eu dolor et tortor viverra tempor ac eu lacus. Morbi eget elit ac ligula convallis sollicitudin eu et metus. Nam tempor lacus quis urna tincidunt varius non eu est. Fusce nec lorem eget ipsum dapibus tincidunt. Donec ut mauris efficitur ante pretium finibus. Vestibulum suscipit quis sapien in tincidunt. Aenean dictum sem sed justo venenatis, suscipit fringilla diam suscipit. Mauris sit amet lobortis purus, quis faucibus justo. Quisque tincidunt magna turpis, nec ultrices lorem mollis quis.' 
+      answer: 'Los requisitos son: licencia, número de seguro social, green card o permiso de trabajo, el último mes de talones de pago, últimos dos años de taxes, últimos tres meses de estados de cuenta.' 
     },
     { 
-      question: 'What benefits do I receive from private mortgage insurance?', 
+      question: '¿Cuánto debo dar de down payment si tengo seguro social?', 
       status: 'Question about renting', 
-      answer: 'Ut sodales nisl nec rhoncus dignissim. Nunc maximus est sed nibh mattis fringilla. Donec vehicula interdum neque bibendum feugiat. Sed porttitor elementum vehicula. Phasellus fermentum leo erat, non fermentum ipsum elementum sed. Mauris non risus lectus. Morbi ut metus et nisi malesuada mollis. Maecenas placerat ante urna, sed efficitur magna tempor ac. Nam posuere lorem diam, sit amet rhoncus massa consectetur in. In nec tincidunt ipsum, non volutpat augue. Nam quis imperdiet nisi.' 
+      answer: 'El monto de down payment dependerá del precio que tenga la casa, el porcentaje va de 3 a 5%.' 
     },
     { 
-      question: ' Why should I use a real estate salesperson?', 
+      question: '¿Dónde debo acudir para llevar los requisitos?', 
       status: 'Agents FAQs', 
-      answer: 'Phasellus nec dapibus est. Nullam erat neque, porttitor sed massa non, vulputate vestibulum libero. Donec quis odio id mi auctor pellentesque. Nulla facilisi. Morbi sed orci neque. Mauris dictum sapien efficitur sagittis efficitur. Fusce tristique rhoncus mauris, sed tristique arcu scelerisque id.' 
+      answer: 'Debe acudir a nuestra oficina ubicada en Norcross en donde nuestro prestamista lo podrá evaluar. En caso de que se le dificulte ir a la oficina, puede hacernos llegar los documentos a nuestro correo mihogarenatlanta@gmail.com en formato PDF preferiblemente.' 
     },
     { 
-      question: 'Can a home depreciate in value?', 
+      question: 'Tengo problemas para realizar mis taxes', 
       status: 'Question about selling', 
-      answer: 'Etiam a faucibus tortor, pellentesque viverra orci. Donec et cursus quam, eget molestie nisl. Etiam venenatis libero turpis, non placerat orci consequat ut. Nullam vitae lacinia elit. Proin pulvinar faucibus enim, et ullamcorper risus dapibus sit amet. Nam magna sapien, hendrerit eget gravida id, dapibus a diam. Proin condimentum elementum vestibulum. Sed hendrerit vestibulum diam, quis cursus ex efficitur non.' 
+      answer: 'Contamos con un equipo de contadores que puede ayudarle a realizar sus taxes.' 
+    },
+    { 
+      question: '¿Cuál es el puntaje necesario de crédito para poder aplicar?', 
+      status: 'Question about selling', 
+      answer: 'Necesita un mínimo de 640 puntos.' 
+    },
+    { 
+      question: '¿Puedo aplicar en conjunto con otra persona?', 
+      status: 'Question about selling', 
+      answer: 'Si se puede, mientras ambos tengan sus requisitos en regla es posible.' 
     }
   ]
   constructor() { }

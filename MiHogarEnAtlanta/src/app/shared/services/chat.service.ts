@@ -69,15 +69,6 @@ export class ChatService {
     "no": "Thanks for coming, have a nice experience in our website",
   }
 
-  // options = [ "español", "english", "comprar", "buy", "contacto", "contact", "cita", "meeting"];
-
-  // boldString(string, find){
-  //   var result = new RegExp(find, 'g');
-  //   return string.toString().replace(result, '<b>'+find+'</b>');
-  // }
-  
-  // result = this.getBotAnswer(answer);
-
   getBotAnswer(msg: string) {
     const userMessage = new Message('user', msg);  
     this.conversation.next([userMessage]);
