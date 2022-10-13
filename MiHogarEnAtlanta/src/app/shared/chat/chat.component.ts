@@ -27,10 +27,17 @@ sendMessage() {
 
 openForm() {
   document.getElementById("chat-box").style.display = "block";
+  this.receiveMessage();
 }
 
 closeForm() {
   document.getElementById("chat-box").style.display = "none";
+}
+
+receiveMessage(){
+  this.value = 'Hola';
+  this.chatService.getBotAnswer(this.value);
+  this.value = '';
 }
 
 }

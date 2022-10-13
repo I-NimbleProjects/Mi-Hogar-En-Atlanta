@@ -18,7 +18,10 @@ export class ChatService {
     "Hi": `Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español? or would you like to be assisted in english?`,
     "hi": "Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español? or would you like to be assisted in english?",
     "hello": "Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español? or would you like to be assisted in english?",
-    "Hello": "Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español? or would you like to be assisted in english?",
+    "Hello": {
+      "1": "Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español?",
+      "2": "or would you like to be assisted in english?"
+    },       
     "Hola": "Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español? or would you like to be assisted in english?",
     "hola": "Bienvenido, somos mi hogar en atlanta, le gustaria ser atendido en español? or would you like to be assisted in english?",
     "Español": "Desea conocer como comprar una casa? Le gustaria nuestra informacion de contacto? Desea agendar una cita? Responda comprar, contacto o cita, de acuerdo a su eleccion.",

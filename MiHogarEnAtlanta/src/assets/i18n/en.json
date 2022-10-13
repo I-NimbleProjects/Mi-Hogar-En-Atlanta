@@ -156,5 +156,27 @@
     "PRICE>": "Price (High to Low)"
   },
   "Ordenar por defecto": "Sort by default",
-  "ChatHeader": "Say \"Hi\" to our ChatBot"
+  "ChatHeader": "Say \"Hi\" to our ChatBot",
+  "FAQ": {
+    "TITLE": "Frequently Asked Questions",
+    "SUB_TITLE": "Click on a question to expand and reveal the answer.",
+    "Q1": "Which documents do you need to buy a house?",
+    "A1": "You can apply with your Tax ID or social security.",
+    "Q2": "What are the requirements to apply with TAX ID?",
+    "A2": "The requirements are: ID or passport, tax id number, last two month of your account statements and you must have the 20% down payment.",
+    "Q3": "How much is the 20% down payment?",
+    "A3": "It depends of the house value, It is the 20% of the value.",
+    "Q4": "What are the requirements with the SS?",
+    "A4": "The requirements are: license, social security number, green card or work permit, last month pay stubs, last two years of taxes, last three month of your account statements.",
+    "Q5": "How much is the down payment if I have social security?",
+    "A5": "It depends of the house value, It will be from 3 to 5%.",
+    "Q6": "Where can i go to deliver the requirements?",
+    "A6": "You must go to our office in Norcross where our lender could review them. if you can't go to our office, you can send the documents to our email mihogarenatlanta@gmail.com in PDF format.",
+    "Q7": "I have problems to do my taxes",
+    "A7": "We have an accountants team that will help do your taxes.",
+    "Q8": "What is the credit score need it to apply?",
+    "A8": "You need 640 points minimum.",
+    "Q9": "Can I apply with another person?",
+    "A9": "Yes, You can, while both of you have the requirements."
+  }
 }
