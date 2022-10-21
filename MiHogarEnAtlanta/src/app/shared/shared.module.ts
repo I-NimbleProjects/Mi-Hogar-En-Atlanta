@@ -77,6 +77,9 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
 import { ChatComponent } from './chat/chat.component'; 
 import { FormsModule } from '@angular/forms';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactService } from './services/contact.service';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   imports: [
@@ -193,7 +196,8 @@ import { FormsModule } from '@angular/forms';
     ConfirmDialogComponent,
     AlertDialogComponent,
     DialogHeaderControlsComponent,
-    ChatComponent  
+    ChatComponent,
+    ContactFormComponent  
   ],
   declarations: [ 
     LogoComponent,
@@ -219,10 +223,13 @@ import { FormsModule } from '@angular/forms';
     ConfirmDialogComponent,
     AlertDialogComponent,
     DialogHeaderControlsComponent,
-    ChatComponent
+    ChatComponent,
+    ContactFormComponent,
+    // PopupComponent
   ], 
   providers:[
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
+    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    ContactService
   ]
 })
 export class SharedModule { }

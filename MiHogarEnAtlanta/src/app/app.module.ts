@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgProgressModule } from 'ngx-progressbar';
@@ -70,7 +71,8 @@ const config2: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }), 
     BrowserAnimationsModule, 
-    FormsModule, 
+    FormsModule,
+    ReactiveFormsModule, 
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBBkiWPUUuEJVu8B_Cf3rYL_URJfrmZ2Wc',

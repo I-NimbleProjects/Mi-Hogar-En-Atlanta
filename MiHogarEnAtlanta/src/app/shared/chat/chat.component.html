@@ -12,7 +12,8 @@
     <div class="chat-box-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
 <ng-container *ngFor="let message of messages">
     <div class="message" [ngClass]="{ 'from': message.author === 'bot', 'to': message.author === 'user' }">
-        {{ message.content }}
+        {{ message.question }}
+        <button class="options" role="button" (click)="options(item.value)" *ngFor="let item of message.content | keyvalue">{{ item.value }}</button>
 </div>
 </ng-container>
 </div>

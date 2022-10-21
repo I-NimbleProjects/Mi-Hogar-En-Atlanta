@@ -27,15 +27,21 @@ sendMessage() {
 
 openForm() {
   document.getElementById("chat-box").style.display = "block";
-  this.receiveMessage();
+  this.welcomeMessage();
 }
 
 closeForm() {
   document.getElementById("chat-box").style.display = "none";
 }
 
-receiveMessage(){
-  this.value = 'Hola';
+welcomeMessage(){
+  this.value = 'Hola, bienvenido a Mi hogar en Atlanta, a continuacion podra conversar con nuestro chatbot eligiendo entre las siguientes opciones. Hello, welcome to Mi hogar en Atlanta, You can talk with our chatbot chosen between these options.';
+  this.chatService.getBotAnswer(this.value);
+  this.value = '';
+}
+
+options(content: any){
+  this.value = content;
   this.chatService.getBotAnswer(this.value);
   this.value = '';
 }
