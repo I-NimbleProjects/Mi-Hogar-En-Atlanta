@@ -80,6 +80,8 @@ import { FormsModule } from '@angular/forms';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactService } from './services/contact.service';
 import { PopupComponent } from './popup/popup.component';
+import { VideocontactComponent } from './videocontact/videocontact.component';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player'
 
 @NgModule({
   imports: [
@@ -127,7 +129,8 @@ import { PopupComponent } from './popup/popup.component';
     AgmSnazzyInfoWindowModule,
     PipesModule,
     DirectivesModule,
-    FormsModule   
+    FormsModule,
+    NgxYoutubePlayerModule 
   ],
   exports: [
     RouterModule,
@@ -197,7 +200,8 @@ import { PopupComponent } from './popup/popup.component';
     AlertDialogComponent,
     DialogHeaderControlsComponent,
     ChatComponent,
-    ContactFormComponent  
+    ContactFormComponent,
+    VideocontactComponent  
   ],
   declarations: [ 
     LogoComponent,
@@ -225,6 +229,7 @@ import { PopupComponent } from './popup/popup.component';
     DialogHeaderControlsComponent,
     ChatComponent,
     ContactFormComponent,
+    VideocontactComponent,
     // PopupComponent
   ], 
   providers:[

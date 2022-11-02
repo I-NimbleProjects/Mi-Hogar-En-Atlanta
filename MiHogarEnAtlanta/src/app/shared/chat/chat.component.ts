@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
     this.chatService.conversation.subscribe((val) => {
     this.messages = this.messages.concat(val);
   });
+  setTimeout( this.hideNotification, 5000);
 }
 
 sendMessage() {
@@ -35,7 +36,7 @@ closeForm() {
 }
 
 welcomeMessage(){
-  this.value = 'Hola, bienvenido a Mi hogar en Atlanta, a continuacion podra conversar con nuestro chatbot eligiendo entre las siguientes opciones. Hello, welcome to Mi hogar en Atlanta, You can talk with our chatbot chosen between these options.';
+  this.value = 'Hola.';
   this.chatService.getBotAnswer(this.value);
   this.value = '';
 }
@@ -45,5 +46,10 @@ options(content: any){
   this.chatService.getBotAnswer(this.value);
   this.value = '';
 }
+
+hideNotification(){
+  document.getElementById("notification").style.display = "none";
+}
+
 
 }
