@@ -153,4 +153,52 @@
     }    
 }
 
+// h1{
+//     color:#FFF;
+// }
 
+.form-box
+{
+    background-color: #fff;
+    width: 300px;
+    height: 200px;
+    // position: relative;
+    // left: 50%;
+    // top: 50%;
+    // margin-left: 50%;
+    // margin-right: 50%;
+    // margin-top: -100px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px rgba(68,68,68,0.6);
+    padding: 10px; 
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+}
+.form-box form
+{
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+// .form-box label
+// {
+//     display: inline-block;
+// }
+
+.ngx-whatsapp-button-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 135px !important;
+    right: 59px !important;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+// .ngx-whatsapp-button-float > div {
+//     margin-top: 15% !important;
+//   }

@@ -1,0 +1,25 @@
+<section class="">
+    <div class="container">
+      <form [formGroup]=""  class="" id="contact">
+        <h1 class="">Contact Us</h1>
+        <h4>Leave us your information so We can contact you and find together your new home</h4>
+        <div class="">
+          <label for="name" class="">Name</label>
+          <input formControlName="name" type="text" id="name" name="name" class="" placeholder="Your name" required/>
+        </div>
+        <div class="">
+          <label for="email" class="">Email</label>
+          <input formControlName="email" type="email" id="email" name="email" class="" placeholder="Your Email Address" required/>
+        </div>
+        <div class="">
+          <label for="" class="">Phone</label>
+          <input formControlName="tel" type="tel" id="tel" name="tel" class="" placeholder="Your Phone Number" required/>
+        </div>
+        <div class="">
+          <label for="message" class="">Message</label>
+          <textarea formControlName="message" id="message" name="message" class="" placeholder="Type your message here...."></textarea>
+        </div>
+        <button type="submit" class="">Send</button>
+      </form>
+    </div>
+  </section>

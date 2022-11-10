@@ -1,5 +1,17 @@
 @import "variables";
 
+.ngx-whatsapp-button-float > div {
+    margin-top: 15% !important;
+  }
+
+  .svg-inline--fa {
+    height: 1.5em !important;
+  }
+
+  .svg-inline--fa.fa-w-14 {
+    width: 1.875em !important;;
+  }
+
 /******* Base styles *******/
 *{
     margin: 0;

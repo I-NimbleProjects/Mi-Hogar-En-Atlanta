@@ -15,14 +15,14 @@
                     <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
                         <mat-icon color="primary" class="mat-icon-lg">home</mat-icon>
                         <h3 class="primary-color py-1">{{ 'CONTACTO.ADDRESS' | translate}}</h3>
-                        <span>6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos</span>
+                        <span><a href="http://maps.google.com/?q=6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos" target="_blank" style="color: black;">6015 Atlantic Blvd Suite D, Norcross, GA 30071, Estados Unidos</a></span>
                     </div>
                 </div>
                 <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
                     <div fxLayout="column" fxLayoutAlign="center center">
                         <mat-icon color="primary" class="mat-icon-lg">call</mat-icon>
                         <h3 class="primary-color py-1">{{ 'CONTACTO.PHONE_NUMBERS' | translate}}</h3>
-                        <span>+1 (678) 744-8007</span>
+                        <span><a href="tel:+1 (678) 744-8007" style="color: black;">+1 (678) 744-8007</a></span>
                         <!-- <span>(212) 457-2309</span> -->
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div fxLayout="column" fxLayoutAlign="center center">
                         <mat-icon color="primary" class="mat-icon-lg">mail_outline</mat-icon>
                         <h3 class="primary-color py-1">{{ 'CONTACTO.EMAIL' | translate}}</h3>
-                        <span>mihogarenatlanta@gmail.com</span>
+                        <span><a href="mailto:mihogarenatlanta@gmail.com" style="color: black;">mihogarenatlanta@gmail.com</a></span>
                         <!-- <span>info@housekey.com</span> -->
                     </div>
                 </div>
@@ -77,6 +77,8 @@
             <!-- <div class="container" gallerize>
                 <img *ngFor="let src of images" src='src\assets\images\fotosContact'>
               </div> -->
+
+            <app-contact-form></app-contact-form>
             
             <div class="mt-5 contact-map">
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true" [fullscreenControl]="true">

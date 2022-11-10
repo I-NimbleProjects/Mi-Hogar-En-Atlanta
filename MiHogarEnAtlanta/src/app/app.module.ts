@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgProgressModule } from 'ngx-progressbar';
@@ -43,8 +44,12 @@ import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { NgChatModule } from 'ng-chat';
+import { HttpModule } from '@angular/http';
+import { NgxWhastappButtonModule } from "ngx-whatsapp-button";
 
-
+const config2: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 
 @NgModule({
   declarations: [
@@ -66,7 +71,8 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }), 
     BrowserAnimationsModule, 
-    FormsModule, 
+    FormsModule,
+    ReactiveFormsModule, 
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBBkiWPUUuEJVu8B_Cf3rYL_URJfrmZ2Wc',
@@ -84,7 +90,11 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     NgProgressHttpModule, 
     InputFileModule.forRoot(config),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    SocketIoModule.forRoot(config2),
+    NgChatModule,
+    HttpModule,
+    NgxWhastappButtonModule,
   ],
   providers: [
     AppSettings,

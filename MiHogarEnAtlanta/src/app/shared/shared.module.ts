@@ -74,7 +74,14 @@ import { HeaderMapComponent } from './header-map/header-map.component';
 import { HeaderVideoComponent } from './header-video/header-video.component'; 
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component'; 
-import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component'; 
+import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
+import { ChatComponent } from './chat/chat.component'; 
+import { FormsModule } from '@angular/forms';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactService } from './services/contact.service';
+import { PopupComponent } from './popup/popup.component';
+import { VideocontactComponent } from './videocontact/videocontact.component';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player'
 
 @NgModule({
   imports: [
@@ -121,7 +128,9 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     AgmCoreModule,
     AgmSnazzyInfoWindowModule,
     PipesModule,
-    DirectivesModule   
+    DirectivesModule,
+    FormsModule,
+    NgxYoutubePlayerModule 
   ],
   exports: [
     RouterModule,
@@ -189,7 +198,10 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
-    DialogHeaderControlsComponent  
+    DialogHeaderControlsComponent,
+    ChatComponent,
+    ContactFormComponent,
+    VideocontactComponent  
   ],
   declarations: [ 
     LogoComponent,
@@ -214,10 +226,15 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
-    DialogHeaderControlsComponent
+    DialogHeaderControlsComponent,
+    ChatComponent,
+    ContactFormComponent,
+    VideocontactComponent,
+    // PopupComponent
   ], 
   providers:[
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
+    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    ContactService
   ]
 })
 export class SharedModule { }
